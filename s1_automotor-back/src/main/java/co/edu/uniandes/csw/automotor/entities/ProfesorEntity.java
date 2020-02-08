@@ -22,6 +22,8 @@ public class ProfesorEntity extends BaseEntity implements Serializable {
     )
     Collection<PracticaEntity> practicas;
 
+    @javax.persistence.ManyToOne()
+    UniversidadEntity universidad;
     /**
      * @return the nombre
      */

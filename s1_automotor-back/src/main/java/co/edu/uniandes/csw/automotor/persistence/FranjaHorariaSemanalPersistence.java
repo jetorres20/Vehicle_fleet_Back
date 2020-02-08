@@ -7,7 +7,6 @@ package co.edu.uniandes.csw.automotor.persistence;
 
 import co.edu.uniandes.csw.automotor.entities.FranjaHorariaSemanalEntity;
 import java.util.Collection;
-import java.util.Date;
 import javax.ejb.Stateless;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
@@ -36,7 +35,7 @@ public class FranjaHorariaSemanalPersistence {
     }
     
     public Collection<FranjaHorariaSemanalEntity> findAll(){
-        Collection<FranjaHorariaSemanalEntity> list=em.createQuery("SELECT e FROM FranjaHorariaEntity e").getResultList();
+        Collection<FranjaHorariaSemanalEntity> list=em.createQuery("SELECT e FROM FranjaHorariaSemanalEntity e").getResultList();
         return list;
     }
     
