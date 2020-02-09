@@ -32,7 +32,7 @@ public class FranjaHorariaSemanalPersistenceTest {
     @Deployment
     public static JavaArchive createDeployment() {
         return ShrinkWrap.create(JavaArchive.class)
-                .addPackage(FranjaHorariaSemanalEntity.class.getPackage())
+                .addPackage(FranjaHorariaSemanalPersistence.class.getPackage())
                 .addPackage(FranjaHorariaSemanalEntity.class.getPackage())
                 .addAsManifestResource("META-INF/persistence.xml", "persistence.xml")
                 .addAsManifestResource("META-INF/beans.xml", "beans.xml");
