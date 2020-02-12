@@ -75,7 +75,7 @@ public class VehiculoEntity extends BaseEntity implements Serializable {
      * @param capacidad the capacidad to set
      */
     public void setCapacidad(Integer capacidad) {
-        this.setCapacidad((Integer) capacidad);
+        this.capacidad=capacidad;
     }
 
     /**
