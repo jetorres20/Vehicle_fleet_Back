@@ -17,8 +17,8 @@ import uk.co.jemos.podam.common.PodamExclude;
 public class PracticaEntity extends BaseEntity implements Serializable{
     private String destino;
     private String descripcion;
-    private double tiempoDeDesplazamiento;
-    private double duracion;
+    private Double tiempoDeDesplazamiento;
+    private Double duracion;
      @javax.persistence.ManyToOne(
     )
     private ProfesorEntity profesor;
