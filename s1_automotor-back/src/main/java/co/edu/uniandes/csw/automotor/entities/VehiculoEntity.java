@@ -74,7 +74,7 @@ public class VehiculoEntity extends BaseEntity implements Serializable {
     /**
      * @param capacidad the capacidad to set
      */
-    public void setCapacidad(int capacidad) {
+    public void setCapacidad(Integer capacidad) {
         this.setCapacidad((Integer) capacidad);
     }
 
@@ -106,12 +106,7 @@ public class VehiculoEntity extends BaseEntity implements Serializable {
         this.registro = registro;
     }
 
-    /**
-     * @param capacidad the capacidad to set
-     */
-    public void setCapacidad(Integer capacidad) {
-        this.capacidad = capacidad;
-    }
+    
 
     /**
      * @return the tipoVehiculo

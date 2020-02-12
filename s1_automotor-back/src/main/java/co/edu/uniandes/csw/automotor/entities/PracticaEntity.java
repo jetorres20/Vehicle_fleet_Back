@@ -64,21 +64,21 @@ public class PracticaEntity extends BaseEntity implements Serializable{
     /**
      * @param tiempoDeDesplazamiento the tiempoDeDesplazamiento to set
      */
-    public void setTiempoDeDesplazamiento(double tiempoDeDesplazamiento) {
+    public void setTiempoDeDesplazamiento(Double tiempoDeDesplazamiento) {
         this.tiempoDeDesplazamiento = tiempoDeDesplazamiento;
     }
 
     /**
      * @return the duracion
      */
-    public double getDuracion() {
+    public Double getDuracion() {
         return duracion;
     }
 
     /**
      * @param duracion the duracion to set
      */
-    public void setDuracion(double duracion) {
+    public void setDuracion(Double duracion) {
         this.duracion = duracion;
     }
 
