@@ -7,6 +7,7 @@ package co.edu.uniandes.csw.automotor.entities;
 
 import java.io.Serializable;
 import javax.persistence.Entity;
+import javax.persistence.OneToOne;
 import uk.co.jemos.podam.common.PodamExclude;
 
 /**
@@ -29,6 +30,10 @@ public class VehiculoEntity extends BaseEntity implements Serializable {
             fetch = javax.persistence.FetchType.LAZY
     )
    private RegistroEntity registro;
+    
+    @PodamExclude
+    @OneToOne
+   private TipoVehiculoEntity tipoVehiculo;
 
     //Metodos
     /**
