@@ -21,7 +21,7 @@ public class UniversidadEntity extends BaseEntity implements Serializable{
     
     private String ciudad;
     
-    private boolean privada;
+    private Boolean privada;
     
     @PodamExclude
     @javax.persistence.OneToMany(
@@ -70,14 +70,14 @@ public class UniversidadEntity extends BaseEntity implements Serializable{
     /**
      * @return the privada
      */
-    public boolean getPrivada() {
+    public Boolean getPrivada() {
         return privada;
     }
 
     /**
      * @param privada the privada to set
      */
-    public void setPrivada(boolean privada) {
+    public void setPrivada(Boolean privada) {
         this.privada = privada;
     }
     

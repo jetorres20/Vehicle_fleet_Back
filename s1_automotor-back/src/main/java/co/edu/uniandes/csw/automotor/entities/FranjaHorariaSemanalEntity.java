@@ -5,12 +5,16 @@
  */
 package co.edu.uniandes.csw.automotor.entities;
 
+import co.edu.uniandes.csw.automotor.podam.DateStrategy;
 import java.io.Serializable;
 import java.util.Date;
 import javax.persistence.Entity;
 import javax.persistence.ManyToOne;
+import javax.persistence.Temporal;
+import javax.persistence.TemporalType;
 //import javax.persistence.OneToOne;
 import uk.co.jemos.podam.common.PodamExclude;
+import uk.co.jemos.podam.common.PodamStrategyValue;
 
 /**
  *
@@ -19,10 +23,14 @@ import uk.co.jemos.podam.common.PodamExclude;
 @Entity
 public class FranjaHorariaSemanalEntity extends BaseEntity implements Serializable{
     
-    private int dia;
+    private Integer dia;
     
+    @Temporal(TemporalType.DATE)
+    @PodamStrategyValue(DateStrategy.class)
     private Date horaInicio;
     
+    @Temporal(TemporalType.DATE)
+    @PodamStrategyValue(DateStrategy.class)
     private Date horaFin;
    
     @PodamExclude
@@ -32,14 +40,14 @@ public class FranjaHorariaSemanalEntity extends BaseEntity implements Serializab
     /**
      * @return the dia
      */
-    public int getDia() {
+    public Integer getDia() {
         return dia;
     }
 
     /**
      * @param dia the dia to set
      */
-    public void setDia(int dia) {
+    public void setDia(Integer dia) {
         this.dia = dia;
     }
 
