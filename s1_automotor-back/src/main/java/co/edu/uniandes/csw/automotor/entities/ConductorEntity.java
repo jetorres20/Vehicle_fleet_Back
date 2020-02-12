@@ -27,6 +27,9 @@ public class ConductorEntity extends BaseEntity implements Serializable{
     AgendaEntity agenda;
     @OneToMany(mappedBy = "conductor")
     Collection<FranjaHorariaSemanalEntity> franjasHorariasSemanales;
+    @OneToMany(mappedBy = "conductor")
+    Collection<ReservaEntity> reservas;
+    
     /**
      * @return the name
      */

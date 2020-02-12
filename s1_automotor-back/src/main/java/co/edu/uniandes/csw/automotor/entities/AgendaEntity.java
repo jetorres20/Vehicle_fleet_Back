@@ -6,8 +6,10 @@
 package co.edu.uniandes.csw.automotor.entities;
 
 import java.io.Serializable;
+import java.util.Collection;
 import java.util.Date;
 import javax.persistence.Entity;
+import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
 import uk.co.jemos.podam.common.PodamExclude;
 
@@ -27,6 +29,8 @@ public class AgendaEntity extends BaseEntity implements Serializable{
             
     )
     ConductorEntity conductor;
+    @OneToMany(mappedBy = "agenda")
+    Collection<ReservaEntity> reservas;
     /**
      * @return the fecha
      */
