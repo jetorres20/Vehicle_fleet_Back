@@ -33,11 +33,13 @@ public class TipoVehiculoEntity extends BaseEntity implements Serializable
     )
     private VehiculoEntity vehiculo;
     
+    @Override
     public void setId(Long id)
     {
         this.id = id;
     }
     
+    @Override
     public Long getId()
     {
         return this.id;
