@@ -8,7 +8,8 @@ package co.edu.uniandes.csw.automotor.entities;
 import java.io.Serializable;
 import java.util.Date;
 import javax.persistence.Entity;
-import javax.persistence.OneToOne;
+import javax.persistence.ManyToOne;
+//import javax.persistence.OneToOne;
 import uk.co.jemos.podam.common.PodamExclude;
 
 /**
@@ -25,7 +26,7 @@ public class FranjaHorariaSemanalEntity extends BaseEntity implements Serializab
     private Date horaFin;
    
     @PodamExclude
-    @OneToOne()
+    @ManyToOne()
     ConductorEntity conductor;
 
     /**
