@@ -19,9 +19,11 @@ public class PracticaEntity extends BaseEntity implements Serializable{
     private String descripcion;
     private Double tiempoDeDesplazamiento;
     private Double duracion;
+    @PodamExclude
      @javax.persistence.ManyToOne(
     )
     private ProfesorEntity profesor;
+     @PodamExclude
       @javax.persistence.OneToOne(
     )
     private ReservaEntity reserva;
