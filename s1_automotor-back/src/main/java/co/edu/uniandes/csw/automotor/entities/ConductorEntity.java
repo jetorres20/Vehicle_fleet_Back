@@ -25,10 +25,12 @@ public class ConductorEntity extends BaseEntity implements Serializable{
     @PodamExclude
     @OneToOne(mappedBy = "conductor")
     AgendaEntity agenda;
+    @PodamExclude
     @OneToMany(mappedBy = "conductor")
-    private Collection<FranjaHorariaSemanalEntity> franjasHorariasSemanales;
+    Collection<FranjaHorariaSemanalEntity> franjasHorariasSemanales;
+    @PodamExclude
     @OneToMany(mappedBy = "conductor")
-    private Collection<ReservaEntity> reservas;
+    Collection<ReservaEntity> reservas;
     
     /**
      * @return the name
