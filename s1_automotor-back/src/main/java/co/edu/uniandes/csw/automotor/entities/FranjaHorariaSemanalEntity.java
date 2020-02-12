@@ -22,6 +22,8 @@ import uk.co.jemos.podam.common.PodamStrategyValue;
  */
 @Entity
 public class FranjaHorariaSemanalEntity extends BaseEntity implements Serializable{
+
+    
     
     private Integer dia;
     
@@ -35,7 +37,7 @@ public class FranjaHorariaSemanalEntity extends BaseEntity implements Serializab
    
     @PodamExclude
     @ManyToOne()
-    ConductorEntity conductor;
+    private ConductorEntity conductor;
 
     /**
      * @return the dia
@@ -79,6 +81,18 @@ public class FranjaHorariaSemanalEntity extends BaseEntity implements Serializab
         this.horaFin = horaFin;
     }
     
-    
+    /**
+     * @return the conductor
+     */
+    public ConductorEntity getConductor() {
+        return conductor;
+    }
+
+    /**
+     * @param conductor the conductor to set
+     */
+    public void setConductor(ConductorEntity conductor) {
+        this.conductor = conductor;
+    }
     
 }

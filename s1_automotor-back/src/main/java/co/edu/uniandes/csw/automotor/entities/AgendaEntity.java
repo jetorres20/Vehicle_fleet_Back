@@ -81,7 +81,7 @@ public class AgendaEntity extends BaseEntity implements Serializable{
     }
 
     /**
-     * @param condAsociado the condAsociado to set
+     * @param conductor the condAsociado to set
      */
     public void setConductor(ConductorEntity conductor) {
         this.conductor = conductor;
