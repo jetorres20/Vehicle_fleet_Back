@@ -21,10 +21,10 @@ public class PracticaEntity extends BaseEntity implements Serializable{
     private double duracion;
      @javax.persistence.ManyToOne(
     )
-    ProfesorEntity profesor;
+    private ProfesorEntity profesor;
       @javax.persistence.OneToOne(
     )
-    ReservaEntity reserva;
+    private ReservaEntity reserva;
 
     /**
      * @return the destino
@@ -80,6 +80,34 @@ public class PracticaEntity extends BaseEntity implements Serializable{
      */
     public void setDuracion(double duracion) {
         this.duracion = duracion;
+    }
+
+    /**
+     * @return the reserva
+     */
+    public ReservaEntity getReserva() {
+        return reserva;
+    }
+
+    /**
+     * @param reserva the reserva to set
+     */
+    public void setReserva(ReservaEntity reserva) {
+        this.reserva = reserva;
+    }
+
+    /**
+     * @return the profesor
+     */
+    public ProfesorEntity getProfesor() {
+        return profesor;
+    }
+
+    /**
+     * @param profesor the profesor to set
+     */
+    public void setProfesor(ProfesorEntity profesor) {
+        this.profesor = profesor;
     }
     
 }
