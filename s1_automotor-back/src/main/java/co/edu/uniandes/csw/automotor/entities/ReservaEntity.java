@@ -13,7 +13,6 @@ import javax.persistence.ManyToMany;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToOne;
 import javax.persistence.Temporal;
-import javax.persistence.TemporalType;
 import uk.co.jemos.podam.common.PodamExclude;
 
 /**
@@ -26,11 +25,13 @@ public class ReservaEntity extends BaseEntity implements Serializable
     @javax.persistence.Id
     
     private Long id;
+    @Temporal(javax.persistence.TemporalType.DATE)
     private Date fechaReserva;
+    @Temporal(javax.persistence.TemporalType.DATE)
     private Date fechaServicio;
-    private boolean estadoValidacion;
-    private boolean reservaRecurrente;
-    private boolean cancelada;
+    private Boolean estadoValidacion;
+    private Boolean reservaRecurrente;
+    private Boolean cancelada;
     private String motivoCancelacion;
     
     @PodamExclude
@@ -61,11 +62,13 @@ public class ReservaEntity extends BaseEntity implements Serializable
     @ManyToOne()
     private ConductorEntity conductor;
     
+    @Override
     public void setId(Long id)
     {
         this.id = id;
     }
     
+    @Override
     public Long getId()
     {
         return this.id;
@@ -91,32 +94,32 @@ public class ReservaEntity extends BaseEntity implements Serializable
         return this.fechaServicio;
     }
     
-    public void setEstadoValidacion(boolean estadoValidacion)
+    public void setEstadoValidacion(Boolean estadoValidacion)
     {
         this.estadoValidacion = estadoValidacion;
     }
     
-    public boolean getEstadoValidacion()
+    public Boolean getEstadoValidacion()
     {
         return this.estadoValidacion;
     }
     
-    public void setReservaRecurrente(boolean reservaRecurrente)
+    public void setReservaRecurrente(Boolean reservaRecurrente)
     {
         this.reservaRecurrente = reservaRecurrente;
     }
     
-    public boolean getReservaRecurrente()
+    public Boolean getReservaRecurrente()
     {
         return this.reservaRecurrente;
     }
     
-    public void setCancelada(boolean cancelada)
+    public void setCancelada(Boolean cancelada)
     {
         this.cancelada = cancelada;
     }
     
-    public boolean getCancelada()
+    public Boolean getCancelada()
     {
         return this.cancelada;
     }

@@ -43,8 +43,9 @@ public class AgendaEntity extends BaseEntity implements Serializable{
             
     )
     ConductorEntity conductor;
+    @PodamExclude
     @OneToMany(mappedBy = "agenda")
-    private Collection<ReservaEntity> reservas;
+    Collection<ReservaEntity> reservas;
     /**
      * @return the fecha
      */
