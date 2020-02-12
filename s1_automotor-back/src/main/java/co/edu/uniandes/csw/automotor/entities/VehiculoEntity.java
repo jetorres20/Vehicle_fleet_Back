@@ -67,7 +67,7 @@ public class VehiculoEntity extends BaseEntity implements Serializable {
     /**
      * @return the capacidad
      */
-    public int getCapacidad() {
+    public Integer getCapacidad() {
         return capacidad;
     }
 

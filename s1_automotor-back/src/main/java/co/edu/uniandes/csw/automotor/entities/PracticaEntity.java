@@ -57,7 +57,7 @@ public class PracticaEntity extends BaseEntity implements Serializable{
     /**
      * @return the tiempoDeDesplazamiento
      */
-    public double getTiempoDeDesplazamiento() {
+    public Double getTiempoDeDesplazamiento() {
         return tiempoDeDesplazamiento;
     }
 

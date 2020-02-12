@@ -104,14 +104,14 @@ public class RegistroEntity extends BaseEntity implements Serializable  {
     /**
      * @return the vigente
      */
-    public boolean isVigente() {
+    public Boolean isVigente() {
         return vigente;
     }
 
     /**
      * @param vigente the vigente to set
      */
-    public void setVigente(boolean vigente) {
+    public void setVigente(Boolean vigente) {
         this.vigente = vigente;
     }
 
