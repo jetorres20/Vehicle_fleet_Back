@@ -11,12 +11,12 @@ import javax.persistence.Entity;
 
 /**
  *
- * @author estudiante
+ * @author Juan Esteban Torres 
  */
 @Entity
 public class EstudianteEntity extends BaseEntity implements Serializable{
     
-      
+      @javax.persistence.ManyToMany()
     Collection<ProfesorEntity> profesores;
       
       @javax.persistence.ManyToOne()

@@ -7,6 +7,7 @@ package co.edu.uniandes.csw.automotor.entities;
 import java.io.Serializable;
 import java.util.Collection;
 import javax.persistence.Entity;
+import uk.co.jemos.podam.common.PodamExclude;
 
 /**
  *
@@ -27,6 +28,11 @@ public class ProfesorEntity extends BaseEntity implements Serializable {
         fetch = javax.persistence.FetchType.LAZY
     )
     Collection<EncuestaEntity> encuestas;
+       @javax.persistence.OneToMany(
+        mappedBy = "profesor",
+        fetch = javax.persistence.FetchType.LAZY
+    )
+    Collection<EncuestaEntity> practicas;
        
        
     @javax.persistence.ManyToOne()
@@ -37,6 +43,8 @@ public class ProfesorEntity extends BaseEntity implements Serializable {
     public String getNombre() {
         return nombre;
     }
+    
+    
 
     /**
      * @param nombre the nombre to set

@@ -36,6 +36,8 @@ public class UniversidadEntity extends BaseEntity implements Serializable{
     fetch = javax.persistence.FetchType.LAZY
     )
     Collection<ProfesorEntity> estudiantes;
+    
+    
 
     /**
      * @return the nombre

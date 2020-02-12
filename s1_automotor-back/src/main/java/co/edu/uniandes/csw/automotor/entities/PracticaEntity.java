@@ -7,6 +7,7 @@ package co.edu.uniandes.csw.automotor.entities;
 
 import java.io.Serializable;
 import javax.persistence.Entity;
+import uk.co.jemos.podam.common.PodamExclude;
 
 /**
  *
@@ -21,6 +22,9 @@ public class PracticaEntity extends BaseEntity implements Serializable{
      @javax.persistence.ManyToOne(
     )
     ProfesorEntity profesor;
+      @javax.persistence.OneToOne(
+    )
+    ReservaEntity reserva;
 
     /**
      * @return the destino
