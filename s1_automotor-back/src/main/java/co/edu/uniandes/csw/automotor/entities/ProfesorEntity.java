@@ -17,24 +17,28 @@ import uk.co.jemos.podam.common.PodamExclude;
 public class ProfesorEntity extends BaseEntity implements Serializable {
     private String nombre;
     private Integer identificacion;
+    @PodamExclude
        @javax.persistence.ManyToMany(
         mappedBy = "profesores",
         fetch = javax.persistence.FetchType.LAZY
     )
     private Collection<EstudianteEntity> estudiantes;
 
+    @PodamExclude
        @javax.persistence.OneToMany(
         mappedBy = "profesor",
         fetch = javax.persistence.FetchType.LAZY
     )
     private Collection<EncuestaEntity> encuestas;
+    
+    @PodamExclude
        @javax.persistence.OneToMany(
         mappedBy = "profesor",
         fetch = javax.persistence.FetchType.LAZY
     )
     private Collection<EncuestaEntity> practicas;
        
-       
+    @PodamExclude  
     @javax.persistence.ManyToOne()
     private UniversidadEntity universidad;
     /**
