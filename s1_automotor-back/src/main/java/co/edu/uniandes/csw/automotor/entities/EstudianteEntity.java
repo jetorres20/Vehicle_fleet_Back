@@ -8,6 +8,8 @@ package co.edu.uniandes.csw.automotor.entities;
 import java.io.Serializable;
 import java.util.Collection;
 import javax.persistence.Entity;
+import javax.persistence.ManyToMany;
+import uk.co.jemos.podam.common.PodamExclude;
 
 /**
  *
@@ -16,15 +18,24 @@ import javax.persistence.Entity;
 @Entity
 public class EstudianteEntity extends BaseEntity implements Serializable{
     
-      @javax.persistence.ManyToMany()
+    @PodamExclude
+    @javax.persistence.ManyToMany()
     Collection<ProfesorEntity> profesores;
-      
-      @javax.persistence.ManyToOne()
+    
+     @PodamExclude
+    @javax.persistence.ManyToOne()
     UniversidadEntity universidad;
+    
+    @PodamExclude
+    @ManyToMany(
+        mappedBy = "estudiantes",
+        fetch = javax.persistence.FetchType.LAZY
+    )
+    private Collection<ReservaEntity> reservas;
       
     private String name;
     
-    private int codigo;
+    private Integer codigo;
     
     public String getName(){
         return name;
@@ -34,7 +45,7 @@ public class EstudianteEntity extends BaseEntity implements Serializable{
         this.name=name;
     }
     
-    public int getCodigo(){
+    public Integer getCodigo(){
             return codigo;
     }
     
@@ -43,7 +54,29 @@ public class EstudianteEntity extends BaseEntity implements Serializable{
         this.codigo= cod;
     }
     
+    public Collection<ReservaEntity> getReservas(){
+    return reservas;
+    }
     
+    public void setReservas(Collection<ReservaEntity> reservasP){
+        reservas=reservasP;
+    }
+    
+    public Collection<ProfesorEntity> getProfesor(){
+    return profesores;
+    }
+    
+    public void setProfesor(Collection<ProfesorEntity> prof){
+        profesores=prof;
+    }
+    
+    public UniversidadEntity getUniversidad(){
+    return universidad;
+    }
+    
+    public void setUniversidad(UniversidadEntity uni){
+        universidad=uni;
+    }
     
     
 }

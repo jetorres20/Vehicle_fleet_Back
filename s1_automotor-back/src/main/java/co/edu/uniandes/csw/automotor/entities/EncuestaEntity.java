@@ -7,6 +7,8 @@ package co.edu.uniandes.csw.automotor.entities;
 
 import java.io.Serializable;
 import javax.persistence.Entity;
+import javax.persistence.OneToOne;
+import uk.co.jemos.podam.common.PodamExclude;
 
 /**
  *
@@ -16,10 +18,17 @@ import javax.persistence.Entity;
 
 public class EncuestaEntity  extends BaseEntity implements Serializable {
     
+    @PodamExclude
     @javax.persistence.ManyToOne()
     ProfesorEntity profesor;
     
-    private int calificacion;
+    @PodamExclude
+    @javax.persistence.OneToOne(mappedBy = "encuesta",
+            fetch = javax.persistence.FetchType.LAZY)
+    private ReservaEntity reserva;
+    
+    private Integer calificacion;
+    
     
     private String comentario;
     
@@ -28,7 +37,7 @@ public class EncuestaEntity  extends BaseEntity implements Serializable {
         calificacion=cal;
     }
     
-    public int getCalificacion(){
+    public Integer getCalificacion(){
         return calificacion;
     }
     
@@ -41,5 +50,20 @@ public class EncuestaEntity  extends BaseEntity implements Serializable {
         return comentario;
     }
     
+    public ReservaEntity getReserva(){
+        return reserva;
+    }
+    
+    public void setReserva(ReservaEntity res){
+        reserva=res;
+    }
+    
+    public void setProfesor(ProfesorEntity prof){
+        profesor=prof;
+    }
+    
+    public ProfesorEntity getProfesor(){
+        return profesor;
+    }
     
 }
