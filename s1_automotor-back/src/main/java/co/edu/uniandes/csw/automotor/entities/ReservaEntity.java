@@ -94,12 +94,12 @@ public class ReservaEntity extends BaseEntity implements Serializable
         return this.fechaServicio;
     }
     
-    public void setEstadoValidacion(boolean estadoValidacion)
+    public void setEstadoValidacion(Boolean estadoValidacion)
     {
         this.estadoValidacion = estadoValidacion;
     }
     
-    public boolean getEstadoValidacion()
+    public Boolean getEstadoValidacion()
     {
         return this.estadoValidacion;
     }
@@ -109,7 +109,7 @@ public class ReservaEntity extends BaseEntity implements Serializable
         this.reservaRecurrente = reservaRecurrente;
     }
     
-    public boolean getReservaRecurrente()
+    public Boolean getReservaRecurrente()
     {
         return this.reservaRecurrente;
     }
@@ -119,7 +119,7 @@ public class ReservaEntity extends BaseEntity implements Serializable
         this.cancelada = cancelada;
     }
     
-    public boolean getCancelada()
+    public Boolean getCancelada()
     {
         return this.cancelada;
     }
