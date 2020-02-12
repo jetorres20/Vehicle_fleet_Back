@@ -20,7 +20,7 @@ public class VehiculoEntity extends BaseEntity implements Serializable {
     //Atributos
     private String marca;
     private String modelo;
-    private int capacidad;
+    private Integer capacidad;
     private String placa;
 
     //Asociaciones
@@ -75,7 +75,7 @@ public class VehiculoEntity extends BaseEntity implements Serializable {
      * @param capacidad the capacidad to set
      */
     public void setCapacidad(int capacidad) {
-        this.capacidad = capacidad;
+        this.setCapacidad((Integer) capacidad);
     }
 
     /**
@@ -104,6 +104,27 @@ public class VehiculoEntity extends BaseEntity implements Serializable {
      */
     public void setRegistro(RegistroEntity registro) {
         this.registro = registro;
+    }
+
+    /**
+     * @param capacidad the capacidad to set
+     */
+    public void setCapacidad(Integer capacidad) {
+        this.capacidad = capacidad;
+    }
+
+    /**
+     * @return the tipoVehiculo
+     */
+    public TipoVehiculoEntity getTipoVehiculo() {
+        return tipoVehiculo;
+    }
+
+    /**
+     * @param tipoVehiculo the tipoVehiculo to set
+     */
+    public void setTipoVehiculo(TipoVehiculoEntity tipoVehiculo) {
+        this.tipoVehiculo = tipoVehiculo;
     }
 
 }

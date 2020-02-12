@@ -19,6 +19,20 @@ import uk.co.jemos.podam.common.PodamExclude;
  */
 @Entity
 public class AgendaEntity extends BaseEntity implements Serializable{
+
+    /**
+     * @return the reservas
+     */
+    public Collection<ReservaEntity> getReservas() {
+        return reservas;
+    }
+
+    /**
+     * @param reservas the reservas to set
+     */
+    public void setReservas(Collection<ReservaEntity> reservas) {
+        this.reservas = reservas;
+    }
     
     private Date fecha;
     
@@ -30,7 +44,7 @@ public class AgendaEntity extends BaseEntity implements Serializable{
     )
     ConductorEntity conductor;
     @OneToMany(mappedBy = "agenda")
-    Collection<ReservaEntity> reservas;
+    private Collection<ReservaEntity> reservas;
     /**
      * @return the fecha
      */

@@ -26,9 +26,9 @@ public class ConductorEntity extends BaseEntity implements Serializable{
     @OneToOne(mappedBy = "conductor")
     AgendaEntity agenda;
     @OneToMany(mappedBy = "conductor")
-    Collection<FranjaHorariaSemanalEntity> franjasHorariasSemanales;
+    private Collection<FranjaHorariaSemanalEntity> franjasHorariasSemanales;
     @OneToMany(mappedBy = "conductor")
-    Collection<ReservaEntity> reservas;
+    private Collection<ReservaEntity> reservas;
     
     /**
      * @return the name
@@ -56,6 +56,34 @@ public class ConductorEntity extends BaseEntity implements Serializable{
      */
     public void setAgenda(AgendaEntity agenda) {
         this.agenda = agenda;
+    }
+
+    /**
+     * @return the franjasHorariasSemanales
+     */
+    public Collection<FranjaHorariaSemanalEntity> getFranjasHorariasSemanales() {
+        return franjasHorariasSemanales;
+    }
+
+    /**
+     * @param franjasHorariasSemanales the franjasHorariasSemanales to set
+     */
+    public void setFranjasHorariasSemanales(Collection<FranjaHorariaSemanalEntity> franjasHorariasSemanales) {
+        this.franjasHorariasSemanales = franjasHorariasSemanales;
+    }
+
+    /**
+     * @return the reservas
+     */
+    public Collection<ReservaEntity> getReservas() {
+        return reservas;
+    }
+
+    /**
+     * @param reservas the reservas to set
+     */
+    public void setReservas(Collection<ReservaEntity> reservas) {
+        this.reservas = reservas;
     }
 
    

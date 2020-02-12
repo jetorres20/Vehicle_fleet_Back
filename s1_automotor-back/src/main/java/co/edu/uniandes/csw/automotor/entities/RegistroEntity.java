@@ -38,7 +38,7 @@ public class RegistroEntity extends BaseEntity implements Serializable  {
     @PodamStrategyValue(DateStrategy.class)
     private Date prse;
     
-    private boolean vigente;
+    private Boolean vigente;
 
     //Asociaciones
     @PodamExclude
