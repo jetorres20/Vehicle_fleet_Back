@@ -101,7 +101,7 @@ public class UniversidadPersistenceTest {
         UniversidadEntity universidad2=up.find(universidad.getId());
         Assert.assertEquals("Universidad de los Andes", universidad2.getNombre());
         Assert.assertEquals("Bogota", universidad2.getCiudad());
-        Assert.assertEquals(true, universidad2.getPrivada());
+        Assert.assertTrue(universidad2.getPrivada());
     }
     @Test
     public void deleteTest() {

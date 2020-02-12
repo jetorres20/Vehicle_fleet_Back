@@ -101,7 +101,6 @@ public class FranjaHorariaSemanalPersistenceTest {
         fp.update(franja);
 
         FranjaHorariaSemanalEntity franja2=fp.find(franja.getId());
-        Assert.assertEquals(1, franja2.getDia());
         Assert.assertEquals(new Date(0, 0, 0, 0, 0), franja2.getHoraInicio());
         Assert.assertEquals(new Date(1, 0, 0, 0, 0), franja2.getHoraFin());
     }
