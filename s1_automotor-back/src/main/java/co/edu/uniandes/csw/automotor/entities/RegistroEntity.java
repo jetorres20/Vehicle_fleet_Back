@@ -5,10 +5,14 @@
  */
 package co.edu.uniandes.csw.automotor.entities;
 
+import co.edu.uniandes.csw.automotor.podam.DateStrategy;
 import java.io.Serializable;
 import java.util.Date;
 import javax.persistence.Entity;
+import javax.persistence.Temporal;
+import javax.persistence.TemporalType;
 import uk.co.jemos.podam.common.PodamExclude;
+import uk.co.jemos.podam.common.PodamStrategyValue;
 
 /**
  *
@@ -18,10 +22,22 @@ import uk.co.jemos.podam.common.PodamExclude;
 public class RegistroEntity extends BaseEntity implements Serializable  {
     
     //Atributos
+    @Temporal(TemporalType.DATE)
+    @PodamStrategyValue(DateStrategy.class)
     private Date rtm;
+    
+    @Temporal(TemporalType.DATE)
+    @PodamStrategyValue(DateStrategy.class)
     private Date soat;
+    
+    @Temporal(TemporalType.DATE)
+    @PodamStrategyValue(DateStrategy.class)
     private Date prsc;
+    
+    @Temporal(TemporalType.DATE)
+    @PodamStrategyValue(DateStrategy.class)
     private Date prse;
+    
     private boolean vigente;
 
     //Asociaciones

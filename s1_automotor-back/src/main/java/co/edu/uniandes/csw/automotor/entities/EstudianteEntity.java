@@ -6,6 +6,7 @@
 package co.edu.uniandes.csw.automotor.entities;
 
 import java.io.Serializable;
+import java.util.Collection;
 import javax.persistence.Entity;
 
 /**
@@ -15,6 +16,12 @@ import javax.persistence.Entity;
 @Entity
 public class EstudianteEntity extends BaseEntity implements Serializable{
     
+      
+    Collection<ProfesorEntity> profesores;
+      
+      @javax.persistence.ManyToOne()
+    UniversidadEntity universidad;
+      
     private String name;
     
     private int codigo;

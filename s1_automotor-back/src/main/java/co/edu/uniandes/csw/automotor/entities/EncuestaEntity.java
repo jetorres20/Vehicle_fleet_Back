@@ -16,6 +16,8 @@ import javax.persistence.Entity;
 
 public class EncuestaEntity  extends BaseEntity implements Serializable {
     
+    @javax.persistence.ManyToOne()
+    ProfesorEntity profesor;
     
     private int calificacion;
     

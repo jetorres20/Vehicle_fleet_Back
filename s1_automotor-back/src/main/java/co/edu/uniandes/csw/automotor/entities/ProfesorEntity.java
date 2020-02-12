@@ -16,12 +16,19 @@ import javax.persistence.Entity;
 public class ProfesorEntity extends BaseEntity implements Serializable {
     private String nombre;
     private int identificacion;
+       @javax.persistence.ManyToMany(
+        mappedBy = "profesores",
+        fetch = javax.persistence.FetchType.LAZY
+    )
+    Collection<EstudianteEntity> estudiantes;
+
        @javax.persistence.OneToMany(
         mappedBy = "profesor",
         fetch = javax.persistence.FetchType.LAZY
     )
-    Collection<PracticaEntity> practicas;
-
+    Collection<EncuestaEntity> encuestas;
+       
+       
     @javax.persistence.ManyToOne()
     UniversidadEntity universidad;
     /**
