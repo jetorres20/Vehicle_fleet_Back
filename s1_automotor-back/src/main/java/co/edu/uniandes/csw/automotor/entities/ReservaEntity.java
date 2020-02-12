@@ -24,7 +24,6 @@ import uk.co.jemos.podam.common.PodamExclude;
 public class ReservaEntity extends BaseEntity implements Serializable
 {
     @javax.persistence.Id
-    @Temporal(TemporalType.DATE) 
     
     private Long id;
     private Date fechaReserva;

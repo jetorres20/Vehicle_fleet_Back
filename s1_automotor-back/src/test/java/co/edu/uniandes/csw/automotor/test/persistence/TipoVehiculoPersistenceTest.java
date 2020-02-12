@@ -67,7 +67,8 @@ public class TipoVehiculoPersistenceTest
         Assert.assertEquals(result, entity);
     }
             
-    @Test public void finAllTest(){
+    @Test 
+    public void finAllTest(){
         PodamFactory factory = new PodamFactoryImpl();
         TipoVehiculoEntity tp_veh1 = factory.manufacturePojo(TipoVehiculoEntity.class);
         TipoVehiculoEntity data1 = ep.create(tp_veh1);
@@ -88,13 +89,9 @@ public class TipoVehiculoPersistenceTest
         Assert.assertTrue(datos.contains(data2));
         Assert.assertTrue(datos.contains(data3));
         
-        /*
-        Verifica que la tabla no tenga más elementos de los que se añadieron al inicio.
-        */
-        datos.remove(data1);datos.remove(data2);datos.remove(data3);
-        Assert.assertTrue(ep.equals(null));
     }
     
+    @Test
     public void updateTest(){
         PodamFactory factory = new PodamFactoryImpl();
         TipoVehiculoEntity tp_veh1 = factory.manufacturePojo(TipoVehiculoEntity.class);
@@ -103,20 +100,21 @@ public class TipoVehiculoPersistenceTest
         TipoVehiculoEntity buscado_pre = em.find(TipoVehiculoEntity.class, data1.getId());
         String pre = buscado_pre.getTipo();
         String post = "nuevoTipo";
-        Assert.assertTrue(pre!=post);
+        Assert.assertFalse(pre.equals(post));
         buscado_pre.setTipo(post);
-        em.merge(buscado_pre);
+        ep.update(buscado_pre);
         TipoVehiculoEntity buscado_post = em.find(TipoVehiculoEntity.class, data1.getId());
         Assert.assertTrue(buscado_post.getTipo().equals(post));
     }
-            
+          
+    @Test
     public void deleteTest(){
         PodamFactory factory = new PodamFactoryImpl();
         TipoVehiculoEntity tp_veh1 = factory.manufacturePojo(TipoVehiculoEntity.class);
         TipoVehiculoEntity data1 = ep.create(tp_veh1);   
         
-        em.remove(data1);
-        Assert.assertNull(ep.finAll());
+        ep.delete(data1.getId());
+        Assert.assertNull(ep.find(data1.getId()));
     }
     
 
