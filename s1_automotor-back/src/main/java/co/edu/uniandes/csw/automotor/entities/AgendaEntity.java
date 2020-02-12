@@ -20,23 +20,10 @@ import uk.co.jemos.podam.common.PodamExclude;
 @Entity
 public class AgendaEntity extends BaseEntity implements Serializable{
 
-    /**
-     * @return the reservas
-     */
-    public Collection<ReservaEntity> getReservas() {
-        return reservas;
-    }
-
-    /**
-     * @param reservas the reservas to set
-     */
-    public void setReservas(Collection<ReservaEntity> reservas) {
-        this.reservas = reservas;
-    }
     
     private Date fecha;
     
-    private boolean reservada;
+    private Boolean reservada;
 
     @PodamExclude
     @OneToOne(
@@ -63,14 +50,14 @@ public class AgendaEntity extends BaseEntity implements Serializable{
     /**
      * @return the reservada
      */
-    public boolean isReservada() {
+    public Boolean isReservada() {
         return reservada;
     }
 
     /**
      * @param reservada the reservada to set
      */
-    public void setReservada(boolean reservada) {
+    public void setReservada(Boolean reservada) {
         this.reservada = reservada;
     }
 
@@ -86,5 +73,19 @@ public class AgendaEntity extends BaseEntity implements Serializable{
      */
     public void setConductor(ConductorEntity conductor) {
         this.conductor = conductor;
+    }
+    
+        /**
+     * @return the reservas
+     */
+    public Collection<ReservaEntity> getReservas() {
+        return reservas;
+    }
+
+    /**
+     * @param reservas the reservas to set
+     */
+    public void setReservas(Collection<ReservaEntity> reservas) {
+        this.reservas = reservas;
     }
 }
