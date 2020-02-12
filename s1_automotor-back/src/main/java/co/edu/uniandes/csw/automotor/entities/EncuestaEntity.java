@@ -32,7 +32,7 @@ public class EncuestaEntity  extends BaseEntity implements Serializable {
     
     private String comentario;
     
-    public void setCalificacion(int cal){
+    public void setCalificacion(Integer cal){
         
         calificacion=cal;
     }

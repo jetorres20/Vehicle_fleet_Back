@@ -49,7 +49,7 @@ public class EstudianteEntity extends BaseEntity implements Serializable{
             return codigo;
     }
     
-    public void setCodigo(int cod){
+    public void setCodigo(Integer cod){
         
         this.codigo= cod;
     }
@@ -62,11 +62,11 @@ public class EstudianteEntity extends BaseEntity implements Serializable{
         reservas=reservasP;
     }
     
-    public Collection<ProfesorEntity> getProfesor(){
+    public Collection<ProfesorEntity> getProfesores(){
     return profesores;
     }
     
-    public void setProfesor(Collection<ProfesorEntity> prof){
+    public void setProfesores(Collection<ProfesorEntity> prof){
         profesores=prof;
     }
     
