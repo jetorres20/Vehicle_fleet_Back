@@ -103,7 +103,7 @@ public class EstudiantePersistenceTest {
         ep.update(estudiante);
         EstudianteEntity prac1=ep.find(estudiante.getId());
         Assert.assertEquals("Juan Torres", prac1.getName());
-        Assert.assertEquals(201516032, prac1.getCodigo());
+        Assert.assertEquals((Integer)201516032, prac1.getCodigo());
 
     }
     @Test

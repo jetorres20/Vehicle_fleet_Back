@@ -99,7 +99,7 @@ public class ProfesorPersistenceTest {
 
         ProfesorEntity prof1=pp.find(profesor);
         Assert.assertEquals("Nestor", prof1.getNombre());
-        Assert.assertEquals(123, prof1.getIdentificacion());
+        Assert.assertEquals((Integer)123, prof1.getIdentificacion());
 
     }
     @Test

@@ -103,7 +103,7 @@ public class EncuestaPersistenceTest {
         ep.update(encuesta);
         EncuestaEntity prac1=ep.find(encuesta.getId());
         Assert.assertEquals("Perfecto", prac1.getComentario());
-        Assert.assertEquals(5, prac1.getCalificacion());
+        Assert.assertEquals((Integer)5, prac1.getCalificacion());
 
     }
     @Test
