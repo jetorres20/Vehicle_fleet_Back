@@ -11,6 +11,7 @@ import java.util.Date;
 import javax.persistence.Entity;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
+import org.springframework.format.annotation.DateTimeFormat;
 import uk.co.jemos.podam.common.PodamExclude;
 import uk.co.jemos.podam.common.PodamStrategyValue;
 
@@ -22,19 +23,23 @@ import uk.co.jemos.podam.common.PodamStrategyValue;
 public class RegistroEntity extends BaseEntity implements Serializable  {
     
     //Atributos
-    @Temporal(TemporalType.DATE)
+    @Temporal(TemporalType.TIMESTAMP)
+    @DateTimeFormat(pattern = "yyy-MM-dd hh:mm:ss")
     @PodamStrategyValue(DateStrategy.class)
     private Date rtm;
     
-    @Temporal(TemporalType.DATE)
+    @Temporal(TemporalType.TIMESTAMP)
+    @DateTimeFormat(pattern = "yyy-MM-dd hh:mm:ss")
     @PodamStrategyValue(DateStrategy.class)
     private Date soat;
     
-    @Temporal(TemporalType.DATE)
+    @Temporal(TemporalType.TIMESTAMP)
+    @DateTimeFormat(pattern = "yyy-MM-dd hh:mm:ss")
     @PodamStrategyValue(DateStrategy.class)
     private Date prsc;
     
-    @Temporal(TemporalType.DATE)
+    @Temporal(TemporalType.TIMESTAMP)
+    @DateTimeFormat(pattern = "yyy-MM-dd hh:mm:ss")
     @PodamStrategyValue(DateStrategy.class)
     private Date prse;
     
@@ -44,6 +49,7 @@ public class RegistroEntity extends BaseEntity implements Serializable  {
     @PodamExclude
     @javax.persistence.OneToOne
     private VehiculoEntity vehiculo;
+   
     //Metodos
     /**
      * @return the rtm
