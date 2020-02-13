@@ -57,6 +57,7 @@ public class VehiculoPersistenceTest {
 
         Assert.assertEquals(vehiculo.getMarca(), entidad.getMarca());
         Assert.assertEquals(vehiculo.getCapacidad(), entidad.getCapacidad());
+        Assert.assertEquals(vehiculo.getPlaca(), entidad.getPlaca());
 
     }
 
