@@ -70,7 +70,43 @@ public class RegistroLogicTest {
     public void crearRegistroFechaNull() throws BusinessLogicException {
         RegistroEntity entidad = factory.manufacturePojo(RegistroEntity.class);
         entidad.setSoat(null);
+
+        try {
+            RegistroEntity resultado = registroLogic.createRegistro(entidad);
+
+        } catch (BusinessLogicException e) {
+            entidad.setSoat(new Date(new Date().getTime() + TimeUnit.DAYS.toMillis(1)));
+            entidad.setPrsc(null);
+            try {
+                RegistroEntity resultado = registroLogic.createRegistro(entidad);
+            } catch (BusinessLogicException f) {
+                entidad.setPrsc(new Date(new Date().getTime() + TimeUnit.DAYS.toMillis(1)));
+                entidad.setPrse(null);
+                try {
+                    RegistroEntity resultado = registroLogic.createRegistro(entidad);
+                } catch (BusinessLogicException w) {
+                    entidad.setPrse(new Date(new Date().getTime() + TimeUnit.DAYS.toMillis(1)));
+                    entidad.setRtm(null);
+                    RegistroEntity resultado = registroLogic.createRegistro(entidad);
+
+                }
+            }
+        }
+
+    }
+
+    @Test(expected = BusinessLogicException.class)
+    public void crearRegistroSinfechas() throws BusinessLogicException {
+        RegistroEntity entidad = factory.manufacturePojo(RegistroEntity.class);
+        Date hoy = new Date();
+        Date ayer = new Date(hoy.getTime() - TimeUnit.DAYS.toMillis(1));
+        entidad.setPrsc(ayer);
+        entidad.setPrse(ayer);
+        entidad.setRtm(ayer);
+        entidad.setSoat(ayer);
         RegistroEntity resultado = registroLogic.createRegistro(entidad);
+        Assert.assertNotNull(resultado);
+
     }
 
     @Test
@@ -101,7 +137,7 @@ public class RegistroLogicTest {
         registroLogic.updatePRSC(resultado, nuevo);
         entidad2 = em.find(RegistroEntity.class, resultado.getId());
         Assert.assertEquals(entidad2.getPrsc(), nuevo);
-        
+
         Assert.assertNotEquals(entidad2.getPrse(), nuevo);
         registroLogic.updatePRSE(resultado, nuevo);
         entidad2 = em.find(RegistroEntity.class, resultado.getId());
