@@ -5,6 +5,7 @@
  */
 package co.edu.uniandes.csw.automotor.test.persistence;
 
+import co.edu.uniandes.csw.automotor.entities.AgendaEntity;
 import co.edu.uniandes.csw.automotor.entities.ConductorEntity;
 import co.edu.uniandes.csw.automotor.persistence.ConductorPersistence;
 import java.util.Collection;
@@ -57,6 +58,7 @@ public class ConductorPersistenceTest {
         ConductorEntity entity = em.find(ConductorEntity.class, result.getId());
         
         Assert.assertEquals(cond.getName(), entity.getName());
+        Assert.assertNull(entity.getAgenda());
     }
     
     @Test
@@ -77,6 +79,8 @@ public class ConductorPersistenceTest {
         cp.update(entity);
         entity = em.find(ConductorEntity.class, result.getId());
         Assert.assertEquals("NICE", entity.getName());
+        entity = cp.find(idR);
+        Assert.assertNull(entity.getAgenda());
     }
     
     @Test
