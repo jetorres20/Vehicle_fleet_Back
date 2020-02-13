@@ -64,7 +64,22 @@ public class ReservaPersistenceTest
         ReservaEntity result = rp.create(tp_veh);
                 
         ReservaEntity entity = em.find(ReservaEntity.class, result.getId());
-        Assert.assertEquals(result, entity);
+        Assert.assertEquals(result.getCancelada(), entity.getCancelada());
+        entity.setCancelada(Boolean.FALSE);
+        result.setCancelada(Boolean.TRUE);
+        Assert.assertNotEquals(entity.getCancelada(), result.getCancelada());
+        Assert.assertEquals(result.getAgenda(), entity.getAgenda());
+        Assert.assertEquals(result.getConductor(), entity.getConductor());
+        Assert.assertEquals(result.getEncuesta(), entity.getEncuesta());
+        Assert.assertEquals(result.getEstadoValidacion(), entity.getEstadoValidacion());
+        Assert.assertEquals(result.getEstudiantes(), entity.getEstudiantes());
+        Assert.assertEquals(result.getFechaReserva(), entity.getFechaReserva());
+        Assert.assertEquals(result.getFechaServicio(), entity.getFechaServicio());
+        Assert.assertEquals(result.getMotivoCancelacion(), entity.getMotivoCancelacion());
+        Assert.assertEquals(result.getPractica(), entity.getPractica());
+        Assert.assertEquals(result.getProfesor(), entity.getProfesor());
+        Assert.assertEquals(result.getReservaRecurrente(), entity.getReservaRecurrente());
+        Assert.assertEquals(result.getVehiculo(), entity.getVehiculo());
     }
             
     @Test 
