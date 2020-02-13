@@ -25,9 +25,9 @@ public class ReservaEntity extends BaseEntity implements Serializable
     @javax.persistence.Id
     
     private Long id;
-    @Temporal(javax.persistence.TemporalType.DATE)
+    //@Temporal(javax.persistence.TemporalType.DATE)
     private Date fechaReserva;
-    @Temporal(javax.persistence.TemporalType.DATE)
+    //@Temporal(javax.persistence.TemporalType.DATE)
     private Date fechaServicio;
     private Boolean estadoValidacion;
     private Boolean reservaRecurrente;
