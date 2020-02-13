@@ -38,7 +38,7 @@ public class RegistroLogic {
         return registro;
     }
 
-    private void checkDocuments(RegistroEntity registro) {
+    public void checkDocuments(RegistroEntity registro) {
         Date actual = new Date();
         if (registro.getPrsc().compareTo(actual) < 0
                 || registro.getPrse().compareTo(actual) < 0

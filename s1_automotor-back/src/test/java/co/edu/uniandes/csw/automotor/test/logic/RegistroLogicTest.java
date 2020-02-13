@@ -88,7 +88,7 @@ public class RegistroLogicTest {
                     entidad.setPrse(new Date(new Date().getTime() + TimeUnit.DAYS.toMillis(1)));
                     entidad.setRtm(null);
                     RegistroEntity resultado = registroLogic.createRegistro(entidad);
-
+                    
                 }
             }
         }
@@ -160,9 +160,9 @@ public class RegistroLogicTest {
         registroLogic.updateSoat(resultado, nuevo);
 
     }
-
-    @Test(expected = BusinessLogicException.class)
-    public void crearPRSCFechaNull() throws BusinessLogicException {
+    
+     @Test(expected = BusinessLogicException.class)
+    public void crearSoatFechaNull() throws BusinessLogicException {
         RegistroEntity entidad = factory.manufacturePojo(RegistroEntity.class);
         Date hoy = new Date();
         Date manana = new Date(hoy.getTime() + TimeUnit.DAYS.toMillis(1));
@@ -174,7 +174,24 @@ public class RegistroLogicTest {
         Assert.assertNotNull(resultado);
 
         Date nuevo = new Date(manana.getTime() - TimeUnit.DAYS.toMillis(365));
-        registroLogic.updatePRSC(resultado, nuevo);
+        registroLogic.updateSoat(resultado, nuevo);
+
+    }
+
+    @Test(expected = BusinessLogicException.class)
+    public void crearRTMFechaNull() throws BusinessLogicException {
+        RegistroEntity entidad = factory.manufacturePojo(RegistroEntity.class);
+        Date hoy = new Date();
+        Date manana = new Date(hoy.getTime() + TimeUnit.DAYS.toMillis(1));
+        entidad.setPrsc(manana);
+        entidad.setPrse(manana);
+        entidad.setRtm(manana);
+        entidad.setSoat(manana);
+        RegistroEntity resultado = registroLogic.createRegistro(entidad);
+        Assert.assertNotNull(resultado);
+
+        Date nuevo = new Date(manana.getTime() - TimeUnit.DAYS.toMillis(365));
+        registroLogic.updateRTM(resultado, nuevo);
 
     }
 
@@ -193,6 +210,36 @@ public class RegistroLogicTest {
         Date nuevo = new Date(manana.getTime() - TimeUnit.DAYS.toMillis(365));
         registroLogic.updatePRSE(resultado, nuevo);
 
+    }
+    
+    @Test
+    public void testCheckDocuments()
+    {
+        RegistroEntity entidad = factory.manufacturePojo(RegistroEntity.class);
+        Date hoy = new Date();
+        Date manana = new Date(hoy.getTime() + TimeUnit.DAYS.toMillis(1));
+        Date ayer = new Date(hoy.getTime() - TimeUnit.DAYS.toMillis(1));
+        entidad.setPrsc(ayer);
+        entidad.setPrse(manana);
+        entidad.setRtm(manana);
+        entidad.setSoat(manana);
+        registroLogic.checkDocuments(entidad);
+        Assert.assertFalse(entidad.isVigente());
+        
+        entidad.setPrsc(manana);
+        entidad.setPrse(ayer);
+        registroLogic.checkDocuments(entidad);
+        Assert.assertFalse(entidad.isVigente());
+        
+        entidad.setPrse(manana);
+        entidad.setRtm(ayer);
+        registroLogic.checkDocuments(entidad);
+        Assert.assertFalse(entidad.isVigente());
+        
+        entidad.setRtm(manana);
+        entidad.setSoat(ayer);
+        registroLogic.checkDocuments(entidad);
+        Assert.assertFalse(entidad.isVigente());
     }
 
 }
