@@ -58,7 +58,24 @@ public class ConductorPersistenceTest {
         ConductorEntity entity = em.find(ConductorEntity.class, result.getId());
         
         Assert.assertEquals(cond.getName(), entity.getName());
-        Assert.assertNull(entity.getAgenda());
+        
+    }
+    
+    @Test
+    public void findTest()
+    {
+        PodamFactory factory = new PodamFactoryImpl();
+        ConductorEntity conductor = factory.manufacturePojo(ConductorEntity.class);
+        ConductorEntity result = cp.create(conductor);
+        long id = result.getId();
+        Assert.assertNotNull(result);
+        
+        ConductorEntity entity = cp.find(id);
+        
+        Assert.assertEquals(entity.getName(), conductor.getName());
+        Assert.assertEquals(entity.getAgenda(), conductor.getAgenda());
+        Assert.assertEquals(entity.getFranjasHorariasSemanales(), conductor.getFranjasHorariasSemanales());
+        Assert.assertEquals(entity.getReservas(), conductor.getReservas());
     }
     
     @Test

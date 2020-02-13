@@ -24,6 +24,8 @@ public class AgendaEntity extends BaseEntity implements Serializable{
     private Date fecha;
     
     private Boolean reservada;
+    
+    private Integer duracionEnMin;
 
     @PodamExclude
     @OneToOne(
@@ -87,5 +89,19 @@ public class AgendaEntity extends BaseEntity implements Serializable{
      */
     public void setReservas(Collection<ReservaEntity> reservas) {
         this.reservas = reservas;
+    }
+
+    /**
+     * @return the duracionEnMin
+     */
+    public Integer getDuracionEnMin() {
+        return duracionEnMin;
+    }
+
+    /**
+     * @param duracionEnMin the duracionEnMin to set
+     */
+    public void setDuracionEnMin(Integer duracionEnMin) {
+        this.duracionEnMin = duracionEnMin;
     }
 }
