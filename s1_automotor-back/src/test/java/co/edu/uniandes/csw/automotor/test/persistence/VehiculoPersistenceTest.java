@@ -56,6 +56,8 @@ public class VehiculoPersistenceTest {
         VehiculoEntity entidad = em.find(VehiculoEntity.class, resultado.getId());
 
         Assert.assertEquals(vehiculo.getMarca(), entidad.getMarca());
+        Assert.assertEquals(vehiculo.getCapacidad(), entidad.getCapacidad());
+
     }
 
     @Test
@@ -140,6 +142,5 @@ public class VehiculoPersistenceTest {
         Assert.assertEquals("Kwid", resultado.getModelo());
 
     }
-
 
 }

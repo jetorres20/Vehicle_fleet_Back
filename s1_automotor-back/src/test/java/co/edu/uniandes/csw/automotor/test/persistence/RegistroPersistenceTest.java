@@ -55,6 +55,9 @@ public class RegistroPersistenceTest {
         RegistroEntity entity = em.find(RegistroEntity.class, resultado.getId());
 
         Assert.assertEquals(registro.getPrsc(), entity.getPrsc());
+        Assert.assertEquals(registro.getSoat(), entity.getSoat());
+        Assert.assertEquals(registro.getPrse(), entity.getPrse());
+        Assert.assertEquals(registro.isVigente(), entity.isVigente());
     }
 
     @Test
