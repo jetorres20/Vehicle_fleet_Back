@@ -31,9 +31,11 @@ public class AgendaLogic {
             throw new BusinessLogicException("la fecha no deberia estar vacia");
         }
         
+        Collection<AgendaEntity> data = agendaPersistence.finAll();
+        if(!data.isEmpty())
+        {
         Date test = DateUtils.addMinutes(agendaEntity
                 .getFecha(),agendaEntity.getDuracionEnMin());
-        Collection<AgendaEntity> data = agendaPersistence.finAll();
         Iterator<AgendaEntity> it = data.iterator();
         while(it.hasNext())
         {
@@ -49,7 +51,7 @@ public class AgendaLogic {
                     && agendaEntity.getFecha().before(testFecha2))
                 throw new BusinessLogicException("la fecha no debe cruzarse con otra fecha");
         }
-        
+        }
         AgendaEntity agenda = agendaPersistence.create(agendaEntity);
         return agenda;
     }

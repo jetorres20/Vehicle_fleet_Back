@@ -82,11 +82,5 @@ public class AgendaLogicTest {
         AgendaEntity ent = em.find(AgendaEntity.class, result.getId());
         Assert.assertEquals(ent.getFecha(), agenda.getFecha());
         AgendaEntity result2 = agendaLogic.CreateAgenda(agenda1);
-//        long id1 = result.getId();
-//        long id2 = result2.getId();
-//        em.remove(result.getId());
-//        em.remove(result2.getId());
-//        result = em.find(AgendaEntity.class,id1);
-//        result2 = em.find(AgendaEntity.class,id2);
     }
 }

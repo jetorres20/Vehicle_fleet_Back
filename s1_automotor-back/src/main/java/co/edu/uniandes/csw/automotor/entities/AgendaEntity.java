@@ -9,8 +9,9 @@ import java.io.Serializable;
 import java.util.Collection;
 import java.util.Date;
 import javax.persistence.Entity;
+import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
-import javax.persistence.OneToOne;
+//import javax.persistence.OneToOne;
 import uk.co.jemos.podam.common.PodamExclude;
 
 /**
@@ -28,7 +29,7 @@ public class AgendaEntity extends BaseEntity implements Serializable{
     private Integer duracionEnMin;
 
     @PodamExclude
-    @OneToOne(
+    @ManyToOne(
             
     )
     ConductorEntity conductor;

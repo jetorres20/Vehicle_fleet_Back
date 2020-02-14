@@ -23,8 +23,8 @@ public class ConductorEntity extends BaseEntity implements Serializable{
     private String name;
 
     @PodamExclude
-    @OneToOne(mappedBy = "conductor")
-    AgendaEntity agenda;
+    @OneToMany(mappedBy = "conductor")
+    private Collection<AgendaEntity> agendas;
     @PodamExclude
     @OneToMany(mappedBy = "conductor")
     Collection<FranjaHorariaSemanalEntity> franjasHorariasSemanales;
@@ -44,20 +44,6 @@ public class ConductorEntity extends BaseEntity implements Serializable{
      */
     public void setName(String name) {
         this.name = name;
-    }
-
-    /**
-     * @return the agendaAs
-     */
-    public AgendaEntity getAgenda() {
-        return agenda;
-    }
-
-    /**
-     * @param agendaAs the agendaAs to set
-     */
-    public void setAgenda(AgendaEntity agenda) {
-        this.agenda = agenda;
     }
 
     /**
@@ -86,6 +72,20 @@ public class ConductorEntity extends BaseEntity implements Serializable{
      */
     public void setReservas(Collection<ReservaEntity> reservas) {
         this.reservas = reservas;
+    }
+
+    /**
+     * @return the agendas
+     */
+    public Collection<AgendaEntity> getAgendas() {
+        return agendas;
+    }
+
+    /**
+     * @param agendas the agendas to set
+     */
+    public void setAgendas(Collection<AgendaEntity> agendas) {
+        this.agendas = agendas;
     }
 
    

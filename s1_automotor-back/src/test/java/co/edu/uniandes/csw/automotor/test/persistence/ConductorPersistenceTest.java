@@ -73,7 +73,7 @@ public class ConductorPersistenceTest {
         ConductorEntity entity = cp.find(id);
         
         Assert.assertEquals(entity.getName(), conductor.getName());
-        Assert.assertEquals(entity.getAgenda(), conductor.getAgenda());
+        Assert.assertEquals(entity.getAgendas(), conductor.getAgendas());
         Assert.assertEquals(entity.getFranjasHorariasSemanales(), conductor.getFranjasHorariasSemanales());
         Assert.assertEquals(entity.getReservas(), conductor.getReservas());
     }
@@ -96,8 +96,6 @@ public class ConductorPersistenceTest {
         cp.update(entity);
         entity = em.find(ConductorEntity.class, result.getId());
         Assert.assertEquals("NICE", entity.getName());
-        entity = cp.find(idR);
-        Assert.assertNull(entity.getAgenda());
     }
     
     @Test
