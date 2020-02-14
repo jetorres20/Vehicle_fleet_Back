@@ -74,7 +74,6 @@ public class VehiculoLogicTest {
         VehiculoEntity nuevo = factory.manufacturePojo(VehiculoEntity.class);
         nuevo.setMarca(null);
         VehiculoEntity resultado = vehiculoLogic.createVehiculo(nuevo);
-
     }
 
     @Test(expected = BusinessLogicException.class)
