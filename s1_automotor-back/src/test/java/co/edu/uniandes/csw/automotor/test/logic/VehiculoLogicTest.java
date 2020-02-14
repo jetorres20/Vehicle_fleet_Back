@@ -6,9 +6,13 @@
 package co.edu.uniandes.csw.automotor.test.logic;
 
 import co.edu.uniandes.csw.automotor.ejb.VehiculoLogic;
+import co.edu.uniandes.csw.automotor.ejb.RegistroLogic;
+import co.edu.uniandes.csw.automotor.entities.RegistroEntity;
 import co.edu.uniandes.csw.automotor.entities.VehiculoEntity;
 import co.edu.uniandes.csw.automotor.exceptions.BusinessLogicException;
 import co.edu.uniandes.csw.automotor.persistence.VehiculoPersistence;
+import java.util.Date;
+import java.util.concurrent.TimeUnit;
 import javax.ejb.Stateless;
 import javax.inject.Inject;
 import javax.persistence.EntityManager;
@@ -47,18 +51,66 @@ public class VehiculoLogicTest {
     @Inject
     private VehiculoLogic vehiculoLogic;
 
+    @Inject
+    private RegistroLogic registroLogic;
+
     @PersistenceContext
     private EntityManager em;
 
     @Test
     public void crearVehiculo() throws BusinessLogicException {
         VehiculoEntity nuevo = factory.manufacturePojo(VehiculoEntity.class);
+
         nuevo.setPlaca("GQS276");
         nuevo.setCapacidad(2);
+
+        RegistroEntity registro = factory.manufacturePojo(RegistroEntity.class);
+        Date manana = new Date(new Date().getTime() + TimeUnit.DAYS.toMillis(1));
+        registro.setPrsc(manana);
+        registro.setPrse(manana);
+        registro.setRtm(manana);
+        registro.setSoat(manana);
+
+        registro = registroLogic.createRegistro(registro);
+        nuevo.setRegistro(registro);
+
         VehiculoEntity resultado = vehiculoLogic.createVehiculo(nuevo);
         Assert.assertNotNull(resultado);
         VehiculoEntity buscado = em.find(VehiculoEntity.class, resultado.getId());
         Assert.assertEquals(buscado, resultado);
+    }
+
+    @Test(expected = BusinessLogicException.class)
+    public void crearVehiculoRegistroInvalido() throws BusinessLogicException {
+        VehiculoEntity nuevo = factory.manufacturePojo(VehiculoEntity.class);
+        nuevo.setPlaca("GQS271");
+        nuevo.setCapacidad(2);
+
+        RegistroEntity registro = factory.manufacturePojo(RegistroEntity.class);
+        Date manana = new Date(new Date().getTime() + TimeUnit.DAYS.toMillis(1));
+        registro.setPrsc(manana);
+        registro.setPrse(manana);
+        registro.setRtm(manana);
+        registro.setSoat(manana);
+
+        registro = registroLogic.createRegistro(registro);
+        nuevo.setRegistro(registro);
+
+        VehiculoEntity resultado = vehiculoLogic.createVehiculo(nuevo);
+        Assert.assertNotNull(resultado);
+
+        VehiculoEntity fraude = factory.manufacturePojo(VehiculoEntity.class);
+        nuevo.setPlaca("GQS273");
+        nuevo.setCapacidad(2);
+        VehiculoEntity fraudulento = vehiculoLogic.createVehiculo(fraude);
+
+    }
+
+    @Test(expected = BusinessLogicException.class)
+    public void crearVehiculoRegistroNull() throws BusinessLogicException {
+        VehiculoEntity nuevo = factory.manufacturePojo(VehiculoEntity.class);
+        nuevo.setRegistro(null);
+        VehiculoEntity resultado = vehiculoLogic.createVehiculo(nuevo);
     }
 
     @Test(expected = BusinessLogicException.class)

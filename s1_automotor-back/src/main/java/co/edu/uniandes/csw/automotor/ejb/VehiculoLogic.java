@@ -5,8 +5,10 @@
  */
 package co.edu.uniandes.csw.automotor.ejb;
 
+import co.edu.uniandes.csw.automotor.entities.RegistroEntity;
 import co.edu.uniandes.csw.automotor.entities.VehiculoEntity;
 import co.edu.uniandes.csw.automotor.exceptions.BusinessLogicException;
+import co.edu.uniandes.csw.automotor.persistence.RegistroPersistence;
 import co.edu.uniandes.csw.automotor.persistence.VehiculoPersistence;
 import static java.lang.Character.isLetter;
 import java.util.Collection;
@@ -21,9 +23,17 @@ import javax.inject.Inject;
 public class VehiculoLogic {
 
     @Inject
-    private VehiculoPersistence persistence;
+    private VehiculoPersistence vehiculoPersistence;
+    
+    @Inject
+    private RegistroPersistence registroPersistence;
 
     public VehiculoEntity createVehiculo(VehiculoEntity vehiculo) throws BusinessLogicException {
+        
+        if( vehiculo.getRegistro()== null)
+        {
+            throw new BusinessLogicException("El registro es invalido");
+        }
         if (vehiculo.getMarca() == null | vehiculo.getModelo() == null
                 || vehiculo.getCapacidad() == null || vehiculo.getPlaca() == null) {
             throw new BusinessLogicException("No puedes crear un vehiculo con valores Nulos");
@@ -39,7 +49,7 @@ public class VehiculoLogic {
             throw new BusinessLogicException("La placa debe tener tres numero al final");
         }
 
-        Collection<VehiculoEntity> todos = persistence.finAll();
+        Collection<VehiculoEntity> todos = vehiculoPersistence.finAll();
         for (VehiculoEntity entidad : todos) {
             if (entidad.getPlaca().equals(placa)) {
                 throw new BusinessLogicException("No puede haber placas Repetidas");
@@ -49,7 +59,22 @@ public class VehiculoLogic {
             throw new BusinessLogicException("No puede haber carros con capacidades negativas");
 
         }
-        return persistence.create(vehiculo);
+        RegistroEntity regitro =registroPersistence.find(vehiculo.getRegistro().getId());
+        if(regitro.getVehiculo()!= null)
+        {
+            throw new BusinessLogicException("El registro ya esta asociado a un vehiculo");
+        }
+        vehiculo.setRegistro(regitro);
+        regitro.setVehiculo(vehiculo);
+        return vehiculoPersistence.create(vehiculo);
+    }
+    
+    private VehiculoEntity crearRegistro(long idVehiculo, long idRegistro)
+    {
+        RegistroEntity regitro = registroPersistence.find(idRegistro);
+        VehiculoEntity vehiculo = vehiculoPersistence.find(idVehiculo);
+        vehiculo.setRegistro(regitro);
+        return vehiculoPersistence.update(vehiculo);
     }
 
     private boolean isNumber(String intento) {
