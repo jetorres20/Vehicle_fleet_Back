@@ -157,7 +157,7 @@ public class RegistroLogicTest {
         Assert.assertNotNull(resultado);
 
         Date nuevo = new Date(manana.getTime() - TimeUnit.DAYS.toMillis(365));
-        registroLogic.updateRTM(resultado, nuevo);
+        registroLogic.updateSoat(resultado, nuevo);
 
     }
     
@@ -181,7 +181,7 @@ public class RegistroLogicTest {
     }
 
     @Test(expected = BusinessLogicException.class)
-    public void crearPRSEFechaNull() throws BusinessLogicException {
+    public void crearPRSEechaNull() throws BusinessLogicException {
         RegistroEntity entidad = factory.manufacturePojo(RegistroEntity.class);
         Date hoy = new Date();
         Date manana = new Date(hoy.getTime() + TimeUnit.DAYS.toMillis(1));
@@ -194,6 +194,22 @@ public class RegistroLogicTest {
 
         Date nuevo = new Date(manana.getTime() - TimeUnit.DAYS.toMillis(365));
         registroLogic.updatePRSE(resultado, nuevo);
+
+    }
+    @Test(expected = BusinessLogicException.class)
+    public void crearPRSCFechaNull() throws BusinessLogicException {
+        RegistroEntity entidad = factory.manufacturePojo(RegistroEntity.class);
+        Date hoy = new Date();
+        Date manana = new Date(hoy.getTime() + TimeUnit.DAYS.toMillis(1));
+        entidad.setPrsc(manana);
+        entidad.setPrse(manana);
+        entidad.setRtm(manana);
+        entidad.setSoat(manana);
+        RegistroEntity resultado = registroLogic.createRegistro(entidad);
+        Assert.assertNotNull(resultado);
+
+        Date nuevo = new Date(manana.getTime() - TimeUnit.DAYS.toMillis(365));
+        registroLogic.updatePRSC(resultado, nuevo);
 
     }
     

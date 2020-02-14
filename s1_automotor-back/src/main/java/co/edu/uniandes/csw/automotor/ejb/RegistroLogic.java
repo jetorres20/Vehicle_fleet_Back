@@ -43,7 +43,6 @@ public class RegistroLogic {
         if (registro.getPrsc().compareTo(actual) < 0
                 || registro.getPrse().compareTo(actual) < 0
                 || registro.getRtm().compareTo(actual) < 0
-                || registro.getPrsc().compareTo(actual) < 0
                 || registro.getSoat().compareTo(actual) < 0) {
             registro.setVigente(false);
         } else {

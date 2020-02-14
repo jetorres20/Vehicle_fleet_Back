@@ -25,15 +25,12 @@ public class VehiculoEntity extends BaseEntity implements Serializable {
 
     //Asociaciones
     @PodamExclude
-    @javax.persistence.OneToOne(
-            mappedBy = "vehiculo",
-            fetch = javax.persistence.FetchType.LAZY
-    )
-   private RegistroEntity registro;
-    
+    @javax.persistence.OneToOne
+    private RegistroEntity registro;
+
     @PodamExclude
     @OneToOne
-   private TipoVehiculoEntity tipoVehiculo;
+    private TipoVehiculoEntity tipoVehiculo;
 
     //Metodos
     /**
@@ -75,7 +72,7 @@ public class VehiculoEntity extends BaseEntity implements Serializable {
      * @param capacidad the capacidad to set
      */
     public void setCapacidad(Integer capacidad) {
-        this.capacidad=capacidad;
+        this.capacidad = capacidad;
     }
 
     /**
@@ -106,8 +103,6 @@ public class VehiculoEntity extends BaseEntity implements Serializable {
         this.registro = registro;
     }
 
-    
-
     /**
      * @return the tipoVehiculo
      */
@@ -119,6 +114,7 @@ public class VehiculoEntity extends BaseEntity implements Serializable {
      * @param tipoVehiculo the tipoVehiculo to set
      */
     public void setTipoVehiculo(TipoVehiculoEntity tipoVehiculo) {
+
         this.tipoVehiculo = tipoVehiculo;
     }
 

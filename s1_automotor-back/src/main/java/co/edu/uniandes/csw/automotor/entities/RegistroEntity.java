@@ -47,8 +47,11 @@ public class RegistroEntity extends BaseEntity implements Serializable  {
 
     //Asociaciones
     @PodamExclude
-    @javax.persistence.OneToOne
-    private VehiculoEntity vehiculo;
+    @javax.persistence.OneToOne(
+            mappedBy = "registro",
+            fetch = javax.persistence.FetchType.LAZY
+    )
+   private VehiculoEntity vehiculo;
    
     //Metodos
     /**
