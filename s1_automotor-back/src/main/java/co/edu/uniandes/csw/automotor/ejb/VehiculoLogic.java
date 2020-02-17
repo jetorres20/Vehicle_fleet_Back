@@ -12,6 +12,7 @@ import co.edu.uniandes.csw.automotor.persistence.RegistroPersistence;
 import co.edu.uniandes.csw.automotor.persistence.VehiculoPersistence;
 import static java.lang.Character.isLetter;
 import java.util.Collection;
+import java.util.List;
 import javax.ejb.Stateless;
 import javax.inject.Inject;
 
@@ -77,6 +78,31 @@ public class VehiculoLogic {
         return vehiculoPersistence.update(vehiculo);
     }
 
+    public List<VehiculoEntity> getVehiculos()
+    {
+        List<VehiculoEntity> vehiculos = (List<VehiculoEntity>) vehiculoPersistence.finAll();
+        return vehiculos;
+    }
+    
+    public VehiculoEntity getVehiculo(long id)
+    {
+        VehiculoEntity vehi = vehiculoPersistence.find(id);
+        
+        return vehi;
+    }
+    
+    public VehiculoEntity updateVehiculo(long vehiID, VehiculoEntity vehiEntity)
+    {
+        return vehiculoPersistence.update(vehiEntity);
+    }
+    
+    public void deleteVehiculo ( long idEliminable)
+    {
+        VehiculoEntity eliminado = vehiculoPersistence.find(idEliminable);
+        registroPersistence.delete(eliminado.getRegistro().getId());
+        vehiculoPersistence.delete(idEliminable);
+    }
+    
     private boolean isNumber(String intento) {
         try {
             Integer.parseInt(intento);

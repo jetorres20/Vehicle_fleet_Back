@@ -11,7 +11,9 @@ import co.edu.uniandes.csw.automotor.entities.RegistroEntity;
 import co.edu.uniandes.csw.automotor.entities.VehiculoEntity;
 import co.edu.uniandes.csw.automotor.exceptions.BusinessLogicException;
 import co.edu.uniandes.csw.automotor.persistence.VehiculoPersistence;
+import java.util.ArrayList;
 import java.util.Date;
+import java.util.List;
 import java.util.concurrent.TimeUnit;
 import javax.ejb.Stateless;
 import javax.inject.Inject;
@@ -148,6 +150,13 @@ public class VehiculoLogicTest {
     public void crearVehiculoPlacaSinFormato() throws BusinessLogicException {
         VehiculoEntity nuevo = factory.manufacturePojo(VehiculoEntity.class);
         nuevo.setPlaca("1AA111");
+        RegistroEntity registro = factory.manufacturePojo(RegistroEntity.class);
+        Date manana = new Date(new Date().getTime() + TimeUnit.DAYS.toMillis(1));
+        registro.setPrsc(manana);
+        registro.setPrse(manana);
+        registro.setRtm(manana);
+        registro.setSoat(manana);
+        nuevo.setRegistro(registro);
         try {
             VehiculoEntity resultado = vehiculoLogic.createVehiculo(nuevo);
         } catch (BusinessLogicException e) {
@@ -201,4 +210,84 @@ public class VehiculoLogicTest {
         VehiculoEntity resultado2 = vehiculoLogic.createVehiculo(duplicado);
 
     }
+
+    @Test
+    public void getVehiculosTest() throws BusinessLogicException {
+        
+        VehiculoEntity nuevo = factory.manufacturePojo(VehiculoEntity.class);
+        nuevo.setPlaca("GQS275");
+        nuevo.setCapacidad(2);
+        RegistroEntity registro = factory.manufacturePojo(RegistroEntity.class);
+        Date manana = new Date(new Date().getTime() + TimeUnit.DAYS.toMillis(1));
+        registro.setPrsc(manana);
+        registro.setPrse(manana);
+        registro.setRtm(manana);
+        registro.setSoat(manana);
+        registro = registroLogic.createRegistro(registro);
+        nuevo.setRegistro(registro);
+        VehiculoEntity resultado = vehiculoLogic.createVehiculo(nuevo);
+        
+        VehiculoEntity nuevo2 = factory.manufacturePojo(VehiculoEntity.class);
+        nuevo2.setPlaca("GQS274");
+        nuevo2.setCapacidad(2);
+        RegistroEntity registro2 = factory.manufacturePojo(RegistroEntity.class);
+        registro2.setPrsc(manana);
+        registro2.setPrse(manana);
+        registro2.setRtm(manana);
+        registro2.setSoat(manana);
+        registro2 = registroLogic.createRegistro(registro2);
+        nuevo2.setRegistro(registro2);
+        VehiculoEntity resultado2 = vehiculoLogic.createVehiculo(nuevo2);
+        
+        List<VehiculoEntity> prueba = vehiculoLogic.getVehiculos();
+        Assert.assertTrue(prueba.contains(resultado));
+        Assert.assertTrue(prueba.contains(resultado));
+
+    }
+    
+    @Test
+    public void getVehiculoTest() throws BusinessLogicException
+    {
+        VehiculoEntity nuevo = factory.manufacturePojo(VehiculoEntity.class);
+        nuevo.setPlaca("GQS345");
+        nuevo.setCapacidad(2);
+        RegistroEntity registro = factory.manufacturePojo(RegistroEntity.class);
+        Date manana = new Date(new Date().getTime() + TimeUnit.DAYS.toMillis(1));
+        registro.setPrsc(manana);
+        registro.setPrse(manana);
+        registro.setRtm(manana);
+        registro.setSoat(manana);
+        registro = registroLogic.createRegistro(registro);
+        nuevo.setRegistro(registro);
+        VehiculoEntity resultado = vehiculoLogic.createVehiculo(nuevo);
+        
+        VehiculoEntity buscado = vehiculoLogic.getVehiculo(resultado.getId());
+        
+        Assert.assertEquals(buscado.getCapacidad(), resultado.getCapacidad());
+        Assert.assertEquals(buscado.getMarca(), resultado.getMarca());
+        Assert.assertEquals(buscado.getModelo(), resultado.getModelo());
+        Assert.assertEquals(buscado.getPlaca(), resultado.getPlaca());
+    }
+
+    @Test
+    public void deleteVehiculoTest() throws BusinessLogicException
+    {
+        VehiculoEntity nuevo = factory.manufacturePojo(VehiculoEntity.class);
+        nuevo.setPlaca("GQS123");
+        nuevo.setCapacidad(2);
+        RegistroEntity registro = factory.manufacturePojo(RegistroEntity.class);
+        Date manana = new Date(new Date().getTime() + TimeUnit.DAYS.toMillis(1));
+        registro.setPrsc(manana);
+        registro.setPrse(manana);
+        registro.setRtm(manana);
+        registro.setSoat(manana);
+        registro = registroLogic.createRegistro(registro);
+        nuevo.setRegistro(registro);
+        VehiculoEntity resultado = vehiculoLogic.createVehiculo(nuevo);
+        
+        vehiculoLogic.deleteVehiculo(resultado.getId());
+        Assert.assertNull(vehiculoLogic.getVehiculo(resultado.getId()));
+        
+    } 
+    
 }
