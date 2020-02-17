@@ -112,4 +112,5 @@ public class PracticaEntity extends BaseEntity implements Serializable{
         this.profesor = profesor;
     }
     
+    
 }
