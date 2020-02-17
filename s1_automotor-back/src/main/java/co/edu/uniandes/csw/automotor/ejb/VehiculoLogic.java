@@ -35,7 +35,7 @@ public class VehiculoLogic {
         {
             throw new BusinessLogicException("El registro es invalido");
         }
-        if (vehiculo.getMarca() == null | vehiculo.getModelo() == null
+        if (vehiculo.getMarca() == null || vehiculo.getModelo() == null
                 || vehiculo.getCapacidad() == null || vehiculo.getPlaca() == null) {
             throw new BusinessLogicException("No puedes crear un vehiculo con valores Nulos");
         }
@@ -53,7 +53,7 @@ public class VehiculoLogic {
         Collection<VehiculoEntity> todos = vehiculoPersistence.finAll();
         for (VehiculoEntity entidad : todos) {
             if (entidad.getPlaca().equals(placa)) {
-                throw new BusinessLogicException("No puede haber placas Repetidas");
+                throw new BusinessLogicException("No puede haber placas Repetidas: " + entidad.getPlaca());
             }
         }
         if (vehiculo.getCapacidad() <= 0) {
@@ -70,13 +70,6 @@ public class VehiculoLogic {
         return vehiculoPersistence.create(vehiculo);
     }
     
-    private VehiculoEntity crearRegistro(long idVehiculo, long idRegistro)
-    {
-        RegistroEntity regitro = registroPersistence.find(idRegistro);
-        VehiculoEntity vehiculo = vehiculoPersistence.find(idVehiculo);
-        vehiculo.setRegistro(regitro);
-        return vehiculoPersistence.update(vehiculo);
-    }
 
     public List<VehiculoEntity> getVehiculos()
     {
