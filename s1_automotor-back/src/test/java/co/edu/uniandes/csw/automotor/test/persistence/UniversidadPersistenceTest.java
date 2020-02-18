@@ -49,7 +49,7 @@ public class UniversidadPersistenceTest {
         UniversidadEntity universidad=factory.manufacturePojo(UniversidadEntity.class);
         UniversidadEntity result=up.create(universidad);         Assert.assertNotNull(result);
         UniversidadEntity entity=em.find(UniversidadEntity.class, result.getId());
-        Assert.assertEquals(universidad.getNombre(), entity.getNombre());
+        Assert.assertEquals(universidad.getName(), entity.getName());
     }
     
     @Test
@@ -59,7 +59,7 @@ public class UniversidadPersistenceTest {
         UniversidadEntity universidad=factory.manufacturePojo(UniversidadEntity.class);
         UniversidadEntity result=up.create(universidad);
         UniversidadEntity entity=em.find(UniversidadEntity.class, result.getId());
-        Assert.assertEquals(universidad.getNombre(), entity.getNombre());
+        Assert.assertEquals(universidad.getName(), entity.getName());
     }
     
     
@@ -91,17 +91,17 @@ public class UniversidadPersistenceTest {
         UniversidadEntity universidad = factory.manufacturePojo(UniversidadEntity.class);
         UniversidadEntity resultado = up.create(universidad);
 
-        Assert.assertEquals(resultado.getNombre(), universidad.getNombre());
+        Assert.assertEquals(resultado.getName(), universidad.getName());
 
-        universidad.setNombre("Universidad de los Andes");
-        universidad.setCiudad("Bogota");
-        universidad.setPrivada(true);
+        universidad.setName("Universidad de los Andes");
+        universidad.setCity("Bogota");
+        universidad.setIsPrivate(true);
         up.update(universidad);
 
         UniversidadEntity universidad2=up.find(universidad.getId());
-        Assert.assertEquals("Universidad de los Andes", universidad2.getNombre());
-        Assert.assertEquals("Bogota", universidad2.getCiudad());
-        Assert.assertTrue(universidad2.getPrivada());
+        Assert.assertEquals("Universidad de los Andes", universidad2.getName());
+        Assert.assertEquals("Bogota", universidad2.getCity());
+        Assert.assertTrue(universidad2.getIsPrivate());
     }
     @Test
     public void deleteTest() {

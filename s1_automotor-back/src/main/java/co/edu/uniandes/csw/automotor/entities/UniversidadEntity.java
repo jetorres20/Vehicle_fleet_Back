@@ -17,11 +17,11 @@ import uk.co.jemos.podam.common.PodamExclude;
 @Entity
 public class UniversidadEntity extends BaseEntity implements Serializable{
     
-    private String nombre;
+    private String name;
     
-    private String ciudad;
+    private String city;
     
-    private Boolean privada;
+    private Boolean isPrivate;
     
     @PodamExclude
     @javax.persistence.OneToMany(
@@ -40,45 +40,45 @@ public class UniversidadEntity extends BaseEntity implements Serializable{
     
 
     /**
-     * @return the nombre
+     * @return the name
      */
-    public String getNombre() {
-        return nombre;
+    public String getName() {
+        return name;
     }
 
     /**
-     * @param nombre the nombre to set
+     * @param name the name to set
      */
-    public void setNombre(String nombre) {
-        this.nombre = nombre;
+    public void setName(String name) {
+        this.name = name;
     }
 
     /**
-     * @return the ciudad
+     * @return the city
      */
-    public String getCiudad() {
-        return ciudad;
+    public String getCity() {
+        return city;
     }
 
     /**
-     * @param ciudad the ciudad to set
+     * @param city the city to set
      */
-    public void setCiudad(String ciudad) {
-        this.ciudad = ciudad;
+    public void setCity(String city) {
+        this.city = city;
     }
 
     /**
-     * @return the privada
+     * @return the isPrivate
      */
-    public Boolean getPrivada() {
-        return privada;
+    public Boolean getIsPrivate() {
+        return isPrivate;
     }
 
     /**
-     * @param privada the privada to set
+     * @param isPrivate the isPrivate to set
      */
-    public void setPrivada(Boolean privada) {
-        this.privada = privada;
+    public void setIsPrivate(Boolean isPrivate) {
+        this.isPrivate = isPrivate;
     }
     
     /**

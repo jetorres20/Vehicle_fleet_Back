@@ -25,60 +25,60 @@ public class FranjaHorariaSemanalEntity extends BaseEntity implements Serializab
 
     
     
-    private Integer dia;
+    private Integer weekDay;
     
     @Temporal(TemporalType.DATE)
     @PodamStrategyValue(DateStrategy.class)
-    private Date horaInicio;
+    private Date startHour;
     
     @Temporal(TemporalType.DATE)
     @PodamStrategyValue(DateStrategy.class)
-    private Date horaFin;
+    private Date finishHour;
    
     @PodamExclude
     @ManyToOne()
     private ConductorEntity conductor;
 
     /**
-     * @return the dia
+     * @return the weekDay
      */
-    public Integer getDia() {
-        return dia;
+    public Integer getWeekDay() {
+        return weekDay;
     }
 
     /**
-     * @param dia the dia to set
+     * @param weekDay the weekDay to set
      */
-    public void setDia(Integer dia) {
-        this.dia = dia;
+    public void setWeekDay(Integer weekDay) {
+        this.weekDay = weekDay;
     }
 
     /**
-     * @return the horaInicio
+     * @return the startHour
      */
-    public Date getHoraInicio() {
-        return horaInicio;
+    public Date getStartHour() {
+        return startHour;
     }
 
     /**
-     * @param horaInicio the horaInicio to set
+     * @param startHour the startHour to set
      */
-    public void setHoraInicio(Date horaInicio) {
-        this.horaInicio = horaInicio;
+    public void setStartHour(Date startHour) {
+        this.startHour = startHour;
     }
 
     /**
-     * @return the horaFin
+     * @return the finishHour
      */
-    public Date getHoraFin() {
-        return horaFin;
+    public Date getFinishHour() {
+        return finishHour;
     }
 
     /**
-     * @param horaFin the horaFin to set
+     * @param finishHour the finishHour to set
      */
-    public void setHoraFin(Date horaFin) {
-        this.horaFin = horaFin;
+    public void setFinishHour(Date finishHour) {
+        this.finishHour = finishHour;
     }
     
     /**

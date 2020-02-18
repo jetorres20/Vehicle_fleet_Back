@@ -51,7 +51,7 @@ public class FranjaHorariaSemanalPersistenceTest {
         FranjaHorariaSemanalEntity result=fp.create(franja);         
         Assert.assertNotNull(result);
         FranjaHorariaSemanalEntity entity=em.find(FranjaHorariaSemanalEntity.class, result.getId());
-        Assert.assertEquals(franja.getDia(), entity.getDia());
+        Assert.assertEquals(franja.getWeekDay(), entity.getWeekDay());
     }
     
     @Test
@@ -61,7 +61,7 @@ public class FranjaHorariaSemanalPersistenceTest {
         FranjaHorariaSemanalEntity franja=factory.manufacturePojo(FranjaHorariaSemanalEntity.class);
         FranjaHorariaSemanalEntity result=fp.create(franja);
         FranjaHorariaSemanalEntity entity=em.find(FranjaHorariaSemanalEntity.class, result.getId());
-        Assert.assertEquals(franja.getDia(), entity.getDia());
+        Assert.assertEquals(franja.getWeekDay(), entity.getWeekDay());
     }
     
     
@@ -95,14 +95,14 @@ public class FranjaHorariaSemanalPersistenceTest {
 
         Assert.assertEquals(resultado.getId(), franja.getId());
 
-        franja.setDia(1);
-        franja.setHoraInicio(new Date(0, 0, 0, 0, 0));
-        franja.setHoraFin(new Date(1, 0, 0, 0, 0));
+        franja.setWeekDay(1);
+        franja.setStartHour(new Date(0, 0, 0, 0, 0));
+        franja.setFinishHour(new Date(1, 0, 0, 0, 0));
         fp.update(franja);
 
         FranjaHorariaSemanalEntity franja2=fp.find(franja.getId());
-        Assert.assertEquals(new Date(0, 0, 0, 0, 0), franja2.getHoraInicio());
-        Assert.assertEquals(new Date(1, 0, 0, 0, 0), franja2.getHoraFin());
+        Assert.assertEquals(new Date(0, 0, 0, 0, 0), franja2.getStartHour());
+        Assert.assertEquals(new Date(1, 0, 0, 0, 0), franja2.getFinishHour());
     }
     @Test
     public void deleteTest() {
