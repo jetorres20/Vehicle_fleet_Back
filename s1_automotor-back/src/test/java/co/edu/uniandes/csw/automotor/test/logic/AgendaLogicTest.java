@@ -10,6 +10,7 @@ import co.edu.uniandes.csw.automotor.entities.AgendaEntity;
 import co.edu.uniandes.csw.automotor.exceptions.BusinessLogicException;
 import co.edu.uniandes.csw.automotor.persistence.AgendaPersistence;
 import java.util.Collection;
+import java.util.Iterator;
 import javax.inject.Inject;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
@@ -50,17 +51,33 @@ public class AgendaLogicTest {
     @PersistenceContext
     private EntityManager em;
     
-//    @Test
-//    public void createAgenda()throws BusinessLogicException
-//    {
-//        AgendaEntity agenda1 = factory.manufacturePojo(AgendaEntity.class);
-//        AgendaEntity result = agendaLogic.CreateAgenda(agenda1);
-//        Assert.assertNotNull(result);
-//        
-//        AgendaEntity ent = em.find(AgendaEntity.class, result.getId());
-//        Assert.assertEquals(ent.getFecha(), agenda1.getFecha());
-//        em.remove(result.getId());
-//    }
+    @Test
+    public void createAgenda()throws BusinessLogicException
+    {
+        Collection<AgendaEntity> col = agendaLogic.getfechas();
+        Iterator<AgendaEntity> it = col.iterator();
+        while(it.hasNext())
+        {
+            AgendaEntity ag = it.next();
+            agendaLogic.deleteFecha(ag.getId());
+        }
+        
+        AgendaEntity agenda1 = factory.manufacturePojo(AgendaEntity.class);
+        AgendaEntity result = agendaLogic.CreateAgenda(agenda1);
+        Assert.assertNotNull(result);
+        
+        AgendaEntity ent = em.find(AgendaEntity.class, result.getId());
+        Assert.assertEquals(ent.getFecha(), agenda1.getFecha());
+    }
+    
+    @Test (expected = BusinessLogicException.class)
+    public void createAgendaDuracionNeg()throws BusinessLogicException
+    {
+        AgendaEntity agenda1 = factory.manufacturePojo(AgendaEntity.class);
+        agenda1.setDuracionEnMin(-20);
+        agendaLogic.CreateAgenda(agenda1);
+    }
+    
     @Test (expected = BusinessLogicException.class)
     public void createAgendaFechaNull()throws BusinessLogicException
     {

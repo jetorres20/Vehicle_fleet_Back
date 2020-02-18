@@ -31,6 +31,11 @@ public class AgendaLogic {
             throw new BusinessLogicException("la fecha no deberia estar vacia");
         }
         
+        if(agendaEntity.getDuracionEnMin() < 0)
+        {
+            throw new BusinessLogicException("la duracion no puede ser negativa");
+        }
+        
         Collection<AgendaEntity> data = agendaPersistence.finAll();
         if(!data.isEmpty())
         {
@@ -55,4 +60,33 @@ public class AgendaLogic {
         AgendaEntity agenda = agendaPersistence.create(agendaEntity);
         return agenda;
     }
+    
+    public Collection<AgendaEntity> getfechas()
+    {
+        return agendaPersistence.finAll();
+    }
+    
+    public AgendaEntity getFecha(long id)
+    {
+        return agendaPersistence.find(id);
+    }
+    
+    public AgendaEntity updateFecha(AgendaEntity ag)
+    {
+        AgendaEntity result = agendaPersistence.update(ag);
+        return result;
+    }
+    
+    public void deleteFecha(long entId)throws BusinessLogicException
+    {
+        AgendaEntity entity = agendaPersistence.find(entId);
+        if(entity.getConductor() != null)
+            throw new BusinessLogicException("la fecha tiene un conductor asociado");
+        
+        if(!entity.getReservas().isEmpty())
+            throw new BusinessLogicException("la fehca tien una reserva asociada");
+        
+        agendaPersistence.delete(entId);
+    }
+        
 }

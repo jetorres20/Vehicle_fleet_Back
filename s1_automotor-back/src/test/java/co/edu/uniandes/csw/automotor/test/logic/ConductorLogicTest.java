@@ -48,7 +48,7 @@ public class ConductorLogicTest {
     EntityManager em;
     
     @Test
-    public void createConductor()throws BusinessLogicException
+    public void createConductorTest()throws BusinessLogicException
     {
         ConductorEntity conductor1 = factory.manufacturePojo(ConductorEntity.class);
         ConductorEntity result = cl.createConductor(conductor1);
@@ -59,10 +59,43 @@ public class ConductorLogicTest {
     }
     
     @Test(expected = BusinessLogicException.class)
-    public void createConductorNameNull()throws BusinessLogicException
+    public void createConductorNameNullTest()throws BusinessLogicException
     {
         ConductorEntity conductor1 = factory.manufacturePojo(ConductorEntity.class);
         conductor1.setName(null);
         ConductorEntity result = cl.createConductor(conductor1);
+    }
+    
+    @Test
+    public void updateConductorTest()throws BusinessLogicException
+    {
+        ConductorEntity conductor1 = factory.manufacturePojo(ConductorEntity.class);
+        ConductorEntity result = cl.createConductor(conductor1);
+        Assert.assertNotNull(result);
+        ConductorEntity ent = em.find(ConductorEntity.class, result.getId());
+        Assert.assertEquals(ent.getName(), conductor1.getName());
+        
+        ConductorEntity cond = factory.manufacturePojo(ConductorEntity.class);
+        cond.setId(ent.getId());
+        cl.updateConductor(cond);
+        
+        conductor1 = em.find(ConductorEntity.class,ent.getId());
+        Assert.assertEquals(conductor1.getName(), cond.getName());
+        Assert.assertEquals(conductor1.getAgendas(), cond.getAgendas());
+        Assert.assertEquals(conductor1.getFranjasHorariasSemanales(), cond.getFranjasHorariasSemanales());
+        Assert.assertEquals(conductor1.getReservas(), cond.getReservas());
+    }
+    
+    @Test
+    public void deleteConductorTest() throws BusinessLogicException
+    {
+        ConductorEntity ce = factory.manufacturePojo(ConductorEntity.class);
+        ce.setAgendas(null);
+        ce.setFranjasHorariasSemanales(null);
+        ce.setReservas(null);
+        ConductorEntity result = cl.createConductor(ce);
+        Assert.assertNotNull(result);
+        cl.deleteConductor(result.getId());
+        Assert.assertNull(em.find(ConductorEntity.class, result.getId()));
     }
 }
