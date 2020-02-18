@@ -38,6 +38,12 @@ public class ReservaPersistence {
         return lista;
     }
     
+    public int numberOfElements()
+    {
+        Collection<ReservaEntity> lista = em.createQuery("SELECT e FROM ReservaEntity e").getResultList();
+        return lista.size();
+    }
+    
     public ReservaEntity update(ReservaEntity reserva)
     {
         em.merge(reserva);
