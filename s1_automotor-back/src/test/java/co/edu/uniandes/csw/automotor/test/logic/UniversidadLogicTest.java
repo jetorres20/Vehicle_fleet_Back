@@ -12,6 +12,7 @@ import co.edu.uniandes.csw.automotor.exceptions.BusinessLogicException;
 import javax.inject.Inject;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
+import org.jboss.arquillian.container.test.api.Deployment;
 import org.jboss.arquillian.junit.Arquillian;
 import org.jboss.shrinkwrap.api.ShrinkWrap;
 import org.jboss.shrinkwrap.api.spec.JavaArchive;
@@ -36,6 +37,7 @@ public class UniversidadLogicTest {
     @PersistenceContext
     private EntityManager em;
     
+    @Deployment
     public static JavaArchive createDeployment(){
         return ShrinkWrap.create(JavaArchive.class)
                 .addPackage(UniversidadEntity.class.getPackage())

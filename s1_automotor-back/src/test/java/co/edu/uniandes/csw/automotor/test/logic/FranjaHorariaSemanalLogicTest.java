@@ -6,8 +6,10 @@
 package co.edu.uniandes.csw.automotor.test.logic;
 
 import co.edu.uniandes.csw.automotor.ejb.FranjaHorariaSemanalLogic;
+import co.edu.uniandes.csw.automotor.entities.ConductorEntity;
 import co.edu.uniandes.csw.automotor.entities.FranjaHorariaSemanalEntity;
 import co.edu.uniandes.csw.automotor.exceptions.BusinessLogicException;
+import co.edu.uniandes.csw.automotor.persistence.ConductorPersistence;
 import co.edu.uniandes.csw.automotor.persistence.FranjaHorariaSemanalPersistence;
 import javax.inject.Inject;
 import javax.persistence.EntityManager;
@@ -46,10 +48,14 @@ public class FranjaHorariaSemanalLogicTest {
     @PersistenceContext
     private EntityManager em;
     
+    @Inject
+    private ConductorPersistence cp;
     
     @Test
     public void createFranja() throws BusinessLogicException{
         FranjaHorariaSemanalEntity franja=factory.manufacturePojo(FranjaHorariaSemanalEntity.class);
+        ConductorEntity conductor=factory.manufacturePojo(ConductorEntity.class);
+        franja.setConductor(cp.create(conductor));
         FranjaHorariaSemanalEntity result=fl.createFranjaHorariaSemanal(franja);
         Assert.assertNotNull(result);
         
