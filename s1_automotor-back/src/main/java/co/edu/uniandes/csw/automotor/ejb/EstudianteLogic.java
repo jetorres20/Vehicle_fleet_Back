@@ -29,7 +29,8 @@ public class EstudianteLogic {
             throw new BusinessLogicException("El codigo del estudiante está vacío");
         else if(estudiante.getName()==null)
             throw new BusinessLogicException("El nombre del estudiante está vacío");
-        
+        else if(estudiante.getCodigo()<0)
+            throw new BusinessLogicException("El código no puede ser negativo");
         
         Collection<EstudianteEntity> todos = persistence.finAll();
         for (EstudianteEntity entidad : todos) {
