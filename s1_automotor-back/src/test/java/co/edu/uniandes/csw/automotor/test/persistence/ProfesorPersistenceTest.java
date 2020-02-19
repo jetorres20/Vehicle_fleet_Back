@@ -75,8 +75,8 @@ public class ProfesorPersistenceTest {
         ProfesorEntity profe2 = factory.manufacturePojo(ProfesorEntity.class);
         pp.create(profe2);
 
-        ProfesorEntity buscado1 = pp.find(profesor);
-        ProfesorEntity buscado2 = pp.find(profe2);
+        ProfesorEntity buscado1 = pp.find(profesor.getId());
+        ProfesorEntity buscado2 = pp.find(profe2.getId());
 
         lista = pp.findAll();
 
@@ -97,7 +97,7 @@ public class ProfesorPersistenceTest {
         profesor.setIdentificacion(123);
         pp.update(profesor);
 
-        ProfesorEntity prof1=pp.find(profesor);
+        ProfesorEntity prof1=pp.find(profesor.getId());
         Assert.assertEquals("Nestor", prof1.getNombre());
         Assert.assertEquals((Integer)123, prof1.getIdentificacion());
 
@@ -111,14 +111,14 @@ public class ProfesorPersistenceTest {
         ProfesorEntity profe2 = factory.manufacturePojo(ProfesorEntity.class);
         pp.create(profe2);
 
-        Assert.assertNotNull(pp.find(profesor));
-        Assert.assertNotNull(pp.find(profe2));
+        Assert.assertNotNull(pp.find(profesor.getId()));
+        Assert.assertNotNull(pp.find(profe2.getId()));
 
         pp.delete(profesor.getId());
-        Assert.assertNull(pp.find(profesor));
+        Assert.assertNull(pp.find(profesor.getId()));
 
         pp.delete(profe2.getId());
-        Assert.assertNull(pp.find(profe2));
+        Assert.assertNull(pp.find(profe2.getId()));
 
     }
 }

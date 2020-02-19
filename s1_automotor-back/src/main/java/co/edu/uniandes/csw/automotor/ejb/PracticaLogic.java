@@ -11,6 +11,7 @@ import co.edu.uniandes.csw.automotor.exceptions.BusinessLogicException;
 import co.edu.uniandes.csw.automotor.persistence.PracticaPersistence;
 import co.edu.uniandes.csw.automotor.persistence.ProfesorPersistence;
 import java.util.Collection;
+import java.util.List;
 import javax.ejb.Stateless;
 import javax.inject.Inject;
 
@@ -41,9 +42,44 @@ public class PracticaLogic {
    if(pro.getDuracion()==null){
         throw new BusinessLogicException("La practica debe tener una duracion estipulada");
     }
+   
+    if(pro.getDuracion()==null){
+        throw new BusinessLogicException("La practica debe tener una duracion estipulada");
+    }
+    ProfesorEntity buscado=persis2.find(pro.getProfesor().getId());
+    if(buscado==null){
+        throw new BusinessLogicException("No existe este profesor asociado");
+  
+    }
+  
   
    pro=persis.create(pro);
    return pro;
+    }
+    
+    
+       public List<PracticaEntity> getPracticas()
+    {
+        List<PracticaEntity> practicas = (List<PracticaEntity>) persis.findAll();
+        return practicas;
+    }
+    
+    public PracticaEntity getPractica(long id)
+    {
+        PracticaEntity practica = persis.find(id);
+        
+        return practica;
+    }
+    
+    public PracticaEntity updatePractica(PracticaEntity prac)
+    {
+        return persis.update(prac);
+    }
+    
+    public void deletePractica ( long id)
+    {
+        PracticaEntity eliminado =persis.find(id);
+        persis.delete(eliminado.getId());
     }
  
 }

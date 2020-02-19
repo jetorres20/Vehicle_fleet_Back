@@ -26,9 +26,9 @@ public class PracticaPersistence {
         em.persist(practica);
         return practica;
     }
-    public PracticaEntity find(PracticaEntity practica){
+    public PracticaEntity find(long id){
      
-        return em.find(PracticaEntity.class, practica.getId());
+        return em.find(PracticaEntity.class, id);
     }
     public PracticaEntity update(PracticaEntity practica){
      

@@ -50,19 +50,21 @@ public class PracticaLogicTest {
         @Test 
      public void createPractica()throws BusinessLogicException{
          
-         PracticaEntity pro=factory.manufacturePojo(PracticaEntity.class);
-         ProfesorEntity prof=factory.manufacturePojo(ProfesorEntity.class);
-         
-         pro.setDuracion(200.0);
-         prof.setIdentificacion(1234001);
-         pro.setProfesor(prof);
-         
-         proflo1.createProfesor(prof);
-         PracticaEntity resul=proflo.createPractica(pro);
-         Assert.assertNotNull(resul);
-         
-         PracticaEntity buscado=em.find(PracticaEntity.class, pro.getId());
-         Assert.assertEquals(resul.getDestino(), buscado.getDestino());
+        PracticaEntity nuevo = factory.manufacturePojo(PracticaEntity.class);
+
+        nuevo.setDuracion(12.1);
+        nuevo.setTiempoDeDesplazamiento(200.0);
+
+        ProfesorEntity profesor = factory.manufacturePojo(ProfesorEntity.class);
+        profesor.setIdentificacion(1234);
+
+        profesor = proflo1.createProfesor(profesor);
+        nuevo.setProfesor(profesor);
+
+        PracticaEntity resultado =proflo.createPractica(nuevo);
+        Assert.assertNotNull(resultado);
+        PracticaEntity buscado = em.find(PracticaEntity.class, resultado.getId());
+        Assert.assertEquals(buscado, resultado);
          
      }
      
@@ -126,6 +128,26 @@ public class PracticaLogicTest {
          ProfesorEntity resulpro=proflo1.createProfesor(prof);
          pro.setDuracion(null);
          PracticaEntity resul=proflo.createPractica(pro);
+    
+         
+     }
+      @Test(expected = Exception.class)
+     public void createPracticaProfesorNoRegistrado()throws BusinessLogicException{
+         
+         PracticaEntity nuevo = factory.manufacturePojo(PracticaEntity.class);
+
+        nuevo.setDuracion(12.1);
+        nuevo.setTiempoDeDesplazamiento(200.0);
+
+        ProfesorEntity profesor = factory.manufacturePojo(ProfesorEntity.class);
+        profesor.setIdentificacion(1234);
+
+        nuevo.setProfesor(profesor);
+
+        PracticaEntity resultado =proflo.createPractica(nuevo);
+        Assert.assertNotNull(resultado);
+        PracticaEntity buscado = em.find(PracticaEntity.class, resultado.getId());
+        Assert.assertEquals(buscado, resultado);
     
          
      }

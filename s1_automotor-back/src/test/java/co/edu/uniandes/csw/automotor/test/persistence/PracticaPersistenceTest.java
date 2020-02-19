@@ -77,8 +77,8 @@ public class PracticaPersistenceTest {
         PracticaEntity practica2 = factory.manufacturePojo(PracticaEntity.class);
         pp.create(practica2);
 
-        PracticaEntity buscado1 = pp.find(practica);
-        PracticaEntity buscado2 = pp.find(practica2);
+        PracticaEntity buscado1 = pp.find(practica.getId());
+        PracticaEntity buscado2 = pp.find(practica2.getId());
 
         lista = pp.findAll();
 
@@ -98,7 +98,7 @@ public class PracticaPersistenceTest {
         practica.setDescripcion("aloha");
         practica.setDestino("CALI");
         pp.update(practica);
-        PracticaEntity prac1=pp.find(practica);
+        PracticaEntity prac1=pp.find(practica.getId());
         Assert.assertEquals("aloha", resultado.getDescripcion());
         Assert.assertEquals("CALI", resultado.getDestino());
 
@@ -112,14 +112,14 @@ public class PracticaPersistenceTest {
         PracticaEntity practica2 = factory.manufacturePojo(PracticaEntity.class);
         pp.create(practica2);
 
-        Assert.assertNotNull(pp.find(practica));
-        Assert.assertNotNull(pp.find(practica2));
+        Assert.assertNotNull(pp.find(practica.getId()));
+        Assert.assertNotNull(pp.find(practica2.getId()));
 
         pp.delete(practica.getId());
-        Assert.assertNull(pp.find(practica));
+        Assert.assertNull(pp.find(practica.getId()));
 
         pp.delete(practica2.getId());
-        Assert.assertNull(pp.find(practica2));
+        Assert.assertNull(pp.find(practica2.getId()));
 
     }
      

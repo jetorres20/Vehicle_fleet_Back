@@ -25,9 +25,9 @@ public class ProfesorPersistence {
         em.persist(profesor);
         return profesor;
     }
-    public ProfesorEntity find(ProfesorEntity profesor){
+    public ProfesorEntity find(long id){
      
-        return em.find(ProfesorEntity.class, profesor.getId());
+        return em.find(ProfesorEntity.class, id);
     }
     public ProfesorEntity update(ProfesorEntity profesor){
      
