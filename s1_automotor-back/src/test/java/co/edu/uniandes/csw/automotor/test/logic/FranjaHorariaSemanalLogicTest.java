@@ -12,10 +12,13 @@ import co.edu.uniandes.csw.automotor.persistence.FranjaHorariaSemanalPersistence
 import javax.inject.Inject;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
+import org.jboss.arquillian.container.test.api.Deployment;
+import org.jboss.arquillian.junit.Arquillian;
 import org.jboss.shrinkwrap.api.ShrinkWrap;
 import org.jboss.shrinkwrap.api.spec.JavaArchive;
 import org.junit.Assert;
 import org.junit.Test;
+import org.junit.runner.RunWith;
 import uk.co.jemos.podam.api.PodamFactory;
 import uk.co.jemos.podam.api.PodamFactoryImpl;
 
@@ -23,15 +26,10 @@ import uk.co.jemos.podam.api.PodamFactoryImpl;
  *
  * @author Juan Villamarin
  */
+@RunWith(Arquillian.class)
 public class FranjaHorariaSemanalLogicTest {
-    @Inject
-    private FranjaHorariaSemanalLogic fl;
     
-    private final PodamFactory factory= new PodamFactoryImpl();
-    
-    @PersistenceContext
-    private EntityManager em;
-    
+    @Deployment
     public static JavaArchive createDeployment(){
         return ShrinkWrap.create(JavaArchive.class)
                 .addPackage(FranjaHorariaSemanalEntity.class.getPackage())
@@ -40,6 +38,14 @@ public class FranjaHorariaSemanalLogicTest {
                 .addAsManifestResource("META-INF/persistence.xml", "persistence.xml")
                 .addAsManifestResource("META-INF/beans.xml", "beans.xml");
     }
+    @Inject
+    private FranjaHorariaSemanalLogic fl;
+    
+    private final PodamFactory factory= new PodamFactoryImpl();
+    
+    @PersistenceContext
+    private EntityManager em;
+    
     
     @Test
     public void createFranja() throws BusinessLogicException{
