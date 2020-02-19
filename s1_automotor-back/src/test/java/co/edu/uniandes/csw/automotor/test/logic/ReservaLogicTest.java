@@ -116,7 +116,7 @@ public class ReservaLogicTest {
         vehiculoLogic.createVehiculo(newVehiculo);
         newEntity.setVehiculo(newVehiculo);
             
-        ReservaEntity result = reservaLogic.createReservaContext(newEntity);
+        ReservaEntity result = reservaLogic.createReserva(newEntity);
         
         ReservaEntity newEntity2 = factory.manufacturePojo(ReservaEntity.class);
         newEntity2.setFechaReserva(new Date(2020, 2, 4, 14, 30));

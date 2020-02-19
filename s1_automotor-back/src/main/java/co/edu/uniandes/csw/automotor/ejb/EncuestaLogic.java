@@ -10,12 +10,14 @@ import co.edu.uniandes.csw.automotor.exceptions.BusinessLogicException;
 import co.edu.uniandes.csw.automotor.persistence.EncuestaPersistence;
 import java.util.Collection;
 import java.util.List;
+import javax.ejb.Stateless;
 import javax.inject.Inject;
 
 /**
  *
  * @author Juan Esteban Torres
  */
+@Stateless
 public class EncuestaLogic {
     
      @Inject

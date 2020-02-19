@@ -6,12 +6,17 @@
 package co.edu.uniandes.csw.automotor.test.logic;
 
 import co.edu.uniandes.csw.automotor.ejb.ConductorLogic;
+import co.edu.uniandes.csw.automotor.ejb.ReservaLogic;
 import co.edu.uniandes.csw.automotor.entities.ConductorEntity;
+import co.edu.uniandes.csw.automotor.entities.ReservaEntity;
 import co.edu.uniandes.csw.automotor.exceptions.BusinessLogicException;
 import co.edu.uniandes.csw.automotor.persistence.ConductorPersistence;
+import java.util.ArrayList;
+import java.util.Collection;
 import javax.inject.Inject;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
+import org.apache.commons.lang3.time.DateUtils;
 import org.jboss.arquillian.container.test.api.Deployment;
 import org.jboss.arquillian.junit.Arquillian;
 import org.jboss.shrinkwrap.api.ShrinkWrap;
@@ -43,6 +48,9 @@ public class ConductorLogicTest {
     
     @Inject
     ConductorLogic cl;
+    
+    @Inject
+    ReservaLogic reservaLogic;
     
     @PersistenceContext
     EntityManager em;
@@ -97,5 +105,28 @@ public class ConductorLogicTest {
         Assert.assertNotNull(result);
         cl.deleteConductor(result.getId());
         Assert.assertNull(em.find(ConductorEntity.class, result.getId()));
+    }
+    
+    @Test (expected = BusinessLogicException.class)
+    public void deleteConductorTestNotNull() throws BusinessLogicException
+    {
+        ConductorEntity ce = factory.manufacturePojo(ConductorEntity.class);
+        ReservaEntity re = factory.manufacturePojo(ReservaEntity.class);
+        re.setFechaReserva(DateUtils.addMinutes(re.getFechaServicio(), -30));
+        reservaLogic.createReserva(re);
+        
+        ce.setAgendas(null);
+        ce.setFranjasHorariasSemanales(null);
+        Collection<ReservaEntity> reservas = new ArrayList<ReservaEntity>();
+        reservas.add(re);
+        ce.setReservas(reservas);
+        ConductorEntity result = cl.createConductor(ce);
+        ReservaEntity reserv = em.find(ReservaEntity.class, re.getId());
+        reserv.setConductor(result);
+        reservaLogic.getRservaPersitence().update(reserv);
+        cl.updateConductor(result);
+        Assert.assertNotNull(result);
+        cl.deleteConductor(result.getId());
+        //Assert.assertNull(em.find(ConductorEntity.class, result.getId()));
     }
 }

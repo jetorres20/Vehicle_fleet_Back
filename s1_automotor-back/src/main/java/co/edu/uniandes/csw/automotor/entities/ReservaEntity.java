@@ -55,7 +55,7 @@ public class ReservaEntity extends BaseEntity implements Serializable
     private VehiculoEntity vehiculo;
     
     @PodamExclude
-    @ManyToOne()
+    @OneToOne()
     private AgendaEntity agenda;
     
     @PodamExclude

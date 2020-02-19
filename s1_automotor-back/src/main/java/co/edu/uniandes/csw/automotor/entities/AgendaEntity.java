@@ -11,6 +11,7 @@ import java.util.Date;
 import javax.persistence.Entity;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
+import javax.persistence.OneToOne;
 //import javax.persistence.OneToOne;
 import uk.co.jemos.podam.common.PodamExclude;
 
@@ -25,17 +26,13 @@ public class AgendaEntity extends BaseEntity implements Serializable{
     private Date fecha;
     
     private Boolean reservada;
-    
-    private Integer duracionEnMin;
 
     @PodamExclude
-    @ManyToOne(
-            
-    )
+    @ManyToOne()
     ConductorEntity conductor;
     @PodamExclude
-    @OneToMany(mappedBy = "agenda")
-    Collection<ReservaEntity> reservas;
+    @OneToOne(mappedBy = "agenda")
+    ReservaEntity reserva;
     /**
      * @return the fecha
      */
@@ -81,28 +78,15 @@ public class AgendaEntity extends BaseEntity implements Serializable{
         /**
      * @return the reservas
      */
-    public Collection<ReservaEntity> getReservas() {
-        return reservas;
+    public ReservaEntity getReserva() {
+        return reserva;
     }
 
     /**
-     * @param reservas the reservas to set
+     * @param reserva the reservas to set
      */
-    public void setReservas(Collection<ReservaEntity> reservas) {
-        this.reservas = reservas;
+    public void setReserva(ReservaEntity reserva) {
+        this.reserva = reserva;
     }
 
-    /**
-     * @return the duracionEnMin
-     */
-    public Integer getDuracionEnMin() {
-        return duracionEnMin;
-    }
-
-    /**
-     * @param duracionEnMin the duracionEnMin to set
-     */
-    public void setDuracionEnMin(Integer duracionEnMin) {
-        this.duracionEnMin = duracionEnMin;
-    }
 }

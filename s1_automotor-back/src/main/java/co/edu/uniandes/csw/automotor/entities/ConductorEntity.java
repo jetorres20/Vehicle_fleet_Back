@@ -7,9 +7,10 @@ package co.edu.uniandes.csw.automotor.entities;
 
 import java.io.Serializable;
 import java.util.Collection;
+//import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.OneToMany;
-import javax.persistence.OneToOne;
+//import javax.persistence.OneToOne;
 import uk.co.jemos.podam.common.PodamExclude;
 
 
@@ -29,7 +30,7 @@ public class ConductorEntity extends BaseEntity implements Serializable{
     @OneToMany(mappedBy = "conductor")
     Collection<FranjaHorariaSemanalEntity> franjasHorariasSemanales;
     @PodamExclude
-    @OneToMany(mappedBy = "conductor")
+    @OneToMany(mappedBy = "conductor",fetch = javax.persistence.FetchType.LAZY)
     Collection<ReservaEntity> reservas;
     
     /**

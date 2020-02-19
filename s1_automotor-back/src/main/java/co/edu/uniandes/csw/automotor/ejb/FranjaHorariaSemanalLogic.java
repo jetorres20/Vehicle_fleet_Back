@@ -13,12 +13,14 @@ import co.edu.uniandes.csw.automotor.persistence.FranjaHorariaSemanalPersistence
 import java.util.Collection;
 import java.util.Date;
 import java.util.Iterator;
+import javax.ejb.Stateless;
 import javax.inject.Inject;
 
 /**
  *
  * @author Juan Villamarin
  */
+@Stateless
 public class FranjaHorariaSemanalLogic {
     @Inject
     private FranjaHorariaSemanalPersistence persitence;
