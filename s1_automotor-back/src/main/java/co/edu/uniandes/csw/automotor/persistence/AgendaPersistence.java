@@ -31,6 +31,11 @@ public class AgendaPersistence {
         return agendaB;
     }
     
+    public Collection<AgendaEntity> finAllCond(long id)
+    {
+        return em.createQuery("SELECT e FROM AgendaEntity e WHERE e.conductor.id = "+ id , AgendaEntity.class).getResultList();
+    }
+    
     public Collection<AgendaEntity> finAll()
     {
         return em.createQuery("SELECT e FROM AgendaEntity e").getResultList();

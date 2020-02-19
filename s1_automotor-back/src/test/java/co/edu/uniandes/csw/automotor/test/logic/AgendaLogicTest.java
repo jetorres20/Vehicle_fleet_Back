@@ -8,10 +8,12 @@ package co.edu.uniandes.csw.automotor.test.logic;
 import co.edu.uniandes.csw.automotor.ejb.AgendaLogic;
 import co.edu.uniandes.csw.automotor.ejb.ConductorLogic;
 import co.edu.uniandes.csw.automotor.ejb.PracticaLogic;
+import co.edu.uniandes.csw.automotor.ejb.ProfesorLogic;
 import co.edu.uniandes.csw.automotor.ejb.ReservaLogic;
 import co.edu.uniandes.csw.automotor.entities.AgendaEntity;
 import co.edu.uniandes.csw.automotor.entities.ConductorEntity;
 import co.edu.uniandes.csw.automotor.entities.PracticaEntity;
+import co.edu.uniandes.csw.automotor.entities.ProfesorEntity;
 import co.edu.uniandes.csw.automotor.entities.ReservaEntity;
 import co.edu.uniandes.csw.automotor.exceptions.BusinessLogicException;
 import co.edu.uniandes.csw.automotor.persistence.AgendaPersistence;
@@ -63,20 +65,16 @@ public class AgendaLogicTest {
     @Inject
     ReservaLogic reservaLogic;
     
+    @Inject
+    ProfesorLogic profesorLogic;
+    
     @PersistenceContext
     private EntityManager em;
     
     @Test
     public void createAgenda()throws BusinessLogicException
     {
-        Collection<AgendaEntity> col = agendaLogic.getDates();
-        Iterator<AgendaEntity> it = col.iterator();
-        while(it.hasNext())
-        {
-            AgendaEntity ag = it.next();
-            agendaLogic.removeConductor(ag);
-            agendaLogic.deleteDate(ag.getId());
-        }
+        clear();
         
         ConductorEntity ce = factory.manufacturePojo(ConductorEntity.class);
         conductorLogic.createConductor(ce);
@@ -169,14 +167,7 @@ public class AgendaLogicTest {
     @Test
     public void setConductorTestNull()throws BusinessLogicException
     {
-        Collection<AgendaEntity> col = agendaLogic.getDates();
-        Iterator<AgendaEntity> it = col.iterator();
-        while(it.hasNext())
-        {
-            AgendaEntity ag = it.next();
-            agendaLogic.removeConductor(ag);
-            agendaLogic.deleteDate(ag.getId());
-        }
+        clear();
         
         ConductorEntity ce = factory.manufacturePojo(ConductorEntity.class);
         conductorLogic.createConductor(ce);
@@ -197,9 +188,44 @@ public class AgendaLogicTest {
         
         AgendaEntity ag= agendaLogic.CreateAgenda(agenda);
         agendaLogic.removeConductor(ag);
+        Assert.assertEquals(ag.getConductor(),null);
+        Assert.assertFalse(ce1.getAgendas().contains(ag));
         agendaLogic.setConductor(ag, ce);
         
         AgendaEntity result = em.find(AgendaEntity.class, ag.getId());
         Assert.assertEquals(ce, result.getConductor());
+    }
+    
+    @Test
+    public void updateDateTest()throws BusinessLogicException
+    {
+        clear();
+        AgendaEntity agenda = factory.manufacturePojo(AgendaEntity.class);
+        ReservaEntity re1 = factory.manufacturePojo(ReservaEntity.class);
+        
+        re1.setFechaReserva(DateUtils.addMinutes(re1.getFechaServicio(), -30));
+        reservaLogic.createReserva(re1);
+        agenda.setReserva(re1);
+        ConductorEntity ce = factory.manufacturePojo(ConductorEntity.class);
+        conductorLogic.createConductor(ce);
+        agenda.setConductor(ce);
+        AgendaEntity ag = agendaLogic.CreateAgenda(agenda);
+        
+        ag.setFecha(ag.getReserva().getFechaServicio());
+        agendaLogic.updateDate(ag);
+        Assert.assertEquals(ag.getFecha(), re1.getFechaServicio());
+    }
+    
+    public void clear() throws BusinessLogicException
+    {
+        Collection<AgendaEntity> col = agendaLogic.getDates();
+        Iterator<AgendaEntity> it = col.iterator();
+        while(it.hasNext())
+        {
+            AgendaEntity ag = it.next();
+            agendaLogic.removeConductor(ag);
+            agendaLogic.deleteDate(ag.getId());
+        }
+
     }
 }

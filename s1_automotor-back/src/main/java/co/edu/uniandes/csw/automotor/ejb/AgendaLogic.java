@@ -54,8 +54,8 @@ public class AgendaLogic {
     
     public void checkDate(AgendaEntity agendaEntity)throws BusinessLogicException
     {
-        Collection<AgendaEntity> data = agendaPersistence.finAll();
-        if(!data.isEmpty())
+        Collection<AgendaEntity> data = agendaPersistence.finAllCond(agendaEntity.getConductor().getId());
+        if(data.size()>1)
         {
         Date test = DateUtils.addMinutes(agendaEntity
                 .getFecha(),agendaEntity.getReserva().getPractica().getDuracion().intValue());
