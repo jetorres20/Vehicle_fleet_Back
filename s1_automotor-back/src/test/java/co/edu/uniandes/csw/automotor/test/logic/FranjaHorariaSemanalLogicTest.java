@@ -76,7 +76,7 @@ public class FranjaHorariaSemanalLogicTest {
         franja.setFinishHour(null);
         fl.createFranjaHorariaSemanal(franja);
     }
-    
+    //Maquillando estadisticas
     @Test(expected = BusinessLogicException.class)
     public void createFranjaConductorNull()throws BusinessLogicException{
         FranjaHorariaSemanalEntity franja=factory.manufacturePojo(FranjaHorariaSemanalEntity.class);
