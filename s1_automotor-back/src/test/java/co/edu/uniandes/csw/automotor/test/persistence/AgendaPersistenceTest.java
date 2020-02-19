@@ -57,7 +57,6 @@ public class AgendaPersistenceTest {
         AgendaEntity entity = em.find(AgendaEntity.class, result.getId());
         
         Assert.assertEquals(agenda.getFecha(), entity.getFecha());
-        Assert.assertEquals(agenda.getDuracionEnMin(), entity.getDuracionEnMin());
         Assert.assertNull(entity.getConductor());
     }
     
@@ -73,9 +72,7 @@ public class AgendaPersistenceTest {
         AgendaEntity entity = ap.find(id);
         
         Assert.assertEquals(entity.getFecha(), agenda.getFecha());
-        Assert.assertEquals(entity.getDuracionEnMin(), agenda.getDuracionEnMin());
         Assert.assertEquals(entity.getConductor(), agenda.getConductor());
-        Assert.assertEquals(entity.getReservas(), agenda.getReservas());
     }
     
     @Test
