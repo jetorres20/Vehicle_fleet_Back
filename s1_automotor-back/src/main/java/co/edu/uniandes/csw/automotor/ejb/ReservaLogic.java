@@ -49,6 +49,12 @@ public class ReservaLogic {
         return reserva;
     }
     
+    public ReservaEntity createReservaContext(ReservaEntity reserva)
+    {
+        reserva = persistence.create(reserva);
+        return reserva;
+    }
+    
     public Boolean reservaDuplicada(Collection<ReservaEntity> lista, ReservaEntity pReserva)
     {
         ArrayList lista_array = new ArrayList(lista);
@@ -63,7 +69,7 @@ public class ReservaLogic {
         return false;
     }
     
-    public ReservaPersistence getRservaPersitence()
+    public ReservaPersistence getReservaPersistence()
     {
         return this.persistence;
     }

@@ -8,6 +8,7 @@ package co.edu.uniandes.csw.automotor.ejb;
 import co.edu.uniandes.csw.automotor.entities.TipoVehiculoEntity;
 import co.edu.uniandes.csw.automotor.exceptions.BusinessLogicException;
 import co.edu.uniandes.csw.automotor.persistence.TipoVehiculoPersistence;
+import java.util.List;
 import javax.ejb.Stateless;
 import javax.inject.Inject;
 
@@ -30,5 +31,11 @@ public class TipoVehiculoLogic {
         
         tipoVehiculo = persistence.create(tipoVehiculo);
         return tipoVehiculo;
+    }
+    
+    public List<TipoVehiculoEntity> getTipoVehiculos()
+    {
+        List<TipoVehiculoEntity> tipoVehiculos = (List<TipoVehiculoEntity>) persistence.finAll();
+        return tipoVehiculos;
     }
 }
