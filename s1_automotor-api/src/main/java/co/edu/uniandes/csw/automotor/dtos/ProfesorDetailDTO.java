@@ -9,6 +9,7 @@ import co.edu.uniandes.csw.automotor.entities.PracticaEntity;
 import co.edu.uniandes.csw.automotor.entities.ProfesorEntity;
 import java.io.Serializable;
 import java.util.ArrayList;
+import java.util.Collection;
 import java.util.List;
 
 /**
@@ -49,4 +50,16 @@ public class ProfesorDetailDTO extends ProfesorDTO implements Serializable{
         this.practicas = practicas;
     }
     
+    public ProfesorEntity toEntity(){
+       ProfesorEntity entity = super.toEntity();
+        if (practicas != null) {
+            List<PracticaEntity> booksEntity = new ArrayList<>();
+            for (PracticaDTO dtoPractica : practicas) {
+                booksEntity.add(dtoPractica.toEntity());
+            }
+            entity.setPracticas(booksEntity);
+        }
+     return entity;   
+    }
+          
 }

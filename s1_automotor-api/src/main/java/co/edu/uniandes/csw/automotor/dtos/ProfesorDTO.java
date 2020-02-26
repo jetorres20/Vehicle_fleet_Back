@@ -6,12 +6,13 @@
 package co.edu.uniandes.csw.automotor.dtos;
 
 import co.edu.uniandes.csw.automotor.entities.ProfesorEntity;
+import java.io.Serializable;
 
 /**
  *
  * @author Nestor Plata
  */
-public class ProfesorDTO {
+public class ProfesorDTO implements Serializable {
 
     
     

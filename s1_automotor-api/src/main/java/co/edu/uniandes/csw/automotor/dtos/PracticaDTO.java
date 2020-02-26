@@ -6,12 +6,13 @@
 package co.edu.uniandes.csw.automotor.dtos;
 
 import co.edu.uniandes.csw.automotor.entities.PracticaEntity;
+import java.io.Serializable;
 
 /**
  *
  * @author Nestor Plata
  */
-public class PracticaDTO {
+public class PracticaDTO implements Serializable {
      private String destino;
     private String descripcion;
     private Double tiempoDeDesplazamiento;
