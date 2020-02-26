@@ -28,6 +28,10 @@ public class PracticaEntity extends BaseEntity implements Serializable{
     )
     private ReservaEntity reserva;
 
+     
+     
+     
+     
     /**
      * @return the destino
      */

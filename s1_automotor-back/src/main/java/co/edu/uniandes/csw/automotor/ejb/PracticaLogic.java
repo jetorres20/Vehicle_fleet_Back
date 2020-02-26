@@ -81,5 +81,5 @@ public class PracticaLogic {
         PracticaEntity eliminado =persis.find(id);
         persis.delete(eliminado.getId());
     }
- 
+
 }

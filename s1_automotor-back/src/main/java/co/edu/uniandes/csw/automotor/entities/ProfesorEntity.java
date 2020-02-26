@@ -36,7 +36,7 @@ public class ProfesorEntity extends BaseEntity implements Serializable {
         mappedBy = "profesor",
         fetch = javax.persistence.FetchType.LAZY
     )
-    private Collection<EncuestaEntity> practicas;
+    private Collection<PracticaEntity> practicas;
        
     @PodamExclude  
     @javax.persistence.ManyToOne()
@@ -102,14 +102,14 @@ public class ProfesorEntity extends BaseEntity implements Serializable {
     /**
      * @return the practicas
      */
-    public Collection<EncuestaEntity> getPracticas() {
+    public Collection<PracticaEntity> getPracticas() {
         return practicas;
     }
 
     /**
      * @param practicas the practicas to set
      */
-    public void setPracticas(Collection<EncuestaEntity> practicas) {
+    public void setPracticas(Collection<PracticaEntity> practicas) {
         this.practicas = practicas;
     }
 
@@ -126,5 +126,7 @@ public class ProfesorEntity extends BaseEntity implements Serializable {
     public void setUniversidad(UniversidadEntity universidad) {
         this.universidad = universidad;
     }
+    
+        
     
 }

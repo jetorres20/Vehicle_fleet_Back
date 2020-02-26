@@ -9,6 +9,8 @@ import co.edu.uniandes.csw.automotor.entities.ProfesorEntity;
 import co.edu.uniandes.csw.automotor.exceptions.BusinessLogicException;
 import co.edu.uniandes.csw.automotor.persistence.ProfesorPersistence;
 import java.util.Collection;
+import java.util.List;
+import java.util.logging.Level;
 import javax.ejb.Stateless;
 import javax.inject.Inject;
 
@@ -49,6 +51,26 @@ public class ProfesorLogic {
         }
         return existe;
     }
+    
+       public Collection<ProfesorEntity> getProfesores() {
+        Collection<ProfesorEntity> editorials = persis.findAll();
+         return editorials;
+    }
+       
+       public ProfesorEntity find(Long id){
+           ProfesorEntity pro=persis.find(id);
+           return pro;
+           
+       }
+       
+          public ProfesorEntity updateProfesor(Long profesorId, ProfesorEntity profesorEntity) {
+         ProfesorEntity newEntity = persis.update(profesorEntity);
+         return newEntity;
+    }
+          public void deleteProfesor(Long profesorid){
+         persis.delete(profesorid);
+          }
+          
 
     
 }
