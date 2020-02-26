@@ -9,11 +9,14 @@ import co.edu.uniandes.csw.automotor.dtos.TipoVehiculoDTO;
 import co.edu.uniandes.csw.automotor.ejb.TipoVehiculoLogic;
 import co.edu.uniandes.csw.automotor.entities.TipoVehiculoEntity;
 import co.edu.uniandes.csw.automotor.exceptions.BusinessLogicException;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.enterprise.context.RequestScoped;
 import javax.inject.Inject;
 import javax.ws.rs.Consumes;
+import javax.ws.rs.GET;
 import static javax.ws.rs.HttpMethod.POST;
 import javax.ws.rs.POST;
 import javax.ws.rs.Path;
@@ -59,4 +62,35 @@ public class TipoVehiculoResource {
         return nuevoTipoVehiculoDTO;
     }
     
+    /**
+     * Busca y devuelve todas los TipoVehiculo que existen en la aplicacion.
+     *
+     * @return JSONArray {@link TipoVehiculoDTO} - Los TipoVehiculo
+     * encontrados en la aplicación. Si no hay ninguna retorna una lista vacía.
+     */
+    @GET
+    public List<TipoVehiculoDTO> getTipoVehiculos() {
+        LOGGER.info("TipoVehiculoResource getTipoVehiculos: input: void");
+        List<TipoVehiculoDTO> listaTipoVehiculos = listEntity2DTO(tipoVehiculoLogic.getTipoVehiculos());
+        LOGGER.log(Level.INFO, "TipoVehiculoResource getTipoVehiculos: output: {0}", listaTipoVehiculos);
+        return listaTipoVehiculos;
+    }
+    
+    /**
+     * Convierte una lista de entidades a DTO.
+     *
+     * Este método convierte una lista de objetos TipoVehiculoEntity a una lista de
+     * objetos TipoVehiculoDTO (json)
+     *
+     * @param entityList corresponde a la lista de tipoVehiculos de tipo Entity
+     * que vamos a convertir a DTO.
+     * @return la lista de tipoVehiculo en forma DTO (json)
+     */
+    private List<TipoVehiculoDTO> listEntity2DTO(List<TipoVehiculoEntity> entityList) {
+        List<TipoVehiculoDTO> list = new ArrayList<>();
+        for (TipoVehiculoEntity entity : entityList) {
+            list.add(new TipoVehiculoDTO(entity));
+        }
+        return list;
+    }
 }
