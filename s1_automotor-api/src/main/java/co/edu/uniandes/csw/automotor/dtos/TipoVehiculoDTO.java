@@ -13,4 +13,5 @@ import java.io.Serializable;
  */
 public class TipoVehiculoDTO implements Serializable{
     
+    private String tipo;
 }
