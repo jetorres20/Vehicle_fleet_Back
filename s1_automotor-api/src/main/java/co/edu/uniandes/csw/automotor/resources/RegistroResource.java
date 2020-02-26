@@ -63,29 +63,14 @@ public class RegistroResource {
 
     @GET
     @Path("{registrosId: \\d+}")
-    public RegistroDTO getRegistro(@PathParam("registroID") Long registroId) throws BusinessLogicException {
-        LOGGER.log(Level.INFO, "RegistroResource getRegistro: input: {0}", registroId);
-        RegistroEntity entidad = registroLogic.getRegistro(registroId);
-        if (entidad != null) {
-            throw new WebApplicationException("El recurso /registros/" + registroId + "no existe", 404);
+    public RegistroDTO getRegistro(@PathParam("registrosId") Long registrosId) throws BusinessLogicException {
+        LOGGER.log(Level.INFO, "RegistroResource getRegistro: input: {0}", registrosId);
+        RegistroEntity entidad = registroLogic.getRegistro(registrosId);
+        if (entidad == null) {
+            throw new WebApplicationException("El recurso /registros/ " + registrosId + " no existe", 404);
         }
-
         RegistroDTO dto = new RegistroDTO(entidad);
         LOGGER.log(Level.INFO, "VehiculoResource getVehiculo: output: {0}", dto);
-
-        return dto;
-    }
-
-    @PUT
-    @Path("{registrosId: \\d+}")
-    public RegistroDTO updateRegistro(@PathParam("registrosId") Long registrosId, RegistroDTO registro) {
-        LOGGER.log(Level.INFO, "RegistroResource updateRegistro: input: id:{0} , registro: {1}", new Object[]{registrosId, registro});
-        registro.setId(registrosId);
-        if (registroLogic.getRegistro(registrosId) == null) {
-            throw new WebApplicationException("El recurso /registros/" + registrosId + " no existe.", 404);
-        }
-        RegistroDTO dto = new RegistroDTO(registroLogic.updateRegistro(registrosId, registro.toEntity()));
-        LOGGER.log(Level.INFO, "VehiculoResource updateVehiculo: output: {0}", dto);
 
         return dto;
     }
@@ -108,6 +93,20 @@ public class RegistroResource {
             list.add(new RegistroDTO(entity));
         }
         return list;
+    }
+
+    @PUT
+    @Path("{registrosId: \\d+}")
+    public RegistroDTO updateEditorial(@PathParam("registrosId") Long registrosId, RegistroDTO registro) throws WebApplicationException {
+        LOGGER.log(Level.INFO, "RegistroResource updateRegistro: input: id:{0} , registro: {1}", new Object[]{registrosId, registro});
+        registro.setId(registrosId);
+        if (registroLogic.getRegistro(registrosId) == null) {
+            throw new WebApplicationException("El recurso /editorials/" + registrosId + " no existe.", 404);
+        }
+        RegistroDTO detailDTO = new RegistroDTO(registroLogic.updateRegistro(registrosId, registro.toEntity()));
+        LOGGER.log(Level.INFO, "EditorialResource updateEditorial: output: {0}", detailDTO);
+        return detailDTO;
+
     }
 
 }
