@@ -123,7 +123,7 @@ public class ConductorLogicTest {
         ConductorEntity result = cl.createConductor(ce);
         ReservaEntity reserv = em.find(ReservaEntity.class, re.getId());
         reserv.setConductor(result);
-        reservaLogic.getRservaPersitence().update(reserv);
+        reservaLogic.getReservaPersistence().update(reserv);
         //cl.updateConductor(result);
         Assert.assertNotNull(result);
         cl.deleteConductor(result.getId());
