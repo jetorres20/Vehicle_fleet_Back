@@ -9,6 +9,7 @@ import co.edu.uniandes.csw.automotor.entities.RegistroEntity;
 import co.edu.uniandes.csw.automotor.exceptions.BusinessLogicException;
 import co.edu.uniandes.csw.automotor.persistence.RegistroPersistence;
 import java.util.Date;
+import java.util.List;
 import javax.ejb.Stateless;
 import javax.inject.Inject;
 
@@ -100,5 +101,27 @@ public class RegistroLogic {
         }
 
         return registro;
+    }
+
+    public List<RegistroEntity> getRegistros() {
+        List<RegistroEntity> vehiculos = (List<RegistroEntity>) persistence.finAll();
+        return vehiculos;
+    }
+    
+    public RegistroEntity getRegistro(long id)
+    {
+        RegistroEntity vehi = persistence.find(id);
+        return vehi;
+    }
+    public RegistroEntity updateRegistro(long regiID, RegistroEntity regiEntity)
+    {
+        return persistence.update(regiEntity);
+    }
+ 
+     public void deleteRegistro ( long idEliminable)
+    {
+        RegistroEntity eliminado = persistence.find(idEliminable);
+        persistence.delete(eliminado.getId());
+        persistence.delete(idEliminable);
     }
 }
