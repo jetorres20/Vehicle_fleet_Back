@@ -59,17 +59,4 @@ public class TipoVehiculoResource {
         return nuevoTipoVehiculoDTO;
     }
     
-    /**
-     * Busca y devuelve todas los TipoVehiculo que existen en la aplicacion.
-     *
-     * @return JSONArray {@link EditorialDetailDTO} - Las editoriales
-     * encontradas en la aplicación. Si no hay ninguna retorna una lista vacía.
-     */
-    @GET
-    public List<EditorialDetailDTO> getEditorials() {
-        LOGGER.info("EditorialResource getEditorials: input: void");
-        List<EditorialDetailDTO> listaEditoriales = listEntity2DetailDTO(editorialLogic.getEditorials());
-        LOGGER.log(Level.INFO, "EditorialResource getEditorials: output: {0}", listaEditoriales);
-        return listaEditoriales;
-    }
 }
