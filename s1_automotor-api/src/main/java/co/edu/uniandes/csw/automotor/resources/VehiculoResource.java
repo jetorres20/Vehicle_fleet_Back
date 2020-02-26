@@ -67,8 +67,8 @@ public class VehiculoResource {
     public VehiculoDTO getVehiculo(@PathParam("vehiculosId") Long vehiculosId) throws WebApplicationException {
         LOGGER.log(Level.INFO, "EditorialResource getEditorial: input: {0}", vehiculosId);
         VehiculoEntity entidad = vehiculoLogic.getVehiculo(vehiculosId);
-        if (entidad != null) {
-            throw new WebApplicationException("El recurso /vehiculos/" + vehiculosId + "no existe", 404);
+        if (entidad == null) {
+            throw new WebApplicationException("El recurso /vehiculos/ " + vehiculosId + " no existe", 404);
         }
 
         VehiculoDTO dto = new VehiculoDTO(entidad);

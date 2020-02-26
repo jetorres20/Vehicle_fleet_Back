@@ -1,0 +1,162 @@
+{
+	"info": {
+		"_postman_id": "2432e8a3-4123-402c-a8a4-89448398ade2",
+		"name": "PruebasVehiculo",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "CrearVehiculo",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"name": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n\t\"marca\" : \"Logan\",\n\t\"modelo\" :\"Borghinni\",\n\t\"placa\":\"KIS488\",\n\t\"capacidad\" : 4,\n\t\"registro\":{\n\t\t\"id\" : 12\n\t}\t\n\t\t\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:8080/s1_automotor-api/api/vehiculos",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"s1_automotor-api",
+						"api",
+						"vehiculos"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "BorrarVehiculo",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "2dbdf916-ff4a-4cba-9b90-1c82866760dd",
+						"exec": [
+							"tests[\"No deberia retornarse nada ni generar ningun tipo de error. La primera vez se espera 204, despues un 404\"] = responseCode.code === 204|404;"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "DELETE",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:8080/s1_automotor-api/api/vehiculos/2",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"s1_automotor-api",
+						"api",
+						"vehiculos",
+						"2"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Retornar todos los vehiculos",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:8080/s1_automotor-api/api/vehiculos",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"s1_automotor-api",
+						"api",
+						"vehiculos"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Retornar Vehiculo Segun ID",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:8080/s1_automotor-api/api/vehiculos/1",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"s1_automotor-api",
+						"api",
+						"vehiculos",
+						"1"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Actualizar Vehiculo",
+			"request": {
+				"method": "PUT",
+				"header": [
+					{
+						"key": "Content-Type",
+						"name": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n\t\"capacidad\": 4,\n        \"id\": 1,\n        \"marca\": \"Ferrari\",\n        \"modelo\": \"Clasico\",\n        \"placa\": \"DOU361\",\n        \"registro\": {\n            \"id\": 4,\n            \"prsc\": \"2025-02-01T19:28:56.321Z[UTC]\",\n            \"prse\": \"2025-02-01T19:28:56.321Z[UTC]\",\n            \"rtm\": \"2025-02-01T19:28:56.321Z[UTC]\",\n            \"soat\": \"2025-02-01T19:28:56.321Z[UTC]\",\n            \"vigente\": true\n        }\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:8080/s1_automotor-api/api/vehiculos/1",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"s1_automotor-api",
+						"api",
+						"vehiculos",
+						"1"
+					]
+				}
+			},
+			"response": []
+		}
+	],
+	"protocolProfileBehavior": {}
+}
