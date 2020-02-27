@@ -9,6 +9,7 @@ import java.io.Serializable;
 import java.util.Collection;
 //import javax.persistence.CascadeType;
 import javax.persistence.Entity;
+import javax.persistence.Id;
 import javax.persistence.OneToMany;
 //import javax.persistence.OneToOne;
 import uk.co.jemos.podam.common.PodamExclude;
@@ -23,6 +24,9 @@ public class ConductorEntity extends BaseEntity implements Serializable{
     
     private String name;
 
+    @Id
+    private long idConductor;
+    
     @PodamExclude
     @OneToMany(mappedBy = "conductor")
     private Collection<AgendaEntity> agendas;
@@ -87,6 +91,20 @@ public class ConductorEntity extends BaseEntity implements Serializable{
      */
     public void setAgendas(Collection<AgendaEntity> agendas) {
         this.agendas = agendas;
+    }
+
+    /**
+     * @return the idConductor
+     */
+    public long getIdConductor() {
+        return idConductor;
+    }
+
+    /**
+     * @param idConductor the idConductor to set
+     */
+    public void setIdConductor(long idConductor) {
+        this.idConductor = idConductor;
     }
 
    

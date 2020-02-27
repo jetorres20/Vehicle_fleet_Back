@@ -74,6 +74,21 @@ public class ConductorLogicTest {
         ConductorEntity result = cl.createConductor(conductor1);
     }
     
+    @Test(expected = BusinessLogicException.class)
+    public void createConductorIdExistsTest()throws BusinessLogicException
+    {
+        ConductorEntity conductor1 = factory.manufacturePojo(ConductorEntity.class);
+        conductor1.setIdConductor((long)1);
+        ConductorEntity result = cl.createConductor(conductor1);
+        result.setId((long)1);
+        cl.updateConductor(conductor1);
+        ConductorEntity conductor2 = factory.manufacturePojo(ConductorEntity.class);
+        conductor2.setIdConductor((long)1);
+        ConductorEntity result1 = cl.createConductor(conductor2);
+        //result1.setId((long)1);
+    }
+    
+    
     @Test
     public void updateConductorTest()throws BusinessLogicException
     {

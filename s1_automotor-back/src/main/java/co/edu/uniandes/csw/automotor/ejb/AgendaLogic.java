@@ -133,4 +133,13 @@ public class AgendaLogic {
         agendaPersistence.update(ag);
     }
     
+    public void setId(long id)
+    {
+        setId(id);
+    }
+    
+    public long getId()
+    {
+        return this.getId();
+    }
 }
