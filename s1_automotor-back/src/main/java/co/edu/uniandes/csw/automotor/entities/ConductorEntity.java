@@ -24,8 +24,7 @@ public class ConductorEntity extends BaseEntity implements Serializable{
     
     private String name;
 
-    @Id
-    private long idConductor;
+    private Long idConductor;
     
     @PodamExclude
     @OneToMany(mappedBy = "conductor")
