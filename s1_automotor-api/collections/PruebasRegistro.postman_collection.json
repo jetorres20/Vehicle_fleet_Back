@@ -6,14 +6,16 @@
 	},
 	"item": [
 		{
-			"name": "Crear Registro",
+			"name": "Crear Registro 1",
 			"event": [
 				{
 					"listen": "test",
 					"script": {
 						"id": "3df7e0d0-ad40-4ffa-b71c-1ab38fbcc36c",
 						"exec": [
-							""
+							"var data = JSON.parse(responseBody);",
+							"postman.setGlobalVariable(\"Id_registro1\",data.id);",
+							"tests[\"No genera error en el post\"] = responseCode.code == 200;"
 						],
 						"type": "text/javascript"
 					}
@@ -25,8 +27,8 @@
 					{
 						"key": "Content-Type",
 						"name": "Content-Type",
-						"value": "application/json",
-						"type": "text"
+						"type": "text",
+						"value": "application/json"
 					}
 				],
 				"body": {
@@ -55,24 +57,42 @@
 			"response": []
 		},
 		{
-			"name": "Borrar Registro",
+			"name": "Crear Registro 2",
 			"event": [
 				{
 					"listen": "test",
 					"script": {
-						"id": "dc25094c-959c-48ac-98f4-536289fb7af9",
+						"id": "3df7e0d0-ad40-4ffa-b71c-1ab38fbcc36c",
 						"exec": [
-							"tests[\"No deberia retornarse nada ni generar ningun tipo de error. La primera vez se espera 204, despues un 404\"] = responseCode.code === 204|404;"
+							"var data = JSON.parse(responseBody);",
+							"postman.setGlobalVariable(\"Id_registro2\",data.id);",
+							"tests[\"No genera error en el post\"] = responseCode.code == 200;"
 						],
 						"type": "text/javascript"
 					}
 				}
 			],
 			"request": {
-				"method": "DELETE",
-				"header": [],
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"name": "Content-Type",
+						"type": "text",
+						"value": "application/json"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n\t\"soat\" :\"2026-02-01T09:28:56.321-10:00\",\n\t\"prsc\" :\"2025-02-01T09:28:56.321-10:00\",\n\t\"prse\" :\"2025-02-01T09:28:56.321-10:00\",\n\t\"rtm\" :\"2025-02-01T09:28:56.321-10:00\",\n\t\"vigente\" : true\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
 				"url": {
-					"raw": "http://localhost:8080/s1_automotor-api/api/registros/14",
+					"raw": "http://localhost:8080/s1_automotor-api/api/registros",
 					"protocol": "http",
 					"host": [
 						"localhost"
@@ -81,20 +101,49 @@
 					"path": [
 						"s1_automotor-api",
 						"api",
-						"registros",
-						"14"
+						"registros"
 					]
 				}
 			},
 			"response": []
 		},
 		{
-			"name": "Retornar Registro Segun ID",
+			"name": "Crear Registro 3",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "3df7e0d0-ad40-4ffa-b71c-1ab38fbcc36c",
+						"exec": [
+							"var data = JSON.parse(responseBody);",
+							"postman.setGlobalVariable(\"Id_registro3\",data.id);",
+							"tests[\"No genera error en el post\"] = responseCode.code == 200;"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
 			"request": {
-				"method": "GET",
-				"header": [],
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"name": "Content-Type",
+						"type": "text",
+						"value": "application/json"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n\t\"soat\" :\"2026-02-01T09:28:56.321-10:00\",\n\t\"prsc\" :\"2025-02-01T09:28:56.321-10:00\",\n\t\"prse\" :\"2025-02-01T09:28:56.321-10:00\",\n\t\"rtm\" :\"2025-02-01T09:28:56.321-10:00\",\n\t\"vigente\" : true\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
 				"url": {
-					"raw": "http://localhost:8080/s1_automotor-api/api/registros/4",
+					"raw": "http://localhost:8080/s1_automotor-api/api/registros",
 					"protocol": "http",
 					"host": [
 						"localhost"
@@ -103,18 +152,94 @@
 					"path": [
 						"s1_automotor-api",
 						"api",
-						"registros",
-						"4"
+						"registros"
 					]
 				}
 			},
 			"response": []
 		},
 		{
-			"name": "Retornar todos los registros",
+			"name": "Crear Registro SoatNull",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "3df7e0d0-ad40-4ffa-b71c-1ab38fbcc36c",
+						"exec": [
+							"tests[\"Lanza error en precondicion\"] = responseCode.code == 412 ;"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
 			"request": {
-				"method": "GET",
-				"header": [],
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"name": "Content-Type",
+						"type": "text",
+						"value": "application/json"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n\t\"soat\" :  null,\n\t\"prsc\" :\"2025-02-01T09:28:56.321-10:00\",\n\t\"prse\" :\"2025-02-01T09:28:56.321-10:00\",\n\t\"rtm\" :\"2025-02-01T09:28:56.321-10:00\",\n\t\"vigente\" : true\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:8080/s1_automotor-api/api/registros",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"s1_automotor-api",
+						"api",
+						"registros"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Crear Registro PrsceNull",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "3df7e0d0-ad40-4ffa-b71c-1ab38fbcc36c",
+						"exec": [
+							"tests[\"Lanza error en precondicion\"] = responseCode.code == 412 ;"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"name": "Content-Type",
+						"type": "text",
+						"value": "application/json"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n\t\"soat\" : \"2025-02-01T09:28:56.321-10:00\",\n\t\"prsc\" : null,\n\t\"prse\" : \"2025-02-01T09:28:56.321-10:00\",\n\t\"rtm\" : \"2025-02-01T09:28:56.321-10:00\",\n\t\"vigente\" : true\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
 				"url": {
 					"raw": "http://localhost:8080/s1_automotor-api/api/registros",
 					"protocol": "http",
@@ -133,6 +258,18 @@
 		},
 		{
 			"name": "Actualizar un registro",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "6634bae0-021d-4c16-bd15-060403ef667d",
+						"exec": [
+							"tests[\"Se actualizo correctamente\"] = responseCode.code == 200;"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
 			"request": {
 				"method": "PUT",
 				"header": [
@@ -145,7 +282,7 @@
 				],
 				"body": {
 					"mode": "raw",
-					"raw": "{\n\t\"id\" : 6,\n\t\"soat\" :\"2025-02-01T09:28:56.321-10:00\",\n\t\"prsc\" :\"2025-02-01T09:28:56.321-10:00\",\n\t\"prse\" :\"2025-02-01T09:28:56.321-10:00\",\n\t\"rtm\" :\"2025-02-01T09:28:56.321-10:00\",\n\t\"vigente\" : false\n}",
+					"raw": "{\n\t\"soat\" :\"2025-02-01T09:28:56.321-10:00\",\n\t\"prsc\" :\"2025-02-01T09:28:56.321-10:00\",\n\t\"prse\" :\"2025-02-01T09:28:56.321-10:00\",\n\t\"rtm\" :\"2025-02-01T09:28:56.321-10:00\",\n\t\"vigente\" : false\n}",
 					"options": {
 						"raw": {
 							"language": "json"
@@ -153,7 +290,7 @@
 					}
 				},
 				"url": {
-					"raw": "http://localhost:8080/s1_automotor-api/api/registros/6",
+					"raw": "http://localhost:8080/s1_automotor-api/api/registros/{{Id_registro3}}",
 					"protocol": "http",
 					"host": [
 						"localhost"
@@ -163,7 +300,213 @@
 						"s1_automotor-api",
 						"api",
 						"registros",
-						"6"
+						"{{Id_registro3}}"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Retornar Registro Segun ID",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "c669ac88-a4b6-46f5-ae8d-1f091a7376a6",
+						"exec": [
+							"tests[\"Retorna un registro persistido\"] = responseCode.code == 200;",
+							""
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:8080/s1_automotor-api/api/registros/{{Id_registro1}}",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"s1_automotor-api",
+						"api",
+						"registros",
+						"{{Id_registro1}}"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Retornar Registro 3 Segun ID",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "c669ac88-a4b6-46f5-ae8d-1f091a7376a6",
+						"exec": [
+							"tests[\"Retorna un registro persistido\"] = responseCode.code == 200;",
+							""
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:8080/s1_automotor-api/api/registros/{{Id_registro3}}",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"s1_automotor-api",
+						"api",
+						"registros",
+						"{{Id_registro3}}"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Borrar Registro Existente",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "dc25094c-959c-48ac-98f4-536289fb7af9",
+						"exec": [
+							"tests[\"No deberia retornarse nada ni generar ningun tipo de error\"] = responseCode.code === 204;"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "DELETE",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:8080/s1_automotor-api/api/registros/{{Id_registro3}}",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"s1_automotor-api",
+						"api",
+						"registros",
+						"{{Id_registro3}}"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Borrar Registro No Existente",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "dc25094c-959c-48ac-98f4-536289fb7af9",
+						"exec": [
+							"tests[\"Se espera el codigo de error, ya que el registro no existe\"] = responseCode.code === 404;"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "DELETE",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:8080/s1_automotor-api/api/registros/{{Id_registro3}}",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"s1_automotor-api",
+						"api",
+						"registros",
+						"{{Id_registro3}}"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Retornar Registro Segun ID No existente",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "c669ac88-a4b6-46f5-ae8d-1f091a7376a6",
+						"exec": [
+							"tests[\"No retorna un registro persistido, ya que no existe\"] = responseCode.code == 404;",
+							""
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:8080/s1_automotor-api/api/registros/{{Id_registro3}}",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"s1_automotor-api",
+						"api",
+						"registros",
+						"{{Id_registro3}}"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Retornar todos los registros",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "2ae9b144-de0f-45b9-9112-b2efb03f1163",
+						"exec": [
+							"tests[\"Se retorna apropiadamente una lista de los registros existentes\"] = responseCode.code == 200;"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:8080/s1_automotor-api/api/registros",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"s1_automotor-api",
+						"api",
+						"registros"
 					]
 				}
 			},
