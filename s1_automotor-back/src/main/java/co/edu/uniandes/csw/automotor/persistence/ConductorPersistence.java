@@ -36,6 +36,12 @@ public class ConductorPersistence {
         return em.createQuery("SELECT e FROM ConductorEntity e").getResultList();
     }
     
+    public Collection<ConductorEntity> finAllCondID(Long id)
+    {
+        Collection<ConductorEntity> col = em.createQuery("SELECT e FROM ConductorEntity e WHERE e.idConductor = " + id.toString() +"").getResultList();
+        return col;
+    }
+     
     public ConductorEntity update(ConductorEntity conductorEn)
     {
        em.merge(conductorEn);

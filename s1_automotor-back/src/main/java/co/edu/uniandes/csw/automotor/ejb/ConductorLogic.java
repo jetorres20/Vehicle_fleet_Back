@@ -28,8 +28,8 @@ public class ConductorLogic {
         {
             throw new  BusinessLogicException("el nombre del conductor no debe ser null");
         }
-        if(conductorPersistence.find(conductor.getId())!=null)
-            throw new  BusinessLogicException("el nombre del conductor no debe ser null");
+        if(!conductorPersistence.finAllCondID(conductor.getIdConductor()).isEmpty())
+            throw new  BusinessLogicException("el conductor no puede tener el mismo id que otro");
         ConductorEntity creado = conductorPersistence.create(conductor);
         return creado;
     }
