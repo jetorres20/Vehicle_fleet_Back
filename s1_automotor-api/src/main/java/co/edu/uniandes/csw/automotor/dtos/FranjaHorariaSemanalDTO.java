@@ -6,13 +6,14 @@
 package co.edu.uniandes.csw.automotor.dtos;
 
 import co.edu.uniandes.csw.automotor.entities.FranjaHorariaSemanalEntity;
+import java.io.Serializable;
 import java.util.Date;
 
 /**
  *
  * @author Juan Villamarin
  */
-public class FranjaHorariaSemanalDTO {
+public class FranjaHorariaSemanalDTO implements Serializable{
     
     private Integer weekDay;
     

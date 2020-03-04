@@ -17,6 +17,20 @@ import java.util.List;
  * @author Juan Villamarin
  */
 public class UniversidadDetailDTO extends UniversidadDTO implements Serializable{
+
+    /**
+     * @return the estudiantes
+     */
+    public List<EstudianteDTO> getEstudiantes() {
+        return estudiantes;
+    }
+
+    /**
+     * @param estudiantes the estudiantes to set
+     */
+    public void setEstudiantes(List<EstudianteDTO> estudiantes) {
+        this.estudiantes = estudiantes;
+    }
     
     private List<ProfesorDTO> profesores;
     
@@ -66,9 +80,9 @@ public class UniversidadDetailDTO extends UniversidadDTO implements Serializable
             }
             uni.setProfesores(booksEntity);
         }
-        if(estudiantes!=null){
+        if(getEstudiantes()!=null){
             List<EstudianteEntity> bookEn=new ArrayList<>();
-            for(EstudianteDTO estu:estudiantes){
+            for(EstudianteDTO estu:getEstudiantes()){
                 bookEn.add(estu.toEntity());
             }
             uni.setEstudiantes(bookEn);
