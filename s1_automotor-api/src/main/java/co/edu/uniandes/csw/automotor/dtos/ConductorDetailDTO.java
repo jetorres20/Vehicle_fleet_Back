@@ -58,7 +58,7 @@ public class ConductorDetailDTO extends ConductorDTO implements Serializable
         if (reservas != null) {
             List<ReservaEntity> reservaEntity = new ArrayList<>();
             for (ReservaDTO dtoReserva : reservas) {
-                //reservaEntity.add(dtoPrize.toEntity());
+                reservaEntity.add(dtoReserva.toEntity());
             }
             conductorEntity.setReservas(reservaEntity);
         }
