@@ -6,15 +6,17 @@
 package co.edu.uniandes.csw.automotor.dtos;
 
 import co.edu.uniandes.csw.automotor.entities.EstudianteEntity;
+import java.io.Serializable;
 
 /**
  *
  * @author Juan Esteban Torres
  */
-public class EstudianteDTO {
+public class EstudianteDTO implements Serializable {
     
     private String nombre;
     private Integer codigo;
+    private Long id;
     
     public EstudianteDTO(){
         
@@ -31,6 +33,14 @@ public class EstudianteDTO {
             this.nombre = estudianteEntity.getName();
             this.codigo = estudianteEntity.getCodigo();
         }
+    }
+    
+    public EstudianteEntity toEntity() {
+        EstudianteEntity estudianteEntity = new EstudianteEntity();
+        estudianteEntity.setCodigo(this.getCodigo());
+        estudianteEntity.setName(this.getNombre());
+        estudianteEntity.setId(this.getId());
+        return estudianteEntity;
     }
     /**
      * @return the nombre
@@ -58,6 +68,20 @@ public class EstudianteDTO {
      */
     public void setCodigo(Integer codigo) {
         this.codigo = codigo;
+    }
+
+    /**
+     * @return the id
+     */
+    public Long getId() {
+        return id;
+    }
+
+    /**
+     * @param id the id to set
+     */
+    public void setId(Long id) {
+        this.id = id;
     }
     
 }
