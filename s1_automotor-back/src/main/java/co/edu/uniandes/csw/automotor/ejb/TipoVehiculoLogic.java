@@ -9,7 +9,8 @@ import co.edu.uniandes.csw.automotor.entities.TipoVehiculoEntity;
 import co.edu.uniandes.csw.automotor.entities.VehiculoEntity;
 import co.edu.uniandes.csw.automotor.exceptions.BusinessLogicException;
 import co.edu.uniandes.csw.automotor.persistence.TipoVehiculoPersistence;
-import static com.sun.xml.internal.ws.spi.db.BindingContextFactory.LOGGER;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import java.util.List;
 import java.util.logging.Level;
 import javax.ejb.Stateless;
@@ -21,6 +22,8 @@ import javax.inject.Inject;
  */
 @Stateless
 public class TipoVehiculoLogic {
+    
+    private static final Logger LOGGER = Logger.getLogger(TipoVehiculoLogic.class.getName());
     
     @Inject
     private TipoVehiculoPersistence persistence;
