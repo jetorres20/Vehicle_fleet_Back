@@ -10,6 +10,7 @@ import co.edu.uniandes.csw.automotor.exceptions.BusinessLogicException;
 import co.edu.uniandes.csw.automotor.persistence.UniversidadPersistence;
 import java.util.Collection;
 import java.util.Iterator;
+import java.util.List;
 import javax.ejb.Stateless;
 import javax.inject.Inject;
 
@@ -52,6 +53,28 @@ public class UniversidadLogic {
     
     public UniversidadEntity upDateUniversityPrivateStatus(UniversidadEntity universidad,Boolean isPrivate) throws BusinessLogicException{
         universidad.setIsPrivate(isPrivate);
+        if(verifyRules(universidad)){
+            universidad=persitence.update(universidad);
+            return universidad;
+        }
+        return null;
+    }
+    
+    public List<UniversidadEntity> getUniversities(){
+        List<UniversidadEntity> res=(List<UniversidadEntity>)persitence.findAll();
+        return res;
+    }
+    
+    public UniversidadEntity find(Long id){
+        return persitence.find(id);
+    }
+    
+    public void deleteUniversity(Long id){
+        persitence.delete(id);
+    }
+    
+    public UniversidadEntity upDateUniversity(UniversidadEntity universidad) throws BusinessLogicException{
+        
         if(verifyRules(universidad)){
             universidad=persitence.update(universidad);
             return universidad;

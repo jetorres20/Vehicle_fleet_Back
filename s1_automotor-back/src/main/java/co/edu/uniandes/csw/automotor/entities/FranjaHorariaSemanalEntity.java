@@ -22,8 +22,6 @@ import uk.co.jemos.podam.common.PodamStrategyValue;
  */
 @Entity
 public class FranjaHorariaSemanalEntity extends BaseEntity implements Serializable{
-
-    
     
     private Integer weekDay;
     

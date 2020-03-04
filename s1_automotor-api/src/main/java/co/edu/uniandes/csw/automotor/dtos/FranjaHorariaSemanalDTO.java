@@ -14,7 +14,7 @@ import java.util.Date;
  * @author Juan Villamarin
  */
 public class FranjaHorariaSemanalDTO implements Serializable{
-    
+
     private Integer weekDay;
     
     private Date startHour;
@@ -22,6 +22,8 @@ public class FranjaHorariaSemanalDTO implements Serializable{
     private Date finishHour;
     
     private ConductorDTO conductor;
+    
+    private Long id;
     
     public FranjaHorariaSemanalDTO(){
     }
@@ -32,6 +34,7 @@ public class FranjaHorariaSemanalDTO implements Serializable{
             this.startHour=franja.getStartHour();
             this.finishHour=franja.getFinishHour();
             this.conductor=new ConductorDTO(franja.getConductor());
+            this.id=franja.getId();
         }
     }
     
@@ -41,7 +44,7 @@ public class FranjaHorariaSemanalDTO implements Serializable{
         entity.setFinishHour(finishHour);
         entity.setStartHour(startHour);
         entity.setWeekDay(weekDay);
-        
+        entity.setId(id);
         return entity;
     }
     
@@ -99,5 +102,19 @@ public class FranjaHorariaSemanalDTO implements Serializable{
      */
     public void setConductor(ConductorDTO conductor) {
         this.conductor = conductor;
+    }
+    
+    /**
+     * @return the id
+     */
+    public Long getId() {
+        return id;
+    }
+
+    /**
+     * @param id the id to set
+     */
+    public void setId(Long id) {
+        this.id = id;
     }
 }

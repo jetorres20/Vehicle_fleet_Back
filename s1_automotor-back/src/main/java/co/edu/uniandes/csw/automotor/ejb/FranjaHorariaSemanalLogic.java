@@ -7,12 +7,12 @@ package co.edu.uniandes.csw.automotor.ejb;
 
 import co.edu.uniandes.csw.automotor.entities.ConductorEntity;
 import co.edu.uniandes.csw.automotor.entities.FranjaHorariaSemanalEntity;
-import co.edu.uniandes.csw.automotor.entities.UniversidadEntity;
 import co.edu.uniandes.csw.automotor.exceptions.BusinessLogicException;
 import co.edu.uniandes.csw.automotor.persistence.FranjaHorariaSemanalPersistence;
 import java.util.Collection;
 import java.util.Date;
 import java.util.Iterator;
+import java.util.List;
 import javax.ejb.Stateless;
 import javax.inject.Inject;
 
@@ -59,6 +59,27 @@ public class FranjaHorariaSemanalLogic {
             return franja;
         }
         return null;
+    }
+    
+    public List<FranjaHorariaSemanalEntity> getFranjas(){
+        List<FranjaHorariaSemanalEntity> res=(List<FranjaHorariaSemanalEntity>)persitence.findAll();
+        return res;
+    }
+    
+    public FranjaHorariaSemanalEntity find(long id){
+        return persitence.find(id);
+    }
+    
+    public FranjaHorariaSemanalEntity upDateFranja(FranjaHorariaSemanalEntity franja) throws BusinessLogicException{
+        if(verifyRules(franja)){
+            franja=persitence.update(franja);
+            return franja;
+        }
+        return null;
+    }
+    
+    public void deleteFranja(long id){
+        persitence.delete(id);
     }
     
     private boolean verifyRules(FranjaHorariaSemanalEntity franja)throws BusinessLogicException{
