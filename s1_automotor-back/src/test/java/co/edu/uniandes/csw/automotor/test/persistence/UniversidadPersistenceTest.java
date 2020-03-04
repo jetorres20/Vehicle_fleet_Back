@@ -47,7 +47,8 @@ public class UniversidadPersistenceTest {
     public void createTest(){
         PodamFactory factory=new PodamFactoryImpl();
         UniversidadEntity universidad=factory.manufacturePojo(UniversidadEntity.class);
-        UniversidadEntity result=up.create(universidad);         Assert.assertNotNull(result);
+        UniversidadEntity result=up.create(universidad);         
+        Assert.assertNotNull(result);
         UniversidadEntity entity=em.find(UniversidadEntity.class, result.getId());
         Assert.assertEquals(universidad.getName(), entity.getName());
     }
