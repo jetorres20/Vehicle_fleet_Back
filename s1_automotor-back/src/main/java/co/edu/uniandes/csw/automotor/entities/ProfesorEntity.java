@@ -5,6 +5,7 @@
  */
 package co.edu.uniandes.csw.automotor.entities;
 import java.io.Serializable;
+import java.util.ArrayList;
 import java.util.Collection;
 import javax.persistence.Entity;
 import uk.co.jemos.podam.common.PodamExclude;
@@ -36,7 +37,7 @@ public class ProfesorEntity extends BaseEntity implements Serializable {
         mappedBy = "profesor",
         fetch = javax.persistence.FetchType.LAZY
     )
-    private Collection<PracticaEntity> practicas;
+    private ArrayList<PracticaEntity> practicas;
        
     @PodamExclude  
     @javax.persistence.ManyToOne()
@@ -102,14 +103,14 @@ public class ProfesorEntity extends BaseEntity implements Serializable {
     /**
      * @return the practicas
      */
-    public Collection<PracticaEntity> getPracticas() {
+    public ArrayList<PracticaEntity> getPracticas() {
         return practicas;
     }
 
     /**
      * @param practicas the practicas to set
      */
-    public void setPracticas(Collection<PracticaEntity> practicas) {
+    public void setPracticas(ArrayList<PracticaEntity> practicas) {
         this.practicas = practicas;
     }
 

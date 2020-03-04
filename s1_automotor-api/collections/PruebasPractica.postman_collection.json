@@ -1,0 +1,466 @@
+{
+	"info": {
+		"_postman_id": "ebf8baaf-d6cc-41c5-990f-7a81782000dd",
+		"name": "PruebasPractica",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "crear Practica 1",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "b0eef5a1-37c9-4dbd-a940-9a69c222478f",
+						"exec": [
+							"var data = JSON.parse(responseBody);",
+							"postman.setGlobalVariable(\"Id_Practica1\",data.id);",
+							"tests[\"No genera error en el post\"] = responseCode.code == 200;"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"name": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n\t\t\"profesor\":{\n\t\t\"id\" : {{Id_Profesor1}}\n\t}\t,\n\t\"destino\":\"cali\",\n\t\"descripcion\":\"nosfui\",\n\t\"tiempoDeDesplazamiento\":\"25.0\",\n\t\"duracion\":\"45.2\"\n\n\t\t\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:8080/s1_automotor-api/api/practicas",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"s1_automotor-api",
+						"api",
+						"practicas"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "crear Practica 2",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "b0eef5a1-37c9-4dbd-a940-9a69c222478f",
+						"exec": [
+							"var data = JSON.parse(responseBody);",
+							"postman.setGlobalVariable(\"Id_Practica2\",data.id);",
+							"tests[\"No genera error en el post\"] = responseCode.code == 200;"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"name": "Content-Type",
+						"type": "text",
+						"value": "application/json"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n\t\t\"profesor\":{\n\t\t\"id\" : {{Id_Profesor2}}\n\t}\t,\n\t\"destino\":\"bog\",\n\t\"descripcion\":\"arivedecrci\",\n\t\"tiempoDeDesplazamiento\":\"24.0\",\n\t\"duracion\":\"432.2\",\n\t\"id\":\"2\"\n\n\t\t\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:8080/s1_automotor-api/api/practicas",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"s1_automotor-api",
+						"api",
+						"practicas"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "buscarTodasPracticas",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "b0eef5a1-37c9-4dbd-a940-9a69c222478f",
+						"exec": [
+							"tests[\"Se retornna lista de todas las practicas existentes\"] = responseCode.code == 200;"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "Content-Type",
+						"name": "Content-Type",
+						"type": "text",
+						"value": "application/json"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:8080/s1_automotor-api/api/practicas",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"s1_automotor-api",
+						"api",
+						"practicas"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "buscarPracticaId",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "b0eef5a1-37c9-4dbd-a940-9a69c222478f",
+						"exec": [
+							"tests[\"Se retornna lista de todas las practicas existentes\"] = responseCode.code == 200;"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "Content-Type",
+						"name": "Content-Type",
+						"type": "text",
+						"value": "application/json"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:8080/s1_automotor-api/api/practicas",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"s1_automotor-api",
+						"api",
+						"practicas"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "eliminar practica",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "b0eef5a1-37c9-4dbd-a940-9a69c222478f",
+						"exec": [
+							"tests[\"Se elimino correctamente\"] = responseCode.code === 204;"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "DELETE",
+				"header": [
+					{
+						"key": "Content-Type",
+						"name": "Content-Type",
+						"type": "text",
+						"value": "application/json"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:8080/s1_automotor-api/api/practicas/{{Id_Practica2}}",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"s1_automotor-api",
+						"api",
+						"practicas",
+						"{{Id_Practica2}}"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "eliminar practica no registrada",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "b0eef5a1-37c9-4dbd-a940-9a69c222478f",
+						"exec": [
+							"tests[\"Se retornna lista de todas las practicas existentes\"] = responseCode.code == 200;"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "Content-Type",
+						"name": "Content-Type",
+						"type": "text",
+						"value": "application/json"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:8080/s1_automotor-api/api/practicas",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"s1_automotor-api",
+						"api",
+						"practicas"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "crear practica valores neg",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "b0eef5a1-37c9-4dbd-a940-9a69c222478f",
+						"exec": [
+							"tests[\"Lanza error en precondicion\"] = responseCode.code == 412 ;"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"name": "Content-Type",
+						"type": "text",
+						"value": "application/json"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n\t\t\"profesor\":{\n\t\t\"id\" : {{Id_Profesor1}}\n\t}\t,\n\t\"destino\":\"cali\",\n\t\"descripcion\":\"nosfui\",\n\t\"tiempoDeDesplazamiento\":\"-24\",\n\t\"duracion\":\"-25\"\n\n\t\t\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:8080/s1_automotor-api/api/practicas",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"s1_automotor-api",
+						"api",
+						"practicas"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "crear pratica profesor no registrado",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "b0eef5a1-37c9-4dbd-a940-9a69c222478f",
+						"exec": [
+							"tests[\"Lanza error en precondicion\"] = responseCode.code == 412 ;"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"name": "Content-Type",
+						"type": "text",
+						"value": "application/json"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n\t\t\"profesor\":{\n\t\t\"id\" : \"09988202\"\n\t}\t,\n\t\"destino\":\"cali\",\n\t\"descripcion\":\"nosfui\",\n\t\"tiempoDeDesplazamiento\":\"25.0\",\n\t\"duracion\":\"45.2\"\n\n\t\t\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:8080/s1_automotor-api/api/practicas",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"s1_automotor-api",
+						"api",
+						"practicas"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "actualizar practica",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "b0eef5a1-37c9-4dbd-a940-9a69c222478f",
+						"exec": [
+							"tests[\"Se actualiza el vehiculo de forma apropiada \"]= responseCode.code ==200;"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "PUT",
+				"header": [
+					{
+						"key": "Content-Type",
+						"name": "Content-Type",
+						"type": "text",
+						"value": "application/json"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n\t\t\"profesor\":{\n\t\t\"id\" : {{Id_Profesor1}}\n\t}\t,\n\t\"destino\":\"california\",\n\t\"descripcion\":\"nosfuix2\",\n\t\"tiempoDeDesplazamiento\":\"25.0\",\n\t\"duracion\":\"45.2\"\n\n\t\t\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:8080/s1_automotor-api/api/practicas/{{Id_Practica1}}",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"s1_automotor-api",
+						"api",
+						"practicas",
+						"{{Id_Practica1}}"
+					]
+				}
+			},
+			"response": []
+		}
+	],
+	"protocolProfileBehavior": {}
+}

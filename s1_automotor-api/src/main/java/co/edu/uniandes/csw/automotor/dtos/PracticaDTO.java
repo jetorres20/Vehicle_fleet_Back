@@ -18,6 +18,7 @@ public class PracticaDTO implements Serializable {
     private Double tiempoDeDesplazamiento;
     private Double duracion;
     private Long id;
+    private ProfesorDetailDTO profesor;
 
     
     
@@ -32,6 +33,9 @@ public class PracticaDTO implements Serializable {
         this.destino=prac.getDestino();
         this.duracion=prac.getDuracion();
         this.tiempoDeDesplazamiento=prac.getTiempoDeDesplazamiento();
+        if(this.profesor!=null){
+        this.profesor=new ProfesorDetailDTO(prac.getProfesor());
+        }
     this.id=prac.getId();
     }
     
@@ -99,6 +103,7 @@ public class PracticaDTO implements Serializable {
         entity.setDuracion(this.getDuracion());
         entity.setTiempoDeDesplazamiento(this.getTiempoDeDesplazamiento());
         entity.setId(this.getId());
+        entity.setProfesor(this.getProfesor().toEntity());
         return entity;
     }
 
@@ -114,6 +119,20 @@ public class PracticaDTO implements Serializable {
      */
     public void setId(Long id) {
         this.id = id;
+    }
+
+    /**
+     * @return the profesor
+     */
+    public ProfesorDetailDTO getProfesor() {
+        return profesor;
+    }
+
+    /**
+     * @param profesor the profesor to set
+     */
+    public void setProfesor(ProfesorDetailDTO profesor) {
+        this.profesor = profesor;
     }
     
 }

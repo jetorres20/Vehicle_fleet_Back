@@ -24,10 +24,11 @@ public class ProfesorDetailDTO extends ProfesorDTO implements Serializable{
    public ProfesorDetailDTO(ProfesorEntity profesorEntity) {
         super(profesorEntity);
         if (profesorEntity!= null) {
-            if (profesorEntity.getPracticas() != null) {
+            if (profesorEntity.getPracticas() != null&&profesorEntity.getPracticas().size()>0) {
                 practicas = new ArrayList<>();
-                for (PracticaEntity entityPractica : profesorEntity.getPracticas()) {
-                     practicas.add(new PracticaDTO(entityPractica));
+                for (int i=0;i<profesorEntity.getPracticas().size();i++) {
+                     System.out.println(profesorEntity.getPracticas().size());
+                     practicas.add(new PracticaDTO(profesorEntity.getPracticas().get(i)));
                 }
             }
         }
@@ -53,7 +54,7 @@ public class ProfesorDetailDTO extends ProfesorDTO implements Serializable{
     public ProfesorEntity toEntity(){
        ProfesorEntity entity = super.toEntity();
         if (practicas != null) {
-            List<PracticaEntity> booksEntity = new ArrayList<>();
+            ArrayList<PracticaEntity> booksEntity = new ArrayList<>();
             for (PracticaDTO dtoPractica : practicas) {
                 booksEntity.add(dtoPractica.toEntity());
             }
