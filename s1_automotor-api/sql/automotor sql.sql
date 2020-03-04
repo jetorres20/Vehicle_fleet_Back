@@ -12,3 +12,5 @@ delete from RegistroEntity;
 delete from VehiculoEntity;
 delete from ProfesorEntity;
 delete from PracticaEntity;
+
+insert into TipoVehiculoEntity(id, tipo) values (1, 'BUS');
