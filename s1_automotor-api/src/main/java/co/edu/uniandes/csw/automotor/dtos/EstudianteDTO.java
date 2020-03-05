@@ -34,12 +34,8 @@ public class EstudianteDTO implements Serializable {
             this.id = estudianteEntity.getId();
             this.nombre = estudianteEntity.getName();
             this.codigo = estudianteEntity.getCodigo();
-            if (estudianteEntity.getUniversidad() != null) {
             this.universidad = new UniversidadDTO(estudianteEntity.getUniversidad());
-            } 
-            else {
-            universidad = null;
-            }
+            
         }
     }
     
@@ -48,6 +44,7 @@ public class EstudianteDTO implements Serializable {
         estudianteEntity.setCodigo(this.getCodigo());
         estudianteEntity.setName(this.getNombre());
         estudianteEntity.setId(this.getId());
+        estudianteEntity.setUniversidad(universidad.toEntity());
         return estudianteEntity;
     }
     /**

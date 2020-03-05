@@ -30,17 +30,10 @@ public class EncuestaDTO implements Serializable {
      * @param encuestaEntity: Es la entidad que se va a convertir a DTO
      */
     public EncuestaDTO(EncuestaEntity encuestaEntity) {
-        if (encuestaEntity.getReserva() != null) {
-            this.reserva = new ReservaDTO(encuestaEntity.getReserva());
-        } else {
-            reserva = null;
-        }
-        
-        if (encuestaEntity.getProfesor() != null) {
-            this.profesor = new ProfesorDTO(encuestaEntity.getProfesor());
-        } else {
-            profesor = null;
-        }
+
+        this.reserva = new ReservaDTO(encuestaEntity.getReserva());
+
+        this.profesor = new ProfesorDTO(encuestaEntity.getProfesor());
 
         id = encuestaEntity.getId();
         calificacion = encuestaEntity.getCalificacion();
@@ -80,6 +73,8 @@ public class EncuestaDTO implements Serializable {
         encuestaEntity.setCalificacion(this.getCalificacion());
         encuestaEntity.setComentario(this.getComentario());
         encuestaEntity.setId(this.getId());
+        encuestaEntity.setProfesor(this.profesor.toEntity());
+        encuestaEntity.setReserva(this.reserva.toEntity());
         return encuestaEntity;
     }
 
