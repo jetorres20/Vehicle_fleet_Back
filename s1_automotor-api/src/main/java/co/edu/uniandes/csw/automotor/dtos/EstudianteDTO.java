@@ -17,6 +17,7 @@ public class EstudianteDTO implements Serializable {
     private String nombre;
     private Integer codigo;
     private Long id;
+    private UniversidadDTO universidad;
     
     public EstudianteDTO(){
         
@@ -30,8 +31,15 @@ public class EstudianteDTO implements Serializable {
      */
     public EstudianteDTO(EstudianteEntity estudianteEntity) {
         if (estudianteEntity != null) {
+            this.id = estudianteEntity.getId();
             this.nombre = estudianteEntity.getName();
             this.codigo = estudianteEntity.getCodigo();
+            if (estudianteEntity.getUniversidad() != null) {
+            this.universidad = new UniversidadDTO(estudianteEntity.getUniversidad());
+            } 
+            else {
+            universidad = null;
+            }
         }
     }
     
@@ -82,6 +90,20 @@ public class EstudianteDTO implements Serializable {
      */
     public void setId(Long id) {
         this.id = id;
+    }
+
+    /**
+     * @return the universidad
+     */
+    public UniversidadDTO getUniversidad() {
+        return universidad;
+    }
+
+    /**
+     * @param universidad the universidad to set
+     */
+    public void setUniversidad(UniversidadDTO universidad) {
+        this.universidad = universidad;
     }
     
 }

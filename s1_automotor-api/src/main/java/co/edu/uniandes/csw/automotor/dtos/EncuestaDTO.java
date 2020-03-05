@@ -15,12 +15,14 @@ import java.io.Serializable;
 public class EncuestaDTO implements Serializable {
 
     private ReservaDTO reserva;
+    private ProfesorDTO profesor;
     private Long id;
     private Integer calificacion;
     private String comentario;
+
     public EncuestaDTO() {
     }
-    
+
     /**
      * Conviertir Entity a DTO (Crea un nuevo DTO con los valores que recibe en
      * la entidad que viene de argumento.
@@ -28,9 +30,21 @@ public class EncuestaDTO implements Serializable {
      * @param encuestaEntity: Es la entidad que se va a convertir a DTO
      */
     public EncuestaDTO(EncuestaEntity encuestaEntity) {
-//        if (encuestaEntity != null) {
-//            this.reserva = new ReservaDTO(encuestaEntity.getReserva());
-//        }
+        if (encuestaEntity.getReserva() != null) {
+            this.reserva = new ReservaDTO(encuestaEntity.getReserva());
+        } else {
+            reserva = null;
+        }
+        
+        if (encuestaEntity.getProfesor() != null) {
+            this.profesor = new ProfesorDTO(encuestaEntity.getProfesor());
+        } else {
+            profesor = null;
+        }
+
+        id = encuestaEntity.getId();
+        calificacion = encuestaEntity.getCalificacion();
+        comentario = encuestaEntity.getComentario();
     }
 
     /**
@@ -60,8 +74,8 @@ public class EncuestaDTO implements Serializable {
     public void setId(Long id) {
         this.id = id;
     }
-    
-     public EncuestaEntity toEntity() {
+
+    public EncuestaEntity toEntity() {
         EncuestaEntity encuestaEntity = new EncuestaEntity();
         encuestaEntity.setCalificacion(this.getCalificacion());
         encuestaEntity.setComentario(this.getComentario());
@@ -96,5 +110,19 @@ public class EncuestaDTO implements Serializable {
     public void setComentario(String comentario) {
         this.comentario = comentario;
     }
-    
+
+    /**
+     * @return the profesor
+     */
+    public ProfesorDTO getProfesor() {
+        return profesor;
+    }
+
+    /**
+     * @param profesor the profesor to set
+     */
+    public void setProfesor(ProfesorDTO profesor) {
+        this.profesor = profesor;
+    }
+
 }

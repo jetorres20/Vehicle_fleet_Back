@@ -7,6 +7,7 @@ package co.edu.uniandes.csw.automotor.dtos;
 
 import co.edu.uniandes.csw.automotor.entities.EstudianteEntity;
 import co.edu.uniandes.csw.automotor.entities.ProfesorEntity;
+import co.edu.uniandes.csw.automotor.entities.ReservaEntity;
 import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
@@ -17,6 +18,8 @@ import java.util.List;
  */
 public class EstudianteDetailDTO extends EstudianteDTO implements Serializable  {
 
+    private List<ReservaDTO> reservas;
+    
     /**
      * @return the profesores
      */
@@ -45,6 +48,13 @@ public class EstudianteDetailDTO extends EstudianteDTO implements Serializable  
                      profesores.add(new ProfesorDTO(profe));
                 }
             }
+            
+            if (estudianteEntity.getReservas() != null) {
+                reservas = new ArrayList();
+                for (ReservaEntity reserva : estudianteEntity.getReservas()) {
+                     reservas.add(new ReservaDTO(reserva));
+                }
+            }
         }
     }
     
@@ -64,6 +74,28 @@ public class EstudianteDetailDTO extends EstudianteDTO implements Serializable  
             estudianteEntity.setProfesores(profesoresEntity);
         }
         
+        if (getReservas() != null) {
+            List<ReservaEntity> ReservaEntity = new ArrayList<>();
+            for (ReservaDTO dtoReserva : getReservas()) {
+                ReservaEntity.add(dtoReserva.toEntity());
+            }
+            estudianteEntity.setReservas(ReservaEntity);
+        }
+        
         return estudianteEntity;
+    }
+
+    /**
+     * @return the reservas
+     */
+    public List<ReservaDTO> getReservas() {
+        return reservas;
+    }
+
+    /**
+     * @param reservas the reservas to set
+     */
+    public void setReservas(List<ReservaDTO> reservas) {
+        this.reservas = reservas;
     }
 }

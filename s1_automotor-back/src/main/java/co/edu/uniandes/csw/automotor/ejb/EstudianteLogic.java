@@ -27,14 +27,14 @@ public class EstudianteLogic {
     public EstudianteEntity createEstudiante(EstudianteEntity estudiante) throws BusinessLogicException{
         if(estudiante.getCodigo()==null)
             throw new BusinessLogicException("El codigo del estudiante está vacío");
-        else if(estudiante.getName()==null)
+         if(estudiante.getName()==null)
             throw new BusinessLogicException("El nombre del estudiante está vacío");
-        else if(estudiante.getCodigo()<0)
+         if(estudiante.getCodigo()<0)
             throw new BusinessLogicException("El código no puede ser negativo");
         
         Collection<EstudianteEntity> todos = persistence.finAll();
         for (EstudianteEntity entidad : todos) {
-            if (entidad.getCodigo() == estudiante.getCodigo()) {
+            if (entidad.getCodigo().equals(estudiante.getCodigo())) {
                 throw new BusinessLogicException("No puede haber estudiantes con el mismo código");
             }
         }
