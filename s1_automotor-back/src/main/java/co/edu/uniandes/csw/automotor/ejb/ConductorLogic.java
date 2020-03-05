@@ -24,7 +24,7 @@ public class ConductorLogic {
     
     public ConductorEntity createConductor(ConductorEntity conductor)throws BusinessLogicException
     {
-        if(conductor.getName() == null)
+        if(conductor.getName() == null || conductor.getName().equals(""))
         {
             throw new  BusinessLogicException("el nombre del conductor no debe ser null");
         }
@@ -37,6 +37,11 @@ public class ConductorLogic {
     public List<ConductorEntity> getConductores()
     {
        return (List<ConductorEntity>)conductorPersistence.finAll();
+    }
+    
+    public List<ConductorEntity> getConductorFromId(long id)
+    {
+        return (List<ConductorEntity>)conductorPersistence.finAllCondID(id);
     }
     
     public ConductorEntity getConductor(long id)

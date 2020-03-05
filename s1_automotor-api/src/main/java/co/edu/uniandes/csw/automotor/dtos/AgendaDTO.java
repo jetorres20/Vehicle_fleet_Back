@@ -15,11 +15,11 @@ import java.util.Date;
  */
 public class AgendaDTO implements Serializable{
     
-    private long id;
+    private Long id;
     
     private Date fecha;
     
-    private boolean reservada;
+    private Boolean reservada;
     
     private ReservaDTO reserva;
     
@@ -37,10 +37,10 @@ public class AgendaDTO implements Serializable{
         this.fecha = ae.getFecha();
         this.reservada = ae.isReservada();
         this.id = ae.getId();
-//        if(ae.getReserva() != null)
-//            reserva = new ReservaDTO(ae.getReserva());
-//        else
-//            reserva = null;
+        if(ae.getReserva() != null)
+            reserva = new ReservaDTO(ae.getReserva());
+        else
+            reserva = null;
         if(ae.getConductor() != null)
             conductor = new ConductorDTO(ae.getConductor());
         else
@@ -54,8 +54,8 @@ public class AgendaDTO implements Serializable{
         agenda.setFecha(getFecha());
         agenda.setReservada(isReservada());
         agenda.setId(getId());
-//        if(getReserva()!=null)
-//            agenda.setReserva(reserva.toEntity());
+        if(getReserva()!=null)
+            agenda.setReserva(reserva.toEntity());
         if(getConductor() != null)
             agenda.setConductor(getConductor().toEntity());
         return agenda;
