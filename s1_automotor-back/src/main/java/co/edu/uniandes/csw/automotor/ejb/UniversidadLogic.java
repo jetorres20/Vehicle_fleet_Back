@@ -66,7 +66,8 @@ public class UniversidadLogic {
     }
     
     public UniversidadEntity find(Long id){
-        return persitence.find(id);
+        UniversidadEntity res=persitence.find((long)id);
+        return res;
     }
     
     public void deleteUniversity(Long id){
@@ -97,7 +98,7 @@ public class UniversidadLogic {
         Iterator<UniversidadEntity> it=unis.iterator();
         while(it.hasNext()){
             UniversidadEntity act=it.next();
-            if(act.equals(universidad)){
+            if(act.getName().equals(universidad.getName())&&act.getCity().equals(universidad.getCity())&&(act.getIsPrivate()== universidad.getIsPrivate())){
                 throw new BusinessLogicException("No puede haber dos universidades iguales"); 
             }
         }

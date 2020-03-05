@@ -1,0 +1,50 @@
+{
+	"info": {
+		"_postman_id": "c2fd5033-fdb6-4c06-bccb-18e9d517272e",
+		"name": "FranjaResourceTest",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "Obtener Franjas existentes",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "ba617f6d-1582-438a-9c34-2d47b682fc1e",
+						"exec": [
+							"tests[\"No genera error en el post\"] = responseCode.code == 200;"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "Content-Type",
+						"name": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"url": {
+					"raw": "http://{{ip}}:{{puerto}}/s1_automotor-api/api/franja",
+					"protocol": "http",
+					"host": [
+						"{{ip}}"
+					],
+					"port": "{{puerto}}",
+					"path": [
+						"s1_automotor-api",
+						"api",
+						"franja"
+					]
+				}
+			},
+			"response": []
+		}
+	],
+	"protocolProfileBehavior": {}
+}

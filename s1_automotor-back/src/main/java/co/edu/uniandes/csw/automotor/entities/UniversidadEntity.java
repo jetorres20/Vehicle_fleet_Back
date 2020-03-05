@@ -17,16 +17,11 @@ import uk.co.jemos.podam.common.PodamExclude;
 @Entity
 public class UniversidadEntity extends BaseEntity implements Serializable{
 
-    
-    
     private String name;
     
     private String city;
     
     private Boolean isPrivate;
-    
-    @javax.persistence.Id
-    private Long id;
     
     @PodamExclude
     @javax.persistence.OneToMany(
@@ -112,21 +107,5 @@ public class UniversidadEntity extends BaseEntity implements Serializable{
      */
     public void setEstudiantes(Collection<EstudianteEntity> estudiantes) {
         this.estudiantes = estudiantes;
-    }
-    
-    /**
-     * @return the id
-     */
-    @Override
-    public Long getId() {
-        return id;
-    }
-
-    /**
-     * @param id the id to set
-     */
-    @Override
-    public void setId(Long id) {
-        this.id = id;
     }
 }
