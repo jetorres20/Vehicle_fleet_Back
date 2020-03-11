@@ -6,6 +6,108 @@
 	},
 	"item": [
 		{
+			"name": "Crear Registro 1",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "3df7e0d0-ad40-4ffa-b71c-1ab38fbcc36c",
+						"exec": [
+							"var data = JSON.parse(responseBody);",
+							"postman.setGlobalVariable(\"Id_registro1\",data.id);",
+							"tests[\"No genera error en el post\"] = responseCode.code == 200;"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"name": "Content-Type",
+						"type": "text",
+						"value": "application/json"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n\t\"soat\" :\"2025-02-01T09:28:56.321-10:00\",\n\t\"prsc\" :\"2025-02-01T09:28:56.321-10:00\",\n\t\"prse\" :\"2025-02-01T09:28:56.321-10:00\",\n\t\"rtm\" :\"2025-02-01T09:28:56.321-10:00\",\n\t\"vigente\" : true\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:8080/s1_automotor-api/api/registros",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"s1_automotor-api",
+						"api",
+						"registros"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Crear Registro 2",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "3df7e0d0-ad40-4ffa-b71c-1ab38fbcc36c",
+						"exec": [
+							"var data = JSON.parse(responseBody);",
+							"postman.setGlobalVariable(\"Id_registro2\",data.id);",
+							"tests[\"No genera error en el post\"] = responseCode.code == 200;"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"name": "Content-Type",
+						"type": "text",
+						"value": "application/json"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n\t\"soat\" :\"2026-02-01T09:28:56.321-10:00\",\n\t\"prsc\" :\"2025-02-01T09:28:56.321-10:00\",\n\t\"prse\" :\"2025-02-01T09:28:56.321-10:00\",\n\t\"rtm\" :\"2025-02-01T09:28:56.321-10:00\",\n\t\"vigente\" : true\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:8080/s1_automotor-api/api/registros",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"s1_automotor-api",
+						"api",
+						"registros"
+					]
+				}
+			},
+			"response": []
+		},
+		{
 			"name": "CrearVehiculo1",
 			"event": [
 				{
