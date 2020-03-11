@@ -511,6 +511,74 @@
 				}
 			},
 			"response": []
+		},
+		{
+			"name": "Borrar Registro Existente 2",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "dc25094c-959c-48ac-98f4-536289fb7af9",
+						"exec": [
+							"tests[\"No deberia retornarse nada ni generar ningun tipo de error\"] = responseCode.code === 204;"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "DELETE",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:8080/s1_automotor-api/api/registros/{{Id_registro2}}",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"s1_automotor-api",
+						"api",
+						"registros",
+						"{{Id_registro2}}"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Borrar Registro Existente 1",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "dc25094c-959c-48ac-98f4-536289fb7af9",
+						"exec": [
+							"tests[\"No deberia retornarse nada ni generar ningun tipo de error\"] = responseCode.code === 204;"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "DELETE",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:8080/s1_automotor-api/api/registros/{{Id_registro1}}",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"s1_automotor-api",
+						"api",
+						"registros",
+						"{{Id_registro1}}"
+					]
+				}
+			},
+			"response": []
 		}
 	],
 	"protocolProfileBehavior": {}

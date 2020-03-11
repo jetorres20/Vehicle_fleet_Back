@@ -14,7 +14,7 @@
 						"id": "3df7e0d0-ad40-4ffa-b71c-1ab38fbcc36c",
 						"exec": [
 							"var data = JSON.parse(responseBody);",
-							"postman.setGlobalVariable(\"Id_registro1\",data.id);",
+							"postman.setGlobalVariable(\"registroPrueba1\",data.id);",
 							"tests[\"No genera error en el post\"] = responseCode.code == 200;"
 						],
 						"type": "text/javascript"
@@ -65,7 +65,7 @@
 						"id": "3df7e0d0-ad40-4ffa-b71c-1ab38fbcc36c",
 						"exec": [
 							"var data = JSON.parse(responseBody);",
-							"postman.setGlobalVariable(\"Id_registro2\",data.id);",
+							"postman.setGlobalVariable(\"registroPrueba2\",data.id);",
 							"tests[\"No genera error en el post\"] = responseCode.code == 200;"
 						],
 						"type": "text/javascript"
@@ -135,7 +135,7 @@
 				],
 				"body": {
 					"mode": "raw",
-					"raw": "{\n\t\"marca\" : \"Logan\",\n\t\"modelo\" :\"Borghinni\",\n\t\"placa\":\"KIS488\",\n\t\"capacidad\" : 4,\n\t\"registro\":{\n\t\t\"id\" : {{Id_registro1}}\n\t}\t\n\t\t\n}",
+					"raw": "{\n\t\"marca\" : \"Logan\",\n\t\"modelo\" :\"Borghinni\",\n\t\"placa\":\"KIS488\",\n\t\"capacidad\" : 4,\n\t\"registro\":{\n\t\t\"id\" : {{registroPrueba1}}\n\t}\t\n\t\t\n}",
 					"options": {
 						"raw": {
 							"language": "json"
@@ -186,7 +186,7 @@
 				],
 				"body": {
 					"mode": "raw",
-					"raw": "{\n\t\"marca\" : \"Morris Garage\",\n\t\"modelo\" :\"GT\",\n\t\"placa\":\"KIS489\",\n\t\"capacidad\" : 4,\n\t\"registro\":{\n\t\t\"id\" : {{Id_registro2}}\n\t}\t\n\t\t\n}",
+					"raw": "{\n\t\"marca\" : \"Morris Garage\",\n\t\"modelo\" :\"GT\",\n\t\"placa\":\"KIS489\",\n\t\"capacidad\" : 4,\n\t\"registro\":{\n\t\t\"id\" : {{registroPrueba2}}\n\t}\t\n\t\t\n}",
 					"options": {
 						"raw": {
 							"language": "json"
@@ -515,6 +515,78 @@
 						"s1_automotor-api",
 						"api",
 						"vehiculos"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "BorrarVehiculo2",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "2dbdf916-ff4a-4cba-9b90-1c82866760dd",
+						"exec": [
+							"tests[\"Se espera un elemento sin retorno y borrado exitoso\"] = responseCode.code === 204;"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "DELETE",
+				"header": [],
+				"body": {
+					"mode": "formdata",
+					"formdata": []
+				},
+				"url": {
+					"raw": "http://localhost:8080/s1_automotor-api/api/vehiculos/{{Id_vehiculo2}}",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"s1_automotor-api",
+						"api",
+						"vehiculos",
+						"{{Id_vehiculo2}}"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Borrar Registro Existente 2",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "dc25094c-959c-48ac-98f4-536289fb7af9",
+						"exec": [
+							"tests[\"No deberia retornarse nada ni generar ningun tipo de error\"] = responseCode.code === 204;"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "DELETE",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:8080/s1_automotor-api/api/registros/{{registroPrueba2}}",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"s1_automotor-api",
+						"api",
+						"registros",
+						"{{registroPrueba2}}"
 					]
 				}
 			},
