@@ -14,3 +14,5 @@ delete from ProfesorEntity;
 delete from PracticaEntity;
 delete from UniversidadEntity;
 delete from FranjaHorariaSemanalEntity;
+delete from TipoVehiculoEntity;
+delete from ReservaEntity;

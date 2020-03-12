@@ -37,6 +37,13 @@ public class ProfesorEntity extends BaseEntity implements Serializable {
         mappedBy = "profesor",
         fetch = javax.persistence.FetchType.LAZY
     )
+    private Collection<ReservaEntity> reservas;
+    
+    @PodamExclude
+       @javax.persistence.OneToMany(
+        mappedBy = "profesor",
+        fetch = javax.persistence.FetchType.LAZY
+    )
     private ArrayList<PracticaEntity> practicas;
        
     @PodamExclude  
