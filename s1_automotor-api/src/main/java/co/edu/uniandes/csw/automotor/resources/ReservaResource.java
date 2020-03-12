@@ -63,6 +63,18 @@ public class ReservaResource {
         return listaReservas;
     }
     
+    @GET
+    @Path("{reservaId: \\d+}")
+    public ReservaDTO getReserva(@PathParam("reservaId") Long reservaId) throws WebApplicationException {
+
+        ReservaEntity reservaEntity = reservaLogic.getReserva(reservaId);
+        if (reservaEntity == null) {
+            throw new WebApplicationException("El recurso /reservas/" + reservaId + " no existe.", 404);
+        }
+        ReservaDTO detailDTO = new ReservaDTO(reservaEntity);
+        return detailDTO;
+    }
+    
      private List<ReservaDTO> listEntity2DTO(List<ReservaEntity> entityList) {
         List<ReservaDTO> list = new ArrayList<>();
         for (ReservaEntity entity : entityList) {
