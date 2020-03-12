@@ -7,19 +7,161 @@
 	},
 	"item": [
 		{
-			"name": "Obtener los TipoVehiculo existentes",
+			"name": "Crear Tipo de Vehículo 1",
 			"event": [
 				{
 					"listen": "test",
 					"script": {
-						"id": "98169af4-e3f4-4a90-b6ec-bd2bfcf8b07e",
+						"id": "4201382f-7b54-4d3b-a0c9-185e7f441e03",
 						"exec": [
-							"tests['No genera error en el GET'] = responseCode.code === 200;"
+							"var data = JSON.parse(responseBody);",
+							"postman.setGlobalVariable(\"id_tipoVehiculo1\",data.id);",
+							"tests[\"No genera error en el post\"] = responseCode.code == 200;"
 						],
 						"type": "text/javascript"
 					}
 				}
 			],
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"name": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n\t\"tipo\":\"AUTOMÓVIL\"\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://{{ip}}:{{puerto}}/s1_automotor-api/api/tipoVehiculos",
+					"protocol": "http",
+					"host": [
+						"{{ip}}"
+					],
+					"port": "{{puerto}}",
+					"path": [
+						"s1_automotor-api",
+						"api",
+						"tipoVehiculos"
+					]
+				},
+				"description": "Guardar un tipo de vehiculo"
+			},
+			"response": []
+		},
+		{
+			"name": "Crear Tipo de Vehículo 2",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "4201382f-7b54-4d3b-a0c9-185e7f441e03",
+						"exec": [
+							"var data = JSON.parse(responseBody);",
+							"postman.setGlobalVariable(\"id_tipoVehiculo2\",data.id);",
+							"tests[\"No genera error en el post\"] = responseCode.code == 200;"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"name": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n\t\"tipo\":\"VAN\"\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://{{ip}}:{{puerto}}/s1_automotor-api/api/tipoVehiculos",
+					"protocol": "http",
+					"host": [
+						"{{ip}}"
+					],
+					"port": "{{puerto}}",
+					"path": [
+						"s1_automotor-api",
+						"api",
+						"tipoVehiculos"
+					]
+				},
+				"description": "Guardar un tipo de vehiculo"
+			},
+			"response": []
+		},
+		{
+			"name": "Crear Tipo de Vehículo tipoNull",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "4201382f-7b54-4d3b-a0c9-185e7f441e03",
+						"exec": [
+							"tests[\"Se espera una falla en precondición por tipo de vehículo vacío\"] = responseCode.code = 412;"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"name": "Content-Type",
+						"type": "text",
+						"value": "application/json"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n\t\"tipo\":\"\"\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://{{ip}}:{{puerto}}/s1_automotor-api/api/tipoVehiculos",
+					"protocol": "http",
+					"host": [
+						"{{ip}}"
+					],
+					"port": "{{puerto}}",
+					"path": [
+						"s1_automotor-api",
+						"api",
+						"tipoVehiculos"
+					]
+				},
+				"description": "Intenta guardar un tipo de vehículo vacío."
+			},
+			"response": []
+		},
+		{
+			"name": "Obtener Tipos de Vehículos",
 			"protocolProfileBehavior": {
 				"disableBodyPruning": true
 			},
@@ -54,7 +196,320 @@
 						"api",
 						"tipoVehiculos"
 					]
+				},
+				"description": "Obtener todos los Tipos de Vehículos de la base de datos."
+			},
+			"response": []
+		},
+		{
+			"name": "Retorna Tipo de Vehículo 1 según ID",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "0a7f0c87-5765-404c-8b4f-d281fc91b3fd",
+						"exec": [
+							"tests[\"Se retorna el tipo de vehículo dado el ID\"] = responseCode.code== 200;"
+						],
+						"type": "text/javascript"
+					}
 				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://{{ip}}:{{puerto}}/s1_automotor-api/api/tipoVehiculos/1",
+					"protocol": "http",
+					"host": [
+						"{{ip}}"
+					],
+					"port": "{{puerto}}",
+					"path": [
+						"s1_automotor-api",
+						"api",
+						"tipoVehiculos",
+						"1"
+					]
+				},
+				"description": "Devuelve el tipo de vehículo según el ID dado por parámetro."
+			},
+			"response": []
+		},
+		{
+			"name": "Retorna Tipo de Vehículo 2 según ID",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "0a7f0c87-5765-404c-8b4f-d281fc91b3fd",
+						"exec": [
+							"tests[\"Se retorna el tipo de vehículo dado el ID\"] = responseCode.code== 200;"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://{{ip}}:{{puerto}}/s1_automotor-api/api/tipoVehiculos/2",
+					"protocol": "http",
+					"host": [
+						"{{ip}}"
+					],
+					"port": "{{puerto}}",
+					"path": [
+						"s1_automotor-api",
+						"api",
+						"tipoVehiculos",
+						"2"
+					]
+				},
+				"description": "Devuelve el tipo de vehículo según el ID dado por parámetro."
+			},
+			"response": []
+		},
+		{
+			"name": "Retorna Tipo de Vehículo no existente",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "0a7f0c87-5765-404c-8b4f-d281fc91b3fd",
+						"exec": [
+							"tests[\"El tipo de vehículo buscado no existe.\"] = responseCode.code== 404;"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://{{ip}}:{{puerto}}/s1_automotor-api/api/tipoVehiculos/3",
+					"protocol": "http",
+					"host": [
+						"{{ip}}"
+					],
+					"port": "{{puerto}}",
+					"path": [
+						"s1_automotor-api",
+						"api",
+						"tipoVehiculos",
+						"3"
+					]
+				},
+				"description": "No retorna un tipo de vehículo no existente."
+			},
+			"response": []
+		},
+		{
+			"name": "Actualiza el tipo de Tipo Vehículo",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "5769a4dc-ec40-4569-a01b-9d5e01c17d8d",
+						"exec": [
+							"tests[\"Se actualiza el tipo de vehículo de forma apropiada \"]= responseCode.code ==200;"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "PUT",
+				"header": [
+					{
+						"key": "Content-Type",
+						"name": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n\t\"tipo\":\"BUS\"\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://{{ip}}:{{puerto}}/s1_automotor-api/api/tipoVehiculos/1",
+					"protocol": "http",
+					"host": [
+						"{{ip}}"
+					],
+					"port": "{{puerto}}",
+					"path": [
+						"s1_automotor-api",
+						"api",
+						"tipoVehiculos",
+						"1"
+					]
+				},
+				"description": "Actualiza el tipo de Tipo Vehículo."
+			},
+			"response": []
+		},
+		{
+			"name": "Actualiza tipo de Tipo Vehículo no existente",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "5769a4dc-ec40-4569-a01b-9d5e01c17d8d",
+						"exec": [
+							"tests[\"No actualiza el tipo de un tipo de vehículo no existente.\"]= responseCode.code ==404;"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "PUT",
+				"header": [
+					{
+						"key": "Content-Type",
+						"name": "Content-Type",
+						"type": "text",
+						"value": "application/json"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n\t\"tipo\":\"BUS\"\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://{{ip}}:{{puerto}}/s1_automotor-api/api/tipoVehiculos/3",
+					"protocol": "http",
+					"host": [
+						"{{ip}}"
+					],
+					"port": "{{puerto}}",
+					"path": [
+						"s1_automotor-api",
+						"api",
+						"tipoVehiculos",
+						"3"
+					]
+				},
+				"description": "No actualiza un tipo de Tipo Vehículo no existente."
+			},
+			"response": []
+		},
+		{
+			"name": "Eliminar Tipo de Vehículo 1 según ID",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "cc34991a-2077-4370-82f7-a31f445e2970",
+						"exec": [
+							"tests[\"Eliminar el tipo vehículo dado su ID\"]= responseCode.code ==204;"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "DELETE",
+				"header": [],
+				"url": {
+					"raw": "http://{{ip}}:{{puerto}}/s1_automotor-api/api/tipoVehiculos/{{id_tipoVehiculo1}}",
+					"protocol": "http",
+					"host": [
+						"{{ip}}"
+					],
+					"port": "{{puerto}}",
+					"path": [
+						"s1_automotor-api",
+						"api",
+						"tipoVehiculos",
+						"{{id_tipoVehiculo1}}"
+					]
+				},
+				"description": "Elimina un tipo de vehículo dado su ID."
+			},
+			"response": []
+		},
+		{
+			"name": "Eliminar Tipo de Vehículo 2 según ID",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "cc34991a-2077-4370-82f7-a31f445e2970",
+						"exec": [
+							"tests[\"Eliminar el tipo vehículo dado su ID\"]= responseCode.code ==204;"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "DELETE",
+				"header": [],
+				"url": {
+					"raw": "http://{{ip}}:{{puerto}}/s1_automotor-api/api/tipoVehiculos/{{id_tipoVehiculo2}}",
+					"protocol": "http",
+					"host": [
+						"{{ip}}"
+					],
+					"port": "{{puerto}}",
+					"path": [
+						"s1_automotor-api",
+						"api",
+						"tipoVehiculos",
+						"{{id_tipoVehiculo2}}"
+					]
+				},
+				"description": "Elimina un tipo de vehículo dado su ID."
+			},
+			"response": []
+		},
+		{
+			"name": "Eliminar Tipo de Vehículo no existente",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "cc34991a-2077-4370-82f7-a31f445e2970",
+						"exec": [
+							"tests[\"No eliminar el tipo vehículo no existente\"]= responseCode.code ==404;"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "DELETE",
+				"header": [],
+				"url": {
+					"raw": "http://{{ip}}:{{puerto}}/s1_automotor-api/api/tipoVehiculos/100",
+					"protocol": "http",
+					"host": [
+						"{{ip}}"
+					],
+					"port": "{{puerto}}",
+					"path": [
+						"s1_automotor-api",
+						"api",
+						"tipoVehiculos",
+						"100"
+					]
+				},
+				"description": "No elimina un tipo de vehículo no existente."
 			},
 			"response": []
 		}

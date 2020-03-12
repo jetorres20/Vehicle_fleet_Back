@@ -32,7 +32,8 @@ public class UniversidadPersistence {
     }
     
     public UniversidadEntity find(long id){
-        return em.find(UniversidadEntity.class, id);
+        UniversidadEntity uni=em.find(UniversidadEntity.class, id);
+        return uni;
     }
     
     public Collection<UniversidadEntity> findAll(){

@@ -1,0 +1,94 @@
+{
+	"info": {
+		"_postman_id": "96a511c7-76ea-4528-8c0e-d4ba9fa7289c",
+		"name": "Pruebas encuesta",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "Crear Profesor",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "f78a67b1-ac0b-48d4-b7bf-f190149d23b3",
+						"exec": [
+							"var data = JSON.parse(responseBody);",
+							"postman.setGlobalVariable(\"Id_profesor1\",data.id);",
+							"tests[\"No se generó ningun error al crear el profesor\"] = responseCode.code = 200;"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"name": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n\t\t\"nombre\": \"Pablo Perez\",\n\t\t\"identificacion\": 102083902\n\t\t\n\t}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:8080/s1_automotor-api/api/profesores",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"s1_automotor-api",
+						"api",
+						"profesores"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Retornar una encuesta inexistente",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": ""
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Retornar todas las encuestas",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": ""
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Eliminar una encuesta no existente",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": ""
+				}
+			},
+			"response": []
+		}
+	],
+	"protocolProfileBehavior": {}
+}

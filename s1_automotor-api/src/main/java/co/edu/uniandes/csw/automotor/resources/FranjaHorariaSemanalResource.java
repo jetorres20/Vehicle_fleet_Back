@@ -36,7 +36,7 @@ import javax.ws.rs.WebApplicationException;
 @RequestScoped
 public class FranjaHorariaSemanalResource {
     
-    private static final Logger LOGGER = Logger.getLogger(UniversidadResource.class.getSimpleName());
+    private static final Logger LOGGER = Logger.getLogger(FranjaHorariaSemanalResource.class.getSimpleName());
   
     @Inject
     private FranjaHorariaSemanalLogic franjaLogic;

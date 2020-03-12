@@ -7,14 +7,268 @@
 	},
 	"item": [
 		{
-			"name": "Obtener las Reservas existentes",
+			"name": "Crear Reserva 1",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "d422a82d-77f4-45e1-808b-dcc1b37faf83",
+						"exec": [
+							"var data = JSON.parse(responseBody);",
+							"postman.setGlobalVariable(\"id_reserva1\",data.id);",
+							"tests['Se crea un reserva sin problemas'] = responseCode.code === 200;"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"name": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n\t\"fechaServicio\":\"2017-03-01T09:28:56.321-10:00\",\n\t\"fechaReserva\": \"2017-02-01T09:28:56.321-10:00\",\n\t\"estadoValidacion\": true,\n\t\"reservaRecurrente\":false,\n\t\"cancelada\":false,\n\t\"motivoCancelacion\":\"\"\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://{{ip}}:{{puerto}}/s1_automotor-api/api/reservas",
+					"protocol": "http",
+					"host": [
+						"{{ip}}"
+					],
+					"port": "{{puerto}}",
+					"path": [
+						"s1_automotor-api",
+						"api",
+						"reservas"
+					]
+				},
+				"description": "Se crea una reserva."
+			},
+			"response": []
+		},
+		{
+			"name": "Crear Reserva 2",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "d422a82d-77f4-45e1-808b-dcc1b37faf83",
+						"exec": [
+							"var data = JSON.parse(responseBody);",
+							"postman.setGlobalVariable(\"id_reserva2\",data.id);",
+							"tests['Se crea un reserva sin problemas'] = responseCode.code === 200;"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"name": "Content-Type",
+						"type": "text",
+						"value": "application/json"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n\t\"fechaServicio\":\"2016-03-01T09:28:56.321-10:00\",\n\t\"fechaReserva\": \"2016-02-01T09:28:56.321-10:00\",\n\t\"estadoValidacion\": true,\n\t\"reservaRecurrente\":false,\n\t\"cancelada\":true,\n\t\"motivoCancelacion\":\"Se cancela salida por tema de covid-19\"\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://{{ip}}:{{puerto}}/s1_automotor-api/api/reservas",
+					"protocol": "http",
+					"host": [
+						"{{ip}}"
+					],
+					"port": "{{puerto}}",
+					"path": [
+						"s1_automotor-api",
+						"api",
+						"reservas"
+					]
+				},
+				"description": "Se crea una reserva."
+			},
+			"response": []
+		},
+		{
+			"name": "Crear Reserva fechaServicioNull",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "d422a82d-77f4-45e1-808b-dcc1b37faf83",
+						"exec": [
+							"tests['No crea una reserva con fecha de servicio vacía'] = responseCode.code === 412;"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"name": "Content-Type",
+						"type": "text",
+						"value": "application/json"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n\t\"fechaServicio\":null,\n\t\"fechaReserva\": \"2016-02-01T09:28:56.321-10:00\",\n\t\"estadoValidacion\": true,\n\t\"reservaRecurrente\":false,\n\t\"cancelada\":true,\n\t\"motivoCancelacion\":\"Se cancela salida por tema de covid-19\"\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://{{ip}}:{{puerto}}/s1_automotor-api/api/reservas",
+					"protocol": "http",
+					"host": [
+						"{{ip}}"
+					],
+					"port": "{{puerto}}",
+					"path": [
+						"s1_automotor-api",
+						"api",
+						"reservas"
+					]
+				},
+				"description": "Se intenta crear un reserva con fecha de servicio vacía."
+			},
+			"response": []
+		},
+		{
+			"name": "Crear Reserva fechaReservaNull",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "d422a82d-77f4-45e1-808b-dcc1b37faf83",
+						"exec": [
+							"tests['No se crea una reserva con fecha de reserva vacía'] = responseCode.code === 412;"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"name": "Content-Type",
+						"type": "text",
+						"value": "application/json"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n\t\"fechaServicio\":\"2016-03-01T09:28:56.321-10:00\",\n\t\"fechaReserva\": null,\n\t\"estadoValidacion\": true,\n\t\"reservaRecurrente\":false,\n\t\"cancelada\":true,\n\t\"motivoCancelacion\":\"Se cancela salida por tema de covid-19\"\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://{{ip}}:{{puerto}}/s1_automotor-api/api/reservas",
+					"protocol": "http",
+					"host": [
+						"{{ip}}"
+					],
+					"port": "{{puerto}}",
+					"path": [
+						"s1_automotor-api",
+						"api",
+						"reservas"
+					]
+				},
+				"description": "Se intenta crear un reserva con fecha de reserva vacía."
+			},
+			"response": []
+		},
+		{
+			"name": "Crear Reserva fechaReserva posterior a fechaServicio",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "d422a82d-77f4-45e1-808b-dcc1b37faf83",
+						"exec": [
+							"tests['No se crea una reserva con fecha de reserva posterior a la fecha de servicio'] = responseCode.code === 412;"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"name": "Content-Type",
+						"type": "text",
+						"value": "application/json"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n\t\"fechaServicio\":\"2016-03-01T09:28:56.321-10:00\",\n\t\"fechaReserva\": \"2016-04-01T09:28:56.321-10:00\",\n\t\"estadoValidacion\": true,\n\t\"reservaRecurrente\":false,\n\t\"cancelada\":true,\n\t\"motivoCancelacion\":\"Se cancela salida por tema de covid-19\"\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://{{ip}}:{{puerto}}/s1_automotor-api/api/reservas",
+					"protocol": "http",
+					"host": [
+						"{{ip}}"
+					],
+					"port": "{{puerto}}",
+					"path": [
+						"s1_automotor-api",
+						"api",
+						"reservas"
+					]
+				},
+				"description": "Se intenta crear un reserva con fecha de reserva posterior a la fecha de servicio."
+			},
+			"response": []
+		},
+		{
+			"name": "Obtener Reservas",
 			"event": [
 				{
 					"listen": "test",
 					"script": {
 						"id": "98169af4-e3f4-4a90-b6ec-bd2bfcf8b07e",
 						"exec": [
-							"tests['No genera error en el GET'] = responseCode.code === 200;"
+							"tests['Se obtienen todas las reservas'] = responseCode.code === 200;"
 						],
 						"type": "text/javascript"
 					}
@@ -54,7 +308,543 @@
 						"api",
 						"reservas"
 					]
+				},
+				"description": "Se obtienen todas las reservas de la base de datos."
+			},
+			"response": []
+		},
+		{
+			"name": "Obtener Reserva dado ID",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "98169af4-e3f4-4a90-b6ec-bd2bfcf8b07e",
+						"exec": [
+							"tests['Se obtienen la reserva dado el ID'] = responseCode.code === 200;"
+						],
+						"type": "text/javascript"
+					}
 				}
+			],
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "Content-Type",
+						"name": "Content-Type",
+						"type": "text",
+						"value": "application/json"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://{{ip}}:{{puerto}}/s1_automotor-api/api/reservas/{{id_reserva1}}",
+					"protocol": "http",
+					"host": [
+						"{{ip}}"
+					],
+					"port": "{{puerto}}",
+					"path": [
+						"s1_automotor-api",
+						"api",
+						"reservas",
+						"{{id_reserva1}}"
+					]
+				},
+				"description": "Se obtiene la reserva dado su ID."
+			},
+			"response": []
+		},
+		{
+			"name": "Obtener Reserva no existente",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "98169af4-e3f4-4a90-b6ec-bd2bfcf8b07e",
+						"exec": [
+							"tests['No se encuentran reservas no existentes'] = responseCode.code === 404;"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "Content-Type",
+						"name": "Content-Type",
+						"type": "text",
+						"value": "application/json"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://{{ip}}:{{puerto}}/s1_automotor-api/api/100",
+					"protocol": "http",
+					"host": [
+						"{{ip}}"
+					],
+					"port": "{{puerto}}",
+					"path": [
+						"s1_automotor-api",
+						"api",
+						"100"
+					]
+				},
+				"description": "Se intenta obtener una reserva no existente."
+			},
+			"response": []
+		},
+		{
+			"name": "Crear Registro 1",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "3df7e0d0-ad40-4ffa-b71c-1ab38fbcc36c",
+						"exec": [
+							"var data = JSON.parse(responseBody);",
+							"postman.setGlobalVariable(\"id_registro1\",data.id);",
+							"tests[\"No genera error en el post\"] = responseCode.code == 200;"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"name": "Content-Type",
+						"type": "text",
+						"value": "application/json"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n\t\"soat\" :\"2025-02-01T09:28:56.321-10:00\",\n\t\"prsc\" :\"2025-02-01T09:28:56.321-10:00\",\n\t\"prse\" :\"2025-02-01T09:28:56.321-10:00\",\n\t\"rtm\" :\"2025-02-01T09:28:56.321-10:00\",\n\t\"vigente\" : true\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:8080/s1_automotor-api/api/registros",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"s1_automotor-api",
+						"api",
+						"registros"
+					]
+				},
+				"description": "Se crea el registro de un vehiculo."
+			},
+			"response": []
+		},
+		{
+			"name": "Crear Tipo de Vehículo 1",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "4201382f-7b54-4d3b-a0c9-185e7f441e03",
+						"exec": [
+							"var data = JSON.parse(responseBody);",
+							"postman.setGlobalVariable(\"id_tipoVehiculo1\",data.id);",
+							"tests[\"No genera error en el post\"] = responseCode.code == 200;"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"name": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n\t\"tipo\":\"AUTOMÓVIL\"\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://{{ip}}:{{puerto}}/s1_automotor-api/api/tipoVehiculos",
+					"protocol": "http",
+					"host": [
+						"{{ip}}"
+					],
+					"port": "{{puerto}}",
+					"path": [
+						"s1_automotor-api",
+						"api",
+						"tipoVehiculos"
+					]
+				},
+				"description": "Se crea el tipo de vehículo de un vehículo."
+			},
+			"response": []
+		},
+		{
+			"name": "Crear Vehiculo 1",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "ff4d6f0c-9b02-4780-80ea-29e7357bbf27",
+						"exec": [
+							"var data = JSON.parse(responseBody);",
+							"postman.setGlobalVariable(\"id_vehiculo1\",data.id);",
+							"tests[\"No se generó ningun error al crear el vehiculo\"] = responseCode.code = 200;"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"name": "Content-Type",
+						"type": "text",
+						"value": "application/json"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n\t\"marca\" : \"Logan\",\n\t\"modelo\" :\"Borghinni\",\n\t\"placa\":\"KIS488\",\n\t\"capacidad\" : 4,\n\t\"registro\":{\n\t\t\"id\" : {{id_registro1}}\n\t},\t\n\t\"tipoVehiculo\":{\n\t\t\"id\":{{id_tipoVehiculo1}}\n\t}\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:8080/s1_automotor-api/api/vehiculos",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"s1_automotor-api",
+						"api",
+						"vehiculos"
+					]
+				},
+				"description": "Se crea un vehículo con su respectivo registro y tipo de vehículo."
+			},
+			"response": []
+		},
+		{
+			"name": "Crear Reserva con Vehículo asociado",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "d422a82d-77f4-45e1-808b-dcc1b37faf83",
+						"exec": [
+							"tests['Se crea una reserva con vehículo asociado sin problemas'] = responseCode.code === 200;"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"name": "Content-Type",
+						"type": "text",
+						"value": "application/json"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n\t\"fechaServicio\":\"2017-03-01T09:28:56.321-10:00\",\n\t\"fechaReserva\": \"2017-02-01T09:28:56.321-10:00\",\n\t\"estadoValidacion\": true,\n\t\"reservaRecurrente\":false,\n\t\"cancelada\":false,\n\t\"motivoCancelacion\":\"\",\n\t\"vehiculo\":{\n\t\t\"id\":{{id_vehiculo1}}\n\t}\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://{{ip}}:{{puerto}}/s1_automotor-api/api/reservas",
+					"protocol": "http",
+					"host": [
+						"{{ip}}"
+					],
+					"port": "{{puerto}}",
+					"path": [
+						"s1_automotor-api",
+						"api",
+						"reservas"
+					]
+				},
+				"description": "Se crea una reserva asociándole un vehículo."
+			},
+			"response": []
+		},
+		{
+			"name": "Crear Reserva mismas Fechas y Vehículo",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "d422a82d-77f4-45e1-808b-dcc1b37faf83",
+						"exec": [
+							"tests['Se crea un reserva sin problemas'] = responseCode.code === 200;"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"name": "Content-Type",
+						"type": "text",
+						"value": "application/json"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n\t\"fechaServicio\":\"2019-03-01T09:28:56.321-10:00\",\n\t\"fechaReserva\": \"2019-02-01T09:28:56.321-10:00\",\n\t\"estadoValidacion\": true,\n\t\"reservaRecurrente\":false,\n\t\"cancelada\":false,\n\t\"motivoCancelacion\":\"\",\n\t\"vehiculo\":{\n\t\t\"id\":{{id_vehiculo1}}\n\t}\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://{{ip}}:{{puerto}}/s1_automotor-api/api/reservas",
+					"protocol": "http",
+					"host": [
+						"{{ip}}"
+					],
+					"port": "{{puerto}}",
+					"path": [
+						"s1_automotor-api",
+						"api",
+						"reservas"
+					]
+				},
+				"description": "Se intenta crear una reserva en el mismo día, la misma hora y el mismo vehículo que otra reserva."
+			},
+			"response": []
+		},
+		{
+			"name": "Actualizar Reserva dado ID",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "6f963664-74f1-4ffc-8a0d-60629ee89559",
+						"exec": [
+							"tests['Actualiza los datos de una reserva existente'] = responseCode.code === 200;"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "PUT",
+				"header": [
+					{
+						"key": "Content-Type",
+						"name": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n\t\"fechaServicio\":\"2017-03-01T09:28:56.321-10:00\",\n\t\"fechaReserva\": \"2017-02-01T09:28:56.321-10:00\",\n\t\"estadoValidacion\": true,\n\t\"reservaRecurrente\":false,\n\t\"cancelada\":true,\n\t\"motivoCancelacion\":\"No hay tiquetes áereos a Italia\"\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://{{ip}}:{{puerto}}/s1_automotor-api/api/reservas/{{id_reserva1}}",
+					"protocol": "http",
+					"host": [
+						"{{ip}}"
+					],
+					"port": "{{puerto}}",
+					"path": [
+						"s1_automotor-api",
+						"api",
+						"reservas",
+						"{{id_reserva1}}"
+					]
+				},
+				"description": "Actualizar una reserva dado su ID."
+			},
+			"response": []
+		},
+		{
+			"name": "Actualizar Reserva no existente",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "6f963664-74f1-4ffc-8a0d-60629ee89559",
+						"exec": [
+							"tests['No actualiza reservas que no existen'] = responseCode.code === 404;"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "PUT",
+				"header": [
+					{
+						"key": "Content-Type",
+						"name": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n\t\"fechaServicio\":\"2017-03-01T09:28:56.321-10:00\",\n\t\"fechaReserva\": \"2017-02-01T09:28:56.321-10:00\",\n\t\"estadoValidacion\": true,\n\t\"reservaRecurrente\":false,\n\t\"cancelada\":true,\n\t\"motivoCancelacion\":\"No hay tiquetes áereos a Italia\"\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://{{ip}}:{{puerto}}/s1_automotor-api/api/reservas/100",
+					"protocol": "http",
+					"host": [
+						"{{ip}}"
+					],
+					"port": "{{puerto}}",
+					"path": [
+						"s1_automotor-api",
+						"api",
+						"reservas",
+						"100"
+					]
+				},
+				"description": "Intenta actualizar una reserva no existente."
+			},
+			"response": []
+		},
+		{
+			"name": "Eliminar Reserva dado el ID",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "56dba350-cdaa-4c76-8b2b-9675dafc44e2",
+						"exec": [
+							"tests[\"Eliminar la reserva dado su ID\"]= responseCode.code ==204;"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "DELETE",
+				"header": [],
+				"url": {
+					"raw": "http://{{ip}}:{{puerto}}/s1_automotor-api/api/reservas/{{id_reserva1}}",
+					"protocol": "http",
+					"host": [
+						"{{ip}}"
+					],
+					"port": "{{puerto}}",
+					"path": [
+						"s1_automotor-api",
+						"api",
+						"reservas",
+						"{{id_reserva1}}"
+					]
+				},
+				"description": "Eliminar la reserva dado el ID"
+			},
+			"response": []
+		},
+		{
+			"name": "Eliminar Reserva no existente",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "56dba350-cdaa-4c76-8b2b-9675dafc44e2",
+						"exec": [
+							"tests[\"No elimina reservas que no existen\"]= responseCode.code ==404;"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "DELETE",
+				"header": [],
+				"url": {
+					"raw": "http://{{ip}}:{{puerto}}/s1_automotor-api/api/reservas/100",
+					"protocol": "http",
+					"host": [
+						"{{ip}}"
+					],
+					"port": "{{puerto}}",
+					"path": [
+						"s1_automotor-api",
+						"api",
+						"reservas",
+						"100"
+					]
+				},
+				"description": "Intenta eliminar la reserva dado el ID."
 			},
 			"response": []
 		}

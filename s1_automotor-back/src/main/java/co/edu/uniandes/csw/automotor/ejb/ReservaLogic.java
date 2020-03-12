@@ -16,7 +16,7 @@ import co.edu.uniandes.csw.automotor.entities.VehiculoEntity;
 import co.edu.uniandes.csw.automotor.exceptions.BusinessLogicException;
 import co.edu.uniandes.csw.automotor.persistence.VehiculoPersistence;
 import co.edu.uniandes.csw.automotor.persistence.ReservaPersistence;
-import static com.sun.xml.internal.ws.spi.db.BindingContextFactory.LOGGER;
+//import static com.sun.xml.internal.ws.spi.db.BindingContextFactory.LOGGER;
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.List;
@@ -35,8 +35,10 @@ public class ReservaLogic {
     @Inject
     private ReservaPersistence persistence;
     
-    @Inject
+     @Inject
     private VehiculoPersistence vehiculoPersistence;
+    
+    private static final Logger LOGGER = Logger.getLogger(ReservaLogic.class.getSimpleName());
     
     public ReservaEntity createReserva(ReservaEntity reserva) throws BusinessLogicException
     {

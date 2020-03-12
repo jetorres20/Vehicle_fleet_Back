@@ -1,0 +1,556 @@
+{
+	"info": {
+		"_postman_id": "686c6dae-00c6-46b4-9d5d-ec231839faf5",
+		"name": "UniversidadResourceTest",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "Create Universidad 1",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "906306df-4af0-47e2-a0f8-d12784f1c9ec",
+						"exec": [
+							"var data = JSON.parse(responseBody);",
+							"postman.setGlobalVariable(\"Id_universidad_1\",data.id);",
+							"tests[\"No genera error en el post\"] = responseCode.code == 200;"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"name": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n\t\"name\": \"Universidad de los Andes\",\n    \"city\": \"Bogotá\",\n    \"isPrivate\": true\n}\n",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://{{ip}}:{{puerto}}/s1_automotor-api/api/universidad",
+					"protocol": "http",
+					"host": [
+						"{{ip}}"
+					],
+					"port": "{{puerto}}",
+					"path": [
+						"s1_automotor-api",
+						"api",
+						"universidad"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Crear Universidad 2",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "ba617f6d-1582-438a-9c34-2d47b682fc1e",
+						"exec": [
+							"var data = JSON.parse(responseBody);",
+							"postman.setGlobalVariable(\"Id_universidad_2\",data.id);",
+							"tests[\"No genera error en el post\"] = responseCode.code == 200;"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"name": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n\t\"name\": \"Universidad del Bosque\",\n    \"city\": \"Bogotá\",\n    \"isPrivate\": true\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://{{ip}}:{{puerto}}/s1_automotor-api/api/universidad",
+					"protocol": "http",
+					"host": [
+						"{{ip}}"
+					],
+					"port": "{{puerto}}",
+					"path": [
+						"s1_automotor-api",
+						"api",
+						"universidad"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Crear universidad 3",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "64794472-3781-4e4a-bc0a-a37a53fe0f11",
+						"exec": [
+							"var data = JSON.parse(responseBody);",
+							"postman.setGlobalVariable(\"Id_universidad_3\",data.id);",
+							"tests[\"No genera error en el post\"] = responseCode.code == 200;"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"name": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n\t\"name\": \"Universidad Pontifica Javeriana\",\n    \"city\": \"Bogotá\",\n    \"isPrivate\": true\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://{{ip}}:{{puerto}}/s1_automotor-api/api/universidad",
+					"protocol": "http",
+					"host": [
+						"{{ip}}"
+					],
+					"port": "{{puerto}}",
+					"path": [
+						"s1_automotor-api",
+						"api",
+						"universidad"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Cear Universidad nameNull",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "ab0272c3-c0b4-4e55-bc0c-1a3954443525",
+						"exec": [
+							"tests[\"Lanza error en precondicion\"] = responseCode.code == 412 ;"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"name": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"city\": \"Bogotá\",\n    \"isPrivate\": true\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://{{ip}}:{{puerto}}/s1_automotor-api/api/universidad",
+					"protocol": "http",
+					"host": [
+						"{{ip}}"
+					],
+					"port": "{{puerto}}",
+					"path": [
+						"s1_automotor-api",
+						"api",
+						"universidad"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Cear Universidad cityNull",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "ab0272c3-c0b4-4e55-bc0c-1a3954443525",
+						"exec": [
+							"tests[\"Lanza error en precondicion\"] = responseCode.code == 412 ;"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"name": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n\t\"name\":\"uni prueba\",\n    \"isPrivate\": true\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://{{ip}}:{{puerto}}/s1_automotor-api/api/universidad",
+					"protocol": "http",
+					"host": [
+						"{{ip}}"
+					],
+					"port": "{{puerto}}",
+					"path": [
+						"s1_automotor-api",
+						"api",
+						"universidad"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Actualizar Universidad",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "ab0272c3-c0b4-4e55-bc0c-1a3954443525",
+						"exec": [
+							"//tests[\"Se actualizo correctamente\"] = responseCode.code == 200;"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "PUT",
+				"header": [
+					{
+						"key": "Content-Type",
+						"name": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n\t\"name\":\"uni name actualizacion\",\n\t\"city\":\"city actualizacion\",\n    \"isPrivate\": false\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://{{ip}}:{{puerto}}/s1_automotor-api/api/universidad/{{Id_universidad_3}}",
+					"protocol": "http",
+					"host": [
+						"{{ip}}"
+					],
+					"port": "{{puerto}}",
+					"path": [
+						"s1_automotor-api",
+						"api",
+						"universidad",
+						"{{Id_universidad_3}}"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Retornar Universidad Segun ID 3",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "ab0272c3-c0b4-4e55-bc0c-1a3954443525",
+						"exec": [
+							"tests[\"Retorna un registro persistido\"] = responseCode.code == 200;"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "Content-Type",
+						"name": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"url": {
+					"raw": "http://{{ip}}:{{puerto}}/s1_automotor-api/api/universidad/{{Id_universidad_3}}",
+					"protocol": "http",
+					"host": [
+						"{{ip}}"
+					],
+					"port": "{{puerto}}",
+					"path": [
+						"s1_automotor-api",
+						"api",
+						"universidad",
+						"{{Id_universidad_3}}"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Retornar Universidad Segun ID 1",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "ab0272c3-c0b4-4e55-bc0c-1a3954443525",
+						"exec": [
+							"tests[\"Retorna un registro persistido\"] = responseCode.code == 200;"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "Content-Type",
+						"name": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"url": {
+					"raw": "http://{{ip}}:{{puerto}}/s1_automotor-api/api/universidad/{{Id_universidad_1}}",
+					"protocol": "http",
+					"host": [
+						"{{ip}}"
+					],
+					"port": "{{puerto}}",
+					"path": [
+						"s1_automotor-api",
+						"api",
+						"universidad",
+						"{{Id_universidad_1}}"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Borrar universidad Existente",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "ab0272c3-c0b4-4e55-bc0c-1a3954443525",
+						"exec": [
+							"tests[\"No deberia retornarse nada ni generar ningun tipo de error\"] = responseCode.code === 204;"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "DELETE",
+				"header": [
+					{
+						"key": "Content-Type",
+						"name": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"url": {
+					"raw": "http://{{ip}}:{{puerto}}/s1_automotor-api/api/universidad/{{Id_universidad_3}}",
+					"protocol": "http",
+					"host": [
+						"{{ip}}"
+					],
+					"port": "{{puerto}}",
+					"path": [
+						"s1_automotor-api",
+						"api",
+						"universidad",
+						"{{Id_universidad_3}}"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Borrar universidad No Existente",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "ab0272c3-c0b4-4e55-bc0c-1a3954443525",
+						"exec": [
+							"tests[\"Se espera el codigo de error, ya que el registro no existe\"] = responseCode.code === 404;"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "DELETE",
+				"header": [
+					{
+						"key": "Content-Type",
+						"name": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"url": {
+					"raw": "http://{{ip}}:{{puerto}}/s1_automotor-api/api/universidad/{{Id_universidad_3}}",
+					"protocol": "http",
+					"host": [
+						"{{ip}}"
+					],
+					"port": "{{puerto}}",
+					"path": [
+						"s1_automotor-api",
+						"api",
+						"universidad",
+						"{{Id_universidad_3}}"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Retornar universidad No Existente",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "ab0272c3-c0b4-4e55-bc0c-1a3954443525",
+						"exec": [
+							"tests[\"No retorna un registro persistido, ya que no existe\"] = responseCode.code == 404;"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "Content-Type",
+						"name": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"url": {
+					"raw": "http://{{ip}}:{{puerto}}/s1_automotor-api/api/universidad/{{Id_universidad_3}}",
+					"protocol": "http",
+					"host": [
+						"{{ip}}"
+					],
+					"port": "{{puerto}}",
+					"path": [
+						"s1_automotor-api",
+						"api",
+						"universidad",
+						"{{Id_universidad_3}}"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Retornar todas las universidades",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "ab0272c3-c0b4-4e55-bc0c-1a3954443525",
+						"exec": [
+							"tests[\"Se retorna apropiadamente una lista de los registros existentes\"] = responseCode.code == 200;"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "Content-Type",
+						"name": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"url": {
+					"raw": "http://{{ip}}:{{puerto}}/s1_automotor-api/api/universidad",
+					"protocol": "http",
+					"host": [
+						"{{ip}}"
+					],
+					"port": "{{puerto}}",
+					"path": [
+						"s1_automotor-api",
+						"api",
+						"universidad"
+					]
+				}
+			},
+			"response": []
+		}
+	],
+	"protocolProfileBehavior": {}
+}

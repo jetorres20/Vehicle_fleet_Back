@@ -15,6 +15,7 @@ import java.util.List;
 import javax.enterprise.context.RequestScoped;
 import javax.inject.Inject;
 import javax.ws.rs.Consumes;
+import javax.ws.rs.DELETE;
 import javax.ws.rs.GET;
 import javax.ws.rs.POST;
 import javax.ws.rs.PUT;
@@ -63,6 +64,7 @@ public class AgendaResource {
     }
     
     @PUT
+    @Path("{idAgenda: \\d+}")
     public AgendaDTO updateAgenda(@PathParam("idAgenda")Long id, AgendaDTO agenda)throws BusinessLogicException
     {
         AgendaEntity ae = agendaLogic.getDate(id);
@@ -74,7 +76,8 @@ public class AgendaResource {
         AgendaDTO dto = new AgendaDTO(agendaLogic.updateDate(agenda.toEntity()));
         return dto;
     }
-    
+    @DELETE
+    @Path("{idAgenda: \\d+}")
     public void deleteAgenda(@PathParam("idAgenda")Long id)throws BusinessLogicException
     {
         if(agendaLogic.getDate(id) == null)

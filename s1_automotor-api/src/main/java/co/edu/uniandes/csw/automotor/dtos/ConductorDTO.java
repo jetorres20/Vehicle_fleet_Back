@@ -15,7 +15,8 @@ import java.io.Serializable;
 public class ConductorDTO implements Serializable{
     
     private String name;
-    private long idConductor;
+    private Long idConductor;
+    private Long id;
     
     public ConductorDTO()
     {
@@ -27,6 +28,7 @@ public class ConductorDTO implements Serializable{
         {
         this.name = entity.getName();
         this.idConductor = entity.getIdConductor();
+        this.id = entity.getId();
         }
     }
     
@@ -35,6 +37,7 @@ public class ConductorDTO implements Serializable{
         ConductorEntity ce = new ConductorEntity();
         ce.setIdConductor(getIdConductor());
         ce.setName(getName());
+        ce.setId(getId());
         return ce;
     }
 
@@ -64,5 +67,19 @@ public class ConductorDTO implements Serializable{
      */
     public void setIdConductor(long idConductor) {
         this.idConductor = idConductor;
+    }
+
+    /**
+     * @return the id
+     */
+    public Long getId() {
+        return id;
+    }
+
+    /**
+     * @param id the id to set
+     */
+    public void setId(Long id) {
+        this.id = id;
     }
 }

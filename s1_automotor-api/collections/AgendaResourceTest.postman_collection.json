@@ -1,0 +1,77 @@
+{
+	"info": {
+		"_postman_id": "651a2675-6eab-4150-b617-0eb2bf307715",
+		"name": "AgendaResourceTest",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "http://{{ip}}:{{puerto}}/s1_automotor-api/api/agendas",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "77b54a76-5b0a-4f73-bd89-637077b93971",
+						"exec": [
+							"tests[\"test de get de agendas al principio sirve correctamente\"] = responseCode.code === 200;"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://{{ip}}:{{puerto}}/s1_automotor-api/api/agendas",
+					"protocol": "http",
+					"host": [
+						"{{ip}}"
+					],
+					"port": "{{puerto}}",
+					"path": [
+						"s1_automotor-api",
+						"api",
+						"agendas"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "http://{{ip}}:{{puerto}}/s1_automotor-api/api/agendas/50000000",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "213872c5-1a5a-4c9c-bf28-0b3f935e1767",
+						"exec": [
+							"tests[\"test de get de agenda no existente sirve correctamente\"] = responseCode.code === 500;"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://{{ip}}:{{puerto}}/s1_automotor-api/api/agendas/50000000",
+					"protocol": "http",
+					"host": [
+						"{{ip}}"
+					],
+					"port": "{{puerto}}",
+					"path": [
+						"s1_automotor-api",
+						"api",
+						"agendas",
+						"50000000"
+					]
+				}
+			},
+			"response": []
+		}
+	],
+	"protocolProfileBehavior": {}
+}
