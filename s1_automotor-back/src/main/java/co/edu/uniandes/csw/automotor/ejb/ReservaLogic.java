@@ -35,7 +35,7 @@ public class ReservaLogic {
     @Inject
     private ReservaPersistence persistence;
     
-     @Inject
+    @Inject
     private VehiculoPersistence vehiculoPersistence;
     
     private static final Logger LOGGER = Logger.getLogger(ReservaLogic.class.getSimpleName());
