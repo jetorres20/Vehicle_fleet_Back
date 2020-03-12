@@ -3,7 +3,8 @@
   <persistence-unit name="automotorPU" transaction-type="JTA">
     <provider>org.eclipse.persistence.jpa.PersistenceProvider</provider>
     <!--Toca entity por entity, exclude-unlisted-clases = false no funciona-->
-    
+    <class>co.edu.uniandes.csw.automotor.entities.VehiculoEntity</class>
+    <class>co.edu.uniandes.csw.automotor.entities.RegistroEntity</class>
     <exclude-unlisted-classes>true</exclude-unlisted-classes>
  <shared-cache-mode>NONE</shared-cache-mode>
     <properties>
