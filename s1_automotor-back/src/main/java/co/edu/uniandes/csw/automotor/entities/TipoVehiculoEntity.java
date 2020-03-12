@@ -17,8 +17,6 @@ import uk.co.jemos.podam.common.PodamExclude;
 @Entity
 public class TipoVehiculoEntity extends BaseEntity implements Serializable
 {
-    @javax.persistence.Id
-    private Long id;
     private String tipo;
     
     /**
@@ -32,18 +30,6 @@ public class TipoVehiculoEntity extends BaseEntity implements Serializable
             fetch = javax.persistence.FetchType.LAZY
     )
     private VehiculoEntity vehiculo;
-    
-    @Override
-    public void setId(Long id)
-    {
-        this.id = id;
-    }
-    
-    @Override
-    public Long getId()
-    {
-        return this.id;
-    }
     
     public void setTipo(String tipo)
     {
