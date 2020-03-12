@@ -22,9 +22,7 @@ import uk.co.jemos.podam.common.PodamExclude;
 @Entity
 public class ReservaEntity extends BaseEntity implements Serializable
 {
-    @javax.persistence.Id
-    
-    private Long id;
+   
     //@Temporal(javax.persistence.TemporalType.DATE)
     private Date fechaReserva;
     //@Temporal(javax.persistence.TemporalType.DATE)
@@ -61,19 +59,7 @@ public class ReservaEntity extends BaseEntity implements Serializable
     @PodamExclude
     @ManyToOne()
     private ConductorEntity conductor;
-    
-    @Override
-    public void setId(Long id)
-    {
-        this.id = id;
-    }
-    
-    @Override
-    public Long getId()
-    {
-        return this.id;
-    }
-    
+        
     public void setFechaReserva(Date fechaReserva)
     {
         this.fechaReserva = fechaReserva;

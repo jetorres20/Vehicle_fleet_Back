@@ -84,6 +84,7 @@ public class TipoVehiculoDTO implements Serializable{
     public TipoVehiculoEntity toEntity() {
         TipoVehiculoEntity tipoVehiculoEntity = new TipoVehiculoEntity();
         tipoVehiculoEntity.setTipo(this.tipo);
+        tipoVehiculoEntity.setId(this.id);
         return tipoVehiculoEntity;
     }
 

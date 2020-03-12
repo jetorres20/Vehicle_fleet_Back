@@ -116,16 +116,15 @@ public class TipoVehiculoResource {
      * Error de lógica que se genera cuando no se puede actualizar el tipoVehiculo.
      */
     @PUT
-    @Path("{tipoVehiculoId: \\d+}")
-    public TipoVehiculoDTO updateTipoVehiculo(@PathParam("tipoVehiculoId") Long tipoVehiculoId, TipoVehiculoDTO tipoVehiculo) throws BusinessLogicException {
-        LOGGER.log(Level.INFO, "TipoVehiculoResource updateTipoVehiculo: input: tipoVehiculoId: {0} , tipoVehiculo: {1}", new Object[]{tipoVehiculoId, tipoVehiculo});
-        tipoVehiculo.setId(tipoVehiculoId);
-        if (tipoVehiculoLogic.getTipoVehiculo(tipoVehiculoId) == null) {
-            throw new WebApplicationException("El recurso /tipoVehiculos/" + tipoVehiculoId + " no existe.", 404);
+    @Path("{vehiculosId: \\d+}")
+    public TipoVehiculoDTO updateTipoVehiculo(@PathParam("vehiculosId") Long vehiculosId, TipoVehiculoDTO tipoVehiculo) {
+        tipoVehiculo.setId(vehiculosId);
+        if (tipoVehiculoLogic.getTipoVehiculo(vehiculosId) == null) {
+            throw new WebApplicationException("El recurso /tipoVehiculos/" + vehiculosId + " no existe.", 404);
         }
-        TipoVehiculoDTO detailDTO = new TipoVehiculoDTO(tipoVehiculoLogic.updateTipoVehiculo(tipoVehiculoId, tipoVehiculo.toEntity()));
-        LOGGER.log(Level.INFO, "TipoVehiculoResource updateTipoVehiculo: output: {0}", detailDTO);
-        return detailDTO;
+        TipoVehiculoDTO dto = new TipoVehiculoDTO(tipoVehiculoLogic.updateTipoVehiculo(vehiculosId, tipoVehiculo.toEntity()));
+
+        return dto;
     }
     
     @DELETE
