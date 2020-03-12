@@ -6,6 +6,7 @@
 package co.edu.uniandes.csw.automotor.entities;
 
 import java.io.Serializable;
+import java.util.Collection;
 import javax.persistence.Entity;
 import javax.persistence.OneToOne;
 import uk.co.jemos.podam.common.PodamExclude;
@@ -31,6 +32,13 @@ public class VehiculoEntity extends BaseEntity implements Serializable {
     @PodamExclude
     @OneToOne
     private TipoVehiculoEntity tipoVehiculo;
+    
+    @PodamExclude
+       @javax.persistence.OneToMany(
+        mappedBy = "vehiculo",
+        fetch = javax.persistence.FetchType.LAZY
+    )
+    private Collection<ReservaEntity> reservas;
 
     //Metodos
     /**

@@ -111,7 +111,7 @@ public class ReservaDTO implements Serializable{
         return this.fechaReserva;
     }
 
-    public void setFechaReserva(Date fechaReseerva) {
+    public void setFechaReserva(Date fechaReserva) {
         this.fechaReserva = fechaReserva;
     }
     

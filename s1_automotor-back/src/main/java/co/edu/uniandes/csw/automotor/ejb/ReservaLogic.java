@@ -14,6 +14,7 @@ import co.edu.uniandes.csw.automotor.entities.ReservaEntity;
 import co.edu.uniandes.csw.automotor.entities.TipoVehiculoEntity;
 import co.edu.uniandes.csw.automotor.entities.VehiculoEntity;
 import co.edu.uniandes.csw.automotor.exceptions.BusinessLogicException;
+import co.edu.uniandes.csw.automotor.persistence.VehiculoPersistence;
 import co.edu.uniandes.csw.automotor.persistence.ReservaPersistence;
 //import static com.sun.xml.internal.ws.spi.db.BindingContextFactory.LOGGER;
 import java.util.ArrayList;
@@ -34,21 +35,29 @@ public class ReservaLogic {
     @Inject
     private ReservaPersistence persistence;
     
+    @Inject
+    private VehiculoPersistence vehiculoPersistence;
+    
     private static final Logger LOGGER = Logger.getLogger(ReservaLogic.class.getSimpleName());
     
     public ReservaEntity createReserva(ReservaEntity reserva) throws BusinessLogicException
     {
+        if(reserva.getVehiculo()!=null)
+        {
+            VehiculoEntity vehiculo = vehiculoPersistence.find(reserva.getVehiculo().getId());
+            reserva.setVehiculo(vehiculo);
+        }
         if(reserva.getFechaReserva() == null)
         {
             throw new BusinessLogicException("La fecha de reserva está vacía.");
         }
-        else if(reserva.getFechaServicio() == null)
+        if(reserva.getFechaServicio() == null)
         {
             throw new BusinessLogicException("La fecha de servicio está vacía.");
         }
         else if(reserva.getFechaReserva().compareTo(reserva.getFechaServicio()) > 0)
         {
-            throw new BusinessLogicException("La fecha de rserva no puede ser posterior a la fecha del servicio.");
+            throw new BusinessLogicException("La fecha de reserva no puede ser posterior a la fecha del servicio.");
         }
         else if(persistence.numberOfElements() >= 1)
         {
@@ -101,9 +110,15 @@ public class ReservaLogic {
         for(int i=0; i < lista.size(); i++)
         {
             ReservaEntity reserva = (ReservaEntity) lista_array.get(i);
-            if(reserva.getFechaServicio().compareTo(pReserva.getFechaServicio()) == 0 && reserva.getVehiculo().equals(pReserva.getVehiculo()))
+            if(reserva.getFechaServicio().compareTo(pReserva.getFechaServicio()) == 0)
             {
-                return true;
+                if(reserva.getVehiculo()!= null && pReserva.getVehiculo()!=null)
+                {
+                    if(reserva.getVehiculo().equals(pReserva.getVehiculo()))
+                    {
+                        return true;
+                    }
+                }
             }
         }
         return false;
