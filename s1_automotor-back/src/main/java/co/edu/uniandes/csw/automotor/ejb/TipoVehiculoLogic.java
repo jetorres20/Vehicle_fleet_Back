@@ -30,13 +30,15 @@ public class TipoVehiculoLogic {
     
     public TipoVehiculoEntity createTipoVehiculo(TipoVehiculoEntity tipoVehiculo) throws BusinessLogicException
     {
-        if(tipoVehiculo.getTipo() == null)
+        if(tipoVehiculo.getTipo().equals(""))
         {
             throw new BusinessLogicException("El tipo de vehiculo está vacío.");
         }
-        
-        tipoVehiculo = persistence.create(tipoVehiculo);
-        return tipoVehiculo;
+        else
+        {
+            tipoVehiculo = persistence.create(tipoVehiculo);
+            return tipoVehiculo;
+        }
     }
     
     public List<TipoVehiculoEntity> getTipoVehiculos()
