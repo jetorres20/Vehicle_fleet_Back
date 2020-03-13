@@ -264,7 +264,7 @@
 					"script": {
 						"id": "ab0272c3-c0b4-4e55-bc0c-1a3954443525",
 						"exec": [
-							"//tests[\"Se actualizo correctamente\"] = responseCode.code == 200;"
+							"tests[\"Se actualizo correctamente\"] = responseCode.code == 200;"
 						],
 						"type": "text/javascript"
 					}
@@ -389,7 +389,129 @@
 			"response": []
 		},
 		{
+			"name": "Retornar todas las universidades",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "ab0272c3-c0b4-4e55-bc0c-1a3954443525",
+						"exec": [
+							"tests[\"Se retorna apropiadamente una lista de los registros existentes\"] = responseCode.code == 200;"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "Content-Type",
+						"name": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"url": {
+					"raw": "http://{{ip}}:{{puerto}}/s1_automotor-api/api/universidad",
+					"protocol": "http",
+					"host": [
+						"{{ip}}"
+					],
+					"port": "{{puerto}}",
+					"path": [
+						"s1_automotor-api",
+						"api",
+						"universidad"
+					]
+				}
+			},
+			"response": []
+		},
+		{
 			"name": "Borrar universidad Existente",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "ab0272c3-c0b4-4e55-bc0c-1a3954443525",
+						"exec": [
+							"tests[\"No deberia retornarse nada ni generar ningun tipo de error\"] = responseCode.code === 204;"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "DELETE",
+				"header": [
+					{
+						"key": "Content-Type",
+						"name": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"url": {
+					"raw": "http://{{ip}}:{{puerto}}/s1_automotor-api/api/universidad/{{Id_universidad_1}}",
+					"protocol": "http",
+					"host": [
+						"{{ip}}"
+					],
+					"port": "{{puerto}}",
+					"path": [
+						"s1_automotor-api",
+						"api",
+						"universidad",
+						"{{Id_universidad_1}}"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Borrar universidad Existente 2",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "ab0272c3-c0b4-4e55-bc0c-1a3954443525",
+						"exec": [
+							"tests[\"No deberia retornarse nada ni generar ningun tipo de error\"] = responseCode.code === 204;"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "DELETE",
+				"header": [
+					{
+						"key": "Content-Type",
+						"name": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"url": {
+					"raw": "http://{{ip}}:{{puerto}}/s1_automotor-api/api/universidad/{{Id_universidad_2}}",
+					"protocol": "http",
+					"host": [
+						"{{ip}}"
+					],
+					"port": "{{puerto}}",
+					"path": [
+						"s1_automotor-api",
+						"api",
+						"universidad",
+						"{{Id_universidad_2}}"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Borrar universidad Existente 3",
 			"event": [
 				{
 					"listen": "test",
@@ -506,46 +628,6 @@
 						"api",
 						"universidad",
 						"{{Id_universidad_3}}"
-					]
-				}
-			},
-			"response": []
-		},
-		{
-			"name": "Retornar todas las universidades",
-			"event": [
-				{
-					"listen": "test",
-					"script": {
-						"id": "ab0272c3-c0b4-4e55-bc0c-1a3954443525",
-						"exec": [
-							"tests[\"Se retorna apropiadamente una lista de los registros existentes\"] = responseCode.code == 200;"
-						],
-						"type": "text/javascript"
-					}
-				}
-			],
-			"request": {
-				"method": "GET",
-				"header": [
-					{
-						"key": "Content-Type",
-						"name": "Content-Type",
-						"value": "application/json",
-						"type": "text"
-					}
-				],
-				"url": {
-					"raw": "http://{{ip}}:{{puerto}}/s1_automotor-api/api/universidad",
-					"protocol": "http",
-					"host": [
-						"{{ip}}"
-					],
-					"port": "{{puerto}}",
-					"path": [
-						"s1_automotor-api",
-						"api",
-						"universidad"
 					]
 				}
 			},

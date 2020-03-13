@@ -77,7 +77,7 @@ public class UniversidadResource {
     }
 
     @PUT
-    @Path("{UniversidadId: \\d+}")
+    @Path("{universidadId: \\d+}")
     public UniversidadDetailDTO upDateUniversidad(@PathParam("universidadId") Long universidadId, UniversidadDetailDTO universidad) throws WebApplicationException, BusinessLogicException {
         LOGGER.log(Level.INFO, "UniversidadResource upDateUniversidad: input: id:{0} , universidad: {1}", new Object[]{universidadId, universidad});
         universidad.setId(universidadId);
