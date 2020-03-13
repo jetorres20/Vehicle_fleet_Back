@@ -1,0 +1,349 @@
+{
+	"info": {
+		"_postman_id": "96a511c7-76ea-4528-8c0e-d4ba9fa7289c",
+		"name": "PruebasEncuesta",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "Crear Profesor",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "f78a67b1-ac0b-48d4-b7bf-f190149d23b3",
+						"exec": [
+							"var data = JSON.parse(responseBody);",
+							"postman.setGlobalVariable(\"Id_profesor1\",data.id);",
+							"tests[\"No se generó ningun error al crear el profesor\"] = responseCode.code = 200;"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"name": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n\t\t\"nombre\": \"Pablo Perez\",\n\t\t\"identificacion\": 102083902\n\t\t\n\t}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:8080/s1_automotor-api/api/profesores",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"s1_automotor-api",
+						"api",
+						"profesores"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Crear Reserva 1",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "d422a82d-77f4-45e1-808b-dcc1b37faf83",
+						"exec": [
+							"var data = JSON.parse(responseBody);",
+							"postman.setGlobalVariable(\"id_reserva1\",data.id);",
+							"tests['Se crea un reserva sin problemas'] = responseCode.code === 200;"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"name": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n\t\"fechaServicio\":\"2017-03-01T09:28:56.321-10:00\",\n\t\"fechaReserva\": \"2017-02-01T09:28:56.321-10:00\",\n\t\"estadoValidacion\": true,\n\t\"reservaRecurrente\":false,\n\t\"cancelada\":false,\n\t\"motivoCancelacion\":\"\"\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://{{ip}}:{{puerto}}/s1_automotor-api/api/reservas",
+					"protocol": "http",
+					"host": [
+						"{{ip}}"
+					],
+					"port": "{{puerto}}",
+					"path": [
+						"s1_automotor-api",
+						"api",
+						"reservas"
+					]
+				},
+				"description": "Se crea una reserva."
+			},
+			"response": []
+		},
+		{
+			"name": "Crear encuesta",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "8fd48d0c-4630-4fc1-ad41-4191672239aa",
+						"exec": [
+							"var data = JSON.parse(responseBody);",
+							"postman.setGlobalVariable(\"Id_encuesta1\",data.id);",
+							"tests[\"No se generó ningun error al crear el profesor\"] = responseCode.code = 200;"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"name": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n\t\"calificacion\": 5,\n\t\"comentario\": \"Estaba cerrado por coronavirus\",\n\t\"profesor\":{\n\t\t\"id\" : {{Id_profesor1}}\n\t}\n\t,\n\t\"reserva\":{\n\t\t\"id\": {{id_reserva1}}   }\n\t\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:8080/s1_automotor-api/api/encuestas",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"s1_automotor-api",
+						"api",
+						"encuestas"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Retornar una encuesta inexistente",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "52035016-6d28-40c2-9bb7-028f5a9d6a5d",
+						"exec": [
+							"tests[\"No retorna un registro persistido, ya que no existe\"] = responseCode.code == 404;"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:8080/s1_automotor-api/api/encuestas/500000",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"s1_automotor-api",
+						"api",
+						"encuestas",
+						"500000"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Retornar todas las encuestas",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "130ef480-d798-4cbc-925c-4ca415e8bcc3",
+						"exec": [
+							"tests[\"Se retorna apropiadamente una lista de los estudiantes existentes\"] = responseCode.code == 200;"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:8080/s1_automotor-api/api/encuestas",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"s1_automotor-api",
+						"api",
+						"encuestas"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Actualizar encuesta",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "6c292065-40fc-476c-85dc-5adeabe83e39",
+						"exec": [
+							"tests[\"Se actualiza la encuesta de forma apropiada \"]= responseCode.code ==200;"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "PUT",
+				"header": [
+					{
+						"key": "Content-Type",
+						"name": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n\t\"calificacion\": 4,\n\t\"comentario\": \"Estaba cerrado por coronavirus\",\n\t\"profesor\":{\n\t\t\"id\" : {{Id_profesor1}}\n\t}\n\t,\n\t\"reserva\":{\n\t\t\"id\": {{id_reserva1}}   }\n\t\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:8080/s1_automotor-api/api/encuestas/{{Id_encuesta1}}",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"s1_automotor-api",
+						"api",
+						"encuestas",
+						"{{Id_encuesta1}}"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Eliminar una encuesta no existente",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "9ff61adc-fb4b-4d3e-b479-2c71a5144822",
+						"exec": [
+							"tests[\"Se espera error de no encontrado\"] = responseCode.code === 404;"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "DELETE",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:8080/s1_automotor-api/api/encuestas/50000",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"s1_automotor-api",
+						"api",
+						"encuestas",
+						"50000"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Eliminar encuesta por id",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "17eeaf54-f825-4825-b59f-adf500fb2257",
+						"exec": [
+							"tests[\"Se espera un elemento sin retorno y borrado exitoso\"] = responseCode.code === 204;"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "DELETE",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:8080/s1_automotor-api/api/encuestas/{{Id_encuesta1}}",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"s1_automotor-api",
+						"api",
+						"encuestas",
+						"{{Id_encuesta1}}"
+					]
+				}
+			},
+			"response": []
+		}
+	],
+	"protocolProfileBehavior": {}
+}

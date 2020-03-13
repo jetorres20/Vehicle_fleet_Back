@@ -54,7 +54,7 @@ public class TipoVehiculoResource {
      */
     @POST
     public TipoVehiculoDTO createTipoVehiculo(TipoVehiculoDTO tipoVehiculo) throws BusinessLogicException {
-        LOGGER.log(Level.INFO, "TipoVehiculoResource createTipoVehiculo: input: {0}", tipoVehiculo);
+        LOGGER.log(Level.INFO, "TipoVehiculoResource createTipoVehiculo: input: {0}", tipoVehiculo.getTipo());
         // Convierte el DTO (json) en un objeto Entity para ser manejado por la lógica.
         TipoVehiculoEntity tipoVehiculoEntity = tipoVehiculo.toEntity();
         // Invoca la lógica para crear el tipoVehiculo nuevo
