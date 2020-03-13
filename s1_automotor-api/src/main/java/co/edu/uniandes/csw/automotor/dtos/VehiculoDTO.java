@@ -21,6 +21,16 @@ public class VehiculoDTO implements Serializable {
     private Integer capacidad;
 
     private RegistroDTO registro;
+    
+    private TipoVehiculoDTO tipoVehiculo;
+
+    public TipoVehiculoDTO getTipoVehiculo() {
+        return tipoVehiculo;
+    }
+
+    public void setTipoVehiculo(TipoVehiculoDTO tipoVehiculo) {
+        this.tipoVehiculo = tipoVehiculo;
+    }
 
     public VehiculoDTO() {
 
@@ -39,7 +49,7 @@ public class VehiculoDTO implements Serializable {
             this.capacidad = vehiculoEntity.getCapacidad();
             this.modelo = vehiculoEntity.getModelo();
             this.placa = vehiculoEntity.getPlaca();
-
+            this.tipoVehiculo = new TipoVehiculoDTO(vehiculoEntity.getTipoVehiculo());
             this.registro = new RegistroDTO(vehiculoEntity.getRegistro());
         }
     }
@@ -126,6 +136,7 @@ public class VehiculoDTO implements Serializable {
         entidad.setPlaca (this.getPlaca());
         entidad.setId(this.getId());
         entidad.setRegistro(this.registro.toEntity());
+        entidad.setTipoVehiculo(this.tipoVehiculo.toEntity());
         return entidad;
     }
 

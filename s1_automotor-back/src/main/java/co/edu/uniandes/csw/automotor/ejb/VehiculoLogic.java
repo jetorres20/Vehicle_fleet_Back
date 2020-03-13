@@ -6,9 +6,11 @@
 package co.edu.uniandes.csw.automotor.ejb;
 
 import co.edu.uniandes.csw.automotor.entities.RegistroEntity;
+import co.edu.uniandes.csw.automotor.entities.TipoVehiculoEntity;
 import co.edu.uniandes.csw.automotor.entities.VehiculoEntity;
 import co.edu.uniandes.csw.automotor.exceptions.BusinessLogicException;
 import co.edu.uniandes.csw.automotor.persistence.RegistroPersistence;
+import co.edu.uniandes.csw.automotor.persistence.TipoVehiculoPersistence;
 import co.edu.uniandes.csw.automotor.persistence.VehiculoPersistence;
 import static java.lang.Character.isLetter;
 import java.util.Collection;
@@ -28,6 +30,9 @@ public class VehiculoLogic {
     
     @Inject
     private RegistroPersistence registroPersistence;
+    
+    @Inject
+    private TipoVehiculoPersistence tipoVehiculoPersistence;
 
     public VehiculoEntity createVehiculo(VehiculoEntity vehiculo) throws BusinessLogicException {
         
@@ -61,11 +66,13 @@ public class VehiculoLogic {
 
         }
         RegistroEntity regitro =registroPersistence.find(vehiculo.getRegistro().getId());
+        TipoVehiculoEntity tipoVehiculo =tipoVehiculoPersistence.find(vehiculo.getTipoVehiculo().getId());
         if(regitro.getVehiculo()!= null)
         {
             throw new BusinessLogicException("El registro ya esta asociado a un vehiculo");
         }
         vehiculo.setRegistro(regitro);
+        vehiculo.setTipoVehiculo(tipoVehiculo);
         regitro.setVehiculo(vehiculo);
         return vehiculoPersistence.create(vehiculo);
     }
