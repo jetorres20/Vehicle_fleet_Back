@@ -1,0 +1,417 @@
+{
+	"info": {
+		"_postman_id": "651a2675-6eab-4150-b617-0eb2bf307715",
+		"name": "AgendaResourceTest",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "crear conductor",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "ab1afa83-82a2-4eff-9703-d1f092f3441b",
+						"exec": [
+							"var data = JSON.parse(responseBody);",
+							"postman.setGlobalVariable(\"new_id_cond\",data.id);",
+							"postman.setGlobalVariable(\"new_id_condId\",data.idConductor);",
+							"tests[\"no genera error en el post\"] = responseCode.code === 200;"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"name": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n\t\"name\": \"d\",\n\t\"idConductor\": 2\n}\n",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://{{ip}}:{{puerto}}/s1_automotor-api/api/conductores",
+					"protocol": "http",
+					"host": [
+						"{{ip}}"
+					],
+					"port": "{{puerto}}",
+					"path": [
+						"s1_automotor-api",
+						"api",
+						"conductores"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "crear reserva",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "ec06edd0-ff53-4498-a1b2-bb2e80dafd85",
+						"exec": [
+							"var data = JSON.parse(responseBody);",
+							"postman.setGlobalVariable(\"new_id_Re\",data.id);",
+							"tests[\"reserva se crea correctamente\"] = responseCode.code === 200;"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"name": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n\t\"fechaReserva\":\"2013-12-12T23:28:56.782-10:00\",\n    \"fechaServicio\":\"2014-01-01T23:28:56.782-10:00\",\n\t\"estadoValidacion\": true,\n    \"reservaRecurrente\": false,\n    \"cancelada\": false,\n    \"motivoCancelacion\": \" \"\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://{{ip}}:{{puerto}}/s1_automotor-api/api/reservas",
+					"protocol": "http",
+					"host": [
+						"{{ip}}"
+					],
+					"port": "{{puerto}}",
+					"path": [
+						"s1_automotor-api",
+						"api",
+						"reservas"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "get agendas vacias",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://{{ip}}:{{puerto}}/s1_automotor-api/api/conductores/{{new_id_cond}}/agendas",
+					"protocol": "http",
+					"host": [
+						"{{ip}}"
+					],
+					"port": "{{puerto}}",
+					"path": [
+						"s1_automotor-api",
+						"api",
+						"conductores",
+						"{{new_id_cond}}",
+						"agendas"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "create agenda",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "06ee38a3-f222-48ee-a3b5-7663dad4a160",
+						"exec": [
+							"var data = JSON.parse(responseBody);",
+							"postman.setGlobalVariable(\"new_id_Ag\",data.id);",
+							"tests[\"agenda se crea correctamente\"] = responseCode.code === 200;"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"name": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"fecha\":\"2013-12-12T23:28:56.782-10:00\",\n    \n    \"reservada\":true,\n    \n    \"reserva\":{\"id\":{{new_id_Re}}},\n    \n    \"conductor\":{\"id\":{{new_id_cond}}}\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://{{ip}}:{{puerto}}/s1_automotor-api/api/conductores/{{new_id_cond}}/agendas",
+					"protocol": "http",
+					"host": [
+						"{{ip}}"
+					],
+					"port": "{{puerto}}",
+					"path": [
+						"s1_automotor-api",
+						"api",
+						"conductores",
+						"{{new_id_cond}}",
+						"agendas"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "get agenda inexistente",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "9bfb0227-e531-4823-9745-59704a3191ea",
+						"exec": [
+							"tests[\"test de get de un conductor no existente sirve\"] = responseCode.code === 500;"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://{{ip}}:{{puerto}}/s1_automotor-api/api/conductores/{{new_id_cond}}/agendas/1000",
+					"protocol": "http",
+					"host": [
+						"{{ip}}"
+					],
+					"port": "{{puerto}}",
+					"path": [
+						"s1_automotor-api",
+						"api",
+						"conductores",
+						"{{new_id_cond}}",
+						"agendas",
+						"1000"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "get agendas de un conductor",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://{{ip}}:{{puerto}}/s1_automotor-api/api/conductores/{{new_id_cond}}/agendas/{{new_id_Ag}}",
+					"protocol": "http",
+					"host": [
+						"{{ip}}"
+					],
+					"port": "{{puerto}}",
+					"path": [
+						"s1_automotor-api",
+						"api",
+						"conductores",
+						"{{new_id_cond}}",
+						"agendas",
+						"{{new_id_Ag}}"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "update agenda",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "e80748cb-19bf-4a99-8469-a2584281c550",
+						"exec": [
+							"tests[\"no genera error en el post\"] = responseCode.code === 200;"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "PUT",
+				"header": [
+					{
+						"key": "Content-Type",
+						"name": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n\t\"id\": {{new_id_Ag}}\n\t,\n    \"fecha\":\"2013-12-12T23:28:56.782-10:00\",\n    \n    \"reservada\":true,\n    \n    \"reserva\":{\n    \t\"id\":{{new_id_Re}}\n    }\n    ,\n    \n    \"conductor\":{\n    \t\"id\":{{new_id_cond}}\n    }\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://{{ip}}:{{puerto}}/s1_automotor-api/api/conductores/{{new_id_cond}}/agendas/{{new_id_Ag}}",
+					"protocol": "http",
+					"host": [
+						"{{ip}}"
+					],
+					"port": "{{puerto}}",
+					"path": [
+						"s1_automotor-api",
+						"api",
+						"conductores",
+						"{{new_id_cond}}",
+						"agendas",
+						"{{new_id_Ag}}"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "delete agenda conductor Exists",
+			"request": {
+				"method": "DELETE",
+				"header": [],
+				"url": {
+					"raw": "http://{{ip}}:{{puerto}}/s1_automotor-api/api/conductores/{{new_id_cond}}/agendas/{{new_id_Ag}}",
+					"protocol": "http",
+					"host": [
+						"{{ip}}"
+					],
+					"port": "{{puerto}}",
+					"path": [
+						"s1_automotor-api",
+						"api",
+						"conductores",
+						"{{new_id_cond}}",
+						"agendas",
+						"{{new_id_Ag}}"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "eliminar conductor",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "515ef733-927d-4260-b50f-4ece84c41ae5",
+						"exec": [
+							"tests[\"el delete de un conductor funciona correctamente\"] = responseCode.code === 204;"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "DELETE",
+				"header": [],
+				"url": {
+					"raw": "http://{{ip}}:{{puerto}}/s1_automotor-api/api/conductores/{{new_id_cond}}",
+					"protocol": "http",
+					"host": [
+						"{{ip}}"
+					],
+					"port": "{{puerto}}",
+					"path": [
+						"s1_automotor-api",
+						"api",
+						"conductores",
+						"{{new_id_cond}}"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "eliminar reserva",
+			"request": {
+				"method": "DELETE",
+				"header": [],
+				"url": {
+					"raw": "http://{{ip}}:{{puerto}}/s1_automotor-api/api/reservas/{{new_id_Re}}",
+					"protocol": "http",
+					"host": [
+						"{{ip}}"
+					],
+					"port": "{{puerto}}",
+					"path": [
+						"s1_automotor-api",
+						"api",
+						"reservas",
+						"{{new_id_Re}}"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "delete agenda",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "07385039-c1cf-46dc-82c5-ff694b0ba660",
+						"exec": [
+							"tests[\"rejects Agenda delete correctly\"] = responseCode.code === 500;"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "DELETE",
+				"header": [],
+				"url": {
+					"raw": "http://{{ip}}:{{puerto}}/s1_automotor-api/api/conductores/{{new_id_cond}}/agendas/{{new_id_Ag}}",
+					"protocol": "http",
+					"host": [
+						"{{ip}}"
+					],
+					"port": "{{puerto}}",
+					"path": [
+						"s1_automotor-api",
+						"api",
+						"conductores",
+						"{{new_id_cond}}",
+						"agendas",
+						"{{new_id_Ag}}"
+					]
+				}
+			},
+			"response": []
+		}
+	],
+	"protocolProfileBehavior": {}
+}
