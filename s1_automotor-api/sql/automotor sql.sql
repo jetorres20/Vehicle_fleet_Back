@@ -20,3 +20,4 @@ delete from EstudianteEntity;
 delete from EncuestaEntity;
 delete from ESTUDIANTEENTITY_PROFESORENTITY;
 delete from RESERVAENTITY_ESTUDIANTEENTITY;
+delete from UniversidadEntity;

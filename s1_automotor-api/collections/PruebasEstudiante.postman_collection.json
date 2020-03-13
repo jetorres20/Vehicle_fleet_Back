@@ -6,7 +6,21 @@
 	},
 	"item": [
 		{
-			"name": "CrearEstudiante",
+			"name": "Crear Universidad 1",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "906306df-4af0-47e2-a0f8-d12784f1c9ec",
+						"exec": [
+							"var data = JSON.parse(responseBody);",
+							"postman.setGlobalVariable(\"Id_universidad_1\",data.id);",
+							"tests[\"No genera error en el post\"] = responseCode.code == 200;"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
 			"request": {
 				"method": "POST",
 				"header": [
@@ -19,7 +33,59 @@
 				],
 				"body": {
 					"mode": "raw",
-					"raw": "{\n\t\"nombre\": \"Juan Esteban Torres\",\n\t\"codigo\": 201516032\n}",
+					"raw": "{\n\t\"name\": \"Universidad de los Andes\",\n    \"city\": \"Bogotá\",\n    \"isPrivate\": true\n}\n",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:8080/s1_automotor-api/api/universidad",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"s1_automotor-api",
+						"api",
+						"universidad"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "CrearEstudiante",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "88707960-4cf1-403a-83a3-f61de5f94289",
+						"exec": [
+							"var data = JSON.parse(responseBody);",
+							"postman.setGlobalVariable(\"Mi_codigo\", data.codigo);",
+							"postman.setGlobalVariable(\"id1\", data.id);",
+							"tests[\"No genera error en el post\"] = responseCode.code===200;"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"name": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n\t\"nombre\": \"Juan Esteban Torres\",\n\t\"codigo\": 201516032,\n\t\"universidad\":{\n\t\t\"id\" : {{Id_universidad_1}}\n\t}\n}",
 					"options": {
 						"raw": {
 							"language": "json"
@@ -44,36 +110,13 @@
 		},
 		{
 			"name": "CrearEstudianteCodigoRepetido",
-			"request": {
-				"method": "POST",
-				"header": [],
-				"url": {
-					"raw": ""
-				}
-			},
-			"response": []
-		},
-		{
-			"name": "CrearEstudianteCodigoNegativo",
-			"request": {
-				"method": "POST",
-				"header": [],
-				"url": {
-					"raw": ""
-				}
-			},
-			"response": []
-		},
-		{
-			"name": "Crear Estudiante co nombre vacio",
 			"event": [
 				{
 					"listen": "test",
 					"script": {
-						"id": "3d92290c-3bad-4fad-a032-e28e7b326f9b",
+						"id": "9d03b6cf-55f7-41fd-b8c4-af99e183ea41",
 						"exec": [
-							"tests[\"Codigo negativo\"] = responseCode.code = 412;",
-							"tests[\"Mensaje correcto de error\"] = responseBody.has(\"El nombre del estudiante está vacío\")"
+							"tests[\"Se espera una falla en precondicion por codigo repetido\"] = responseCode.code = 412;"
 						],
 						"type": "text/javascript"
 					}
@@ -91,7 +134,106 @@
 				],
 				"body": {
 					"mode": "raw",
-					"raw": "{\n\t\n\t\"codigo\": 201516032\n}",
+					"raw": "{\n\t\"nombre\": \"Pepito Perez\",\n\t\"codigo\": 201516032,\n\t\"universidad\":{\n\t\t\"id\" : {{Id_universidad_1}}\n\t}\n}\n",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:8080/s1_automotor-api/api/estudiantes",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"s1_automotor-api",
+						"api",
+						"estudiantes"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "CrearEstudianteCodigoNegativo",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "c10cd452-45c0-4326-80a1-393c8fadb5de",
+						"exec": [
+							"tests[\"Codigo negativo\"] = responseCode.code = 412;",
+							"tests[\"Mensaje correcto de error\"] = responseBody.has(\"El código no puede ser negativo\")"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"name": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n\t\"nombre\": \"Juan Esteban Torres\",\n\t\"codigo\": -201516032,\n\t\"universidad\":{\n\t\t\"id\" : {{Id_universidad_1}}\n\t}\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:8080/s1_automotor-api/api/estudiantes",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"s1_automotor-api",
+						"api",
+						"estudiantes"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Crear Estudiante co nombre vacio",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "3d92290c-3bad-4fad-a032-e28e7b326f9b",
+						"exec": [
+							"tests[\"Codigo negativo\"] = responseCode.code = 412;"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"name": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n\t\"codigo\": 201516022,\n\t\"universidad\":{\n\t\t\"id\" : {{Id_universidad_1}}\n\t}\n}",
 					"options": {
 						"raw": {
 							"language": "json"
@@ -116,6 +258,18 @@
 		},
 		{
 			"name": "Actualizar Estudiante",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "de3a66a7-f630-4923-a9f5-2119c201bace",
+						"exec": [
+							"tests[\"Se actualiza el estudiante de forma apropiada \"]= responseCode.code ==200;"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
 			"request": {
 				"method": "PUT",
 				"header": [
@@ -128,7 +282,7 @@
 				],
 				"body": {
 					"mode": "raw",
-					"raw": "{\n\t\"nombre\": \"Juan Esteban Torres\",\n\t\"codigo\": 201516033\n}",
+					"raw": "{\n\t\"nombre\": \"Juan Esteban Torres Vergara\",\n\t\"codigo\": 201516032,\n\t\"universidad\":{\n\t\t\"id\" : {{Id_universidad_1}}\n\t}\n}",
 					"options": {
 						"raw": {
 							"language": "json"
@@ -154,22 +308,67 @@
 		},
 		{
 			"name": "Retornar todos los estudiantes",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "be501c1b-c73c-473b-8083-92de9f9f053b",
+						"exec": [
+							"tests[\"Se retorna apropiadamente una lista de los estudiantes existentes\"] = responseCode.code == 200;"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
 			"request": {
 				"method": "GET",
 				"header": [],
 				"url": {
-					"raw": ""
+					"raw": "http://localhost:8080/s1_automotor-api/api/estudiantes",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"s1_automotor-api",
+						"api",
+						"estudiantes"
+					]
 				}
 			},
 			"response": []
 		},
 		{
 			"name": "Retornar estudiante segun ID",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "11bf80e5-3ee3-4026-b868-1bc8e847f4ad",
+						"exec": [
+							"tests[\"Se retorna un estudiante\"] = responseCode.code== 200;"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
 			"request": {
 				"method": "GET",
 				"header": [],
 				"url": {
-					"raw": ""
+					"raw": "http://localhost:8080/s1_automotor-api/api/estudiantes/{{id1}}",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"s1_automotor-api",
+						"api",
+						"estudiantes",
+						"{{id1}}"
+					]
 				}
 			},
 			"response": []
