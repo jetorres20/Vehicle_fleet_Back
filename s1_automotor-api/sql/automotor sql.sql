@@ -16,3 +16,7 @@ delete from UniversidadEntity;
 delete from FranjaHorariaSemanalEntity;
 delete from TipoVehiculoEntity;
 delete from ReservaEntity;
+delete from EstudianteEntity;
+delete from EncuestaEntity;
+delete from ESTUDIANTEENTITY_PROFESORENTITY;
+delete from RESERVAENTITY_ESTUDIANTEENTITY;

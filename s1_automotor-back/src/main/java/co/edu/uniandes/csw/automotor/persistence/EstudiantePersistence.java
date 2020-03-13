@@ -18,7 +18,7 @@ import javax.persistence.PersistenceContext;
 @Stateless
 public class EstudiantePersistence {
     
-    @PersistenceContext
+     @PersistenceContext(unitName = "automotorPU")
     private EntityManager em;
     
     public EstudianteEntity create (EstudianteEntity estudiante){
