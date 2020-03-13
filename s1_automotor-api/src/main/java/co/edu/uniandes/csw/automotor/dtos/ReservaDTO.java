@@ -65,6 +65,7 @@ public class ReservaDTO implements Serializable{
             this.reservaRecurrente = reservaEntity.getReservaRecurrente();
             this.cancelada = reservaEntity.getCancelada();
             this.motivoCancelacion = reservaEntity.getMotivoCancelacion();
+            this.id = reservaEntity.getId();
             
             if (reservaEntity.getVehiculo() != null) {
                 this.vehiculo = new VehiculoDTO(reservaEntity.getVehiculo());
@@ -101,6 +102,7 @@ public class ReservaDTO implements Serializable{
         reservaEntity.setReservaRecurrente(this.reservaRecurrente);
         reservaEntity.setCancelada(this.cancelada);
         reservaEntity.setMotivoCancelacion(this.motivoCancelacion);
+        reservaEntity.setId(this.id);
         if (this.vehiculo != null) {
             reservaEntity.setVehiculo(this.vehiculo.toEntity());
         }
