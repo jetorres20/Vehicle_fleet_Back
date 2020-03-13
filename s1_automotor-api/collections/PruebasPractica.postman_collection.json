@@ -1,20 +1,20 @@
 {
 	"info": {
-		"_postman_id": "ebf8baaf-d6cc-41c5-990f-7a81782000dd",
+		"_postman_id": "01f4ac1e-c0e5-4d63-b533-b5f2ca116948",
 		"name": "PruebasPractica",
 		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
 	},
 	"item": [
 		{
-			"name": "crear Practica 1",
+			"name": "crear Profesor 1",
 			"event": [
 				{
 					"listen": "test",
 					"script": {
-						"id": "b0eef5a1-37c9-4dbd-a940-9a69c222478f",
+						"id": "c0d545e2-62f4-44ca-93ec-f78dc0342134",
 						"exec": [
 							"var data = JSON.parse(responseBody);",
-							"postman.setGlobalVariable(\"Id_Practica1\",data.id);",
+							"postman.setGlobalVariable(\"Id_Profesor1\",data.id);",
 							"tests[\"No genera error en el post\"] = responseCode.code == 200;"
 						],
 						"type": "text/javascript"
@@ -33,7 +33,7 @@
 				],
 				"body": {
 					"mode": "raw",
-					"raw": "{\n\t\t\"profesor\":{\n\t\t\"id\" : {{Id_Profesor1}}\n\t}\t,\n\t\"destino\":\"cali\",\n\t\"descripcion\":\"nosfui\",\n\t\"tiempoDeDesplazamiento\":\"25.0\",\n\t\"duracion\":\"45.2\"\n\n\t\t\n}",
+					"raw": "{\n\t\"nombre\":\"nestor\",\n\t\"identificacion\":\"123\"\n}",
 					"options": {
 						"raw": {
 							"language": "json"
@@ -41,7 +41,7 @@
 					}
 				},
 				"url": {
-					"raw": "http://localhost:8080/s1_automotor-api/api/practicas",
+					"raw": "http://localhost:8080/s1_automotor-api/api/profesores",
 					"protocol": "http",
 					"host": [
 						"localhost"
@@ -50,7 +50,58 @@
 					"path": [
 						"s1_automotor-api",
 						"api",
-						"practicas"
+						"profesores"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "crear Profesor 2",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "c0d545e2-62f4-44ca-93ec-f78dc0342134",
+						"exec": [
+							"var data = JSON.parse(responseBody);",
+							"postman.setGlobalVariable(\"Id_Profesor2\",data.id);",
+							"tests[\"No genera error en el post\"] = responseCode.code == 200;"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"name": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n\t\"nombre\":\"pablo\",\n\t\"identificacion\":\"87900\"\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:8080/s1_automotor-api/api/profesores",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"s1_automotor-api",
+						"api",
+						"profesores"
 					]
 				}
 			},
@@ -85,6 +136,57 @@
 				"body": {
 					"mode": "raw",
 					"raw": "{\n\t\t\"profesor\":{\n\t\t\"id\" : {{Id_Profesor2}}\n\t}\t,\n\t\"destino\":\"bog\",\n\t\"descripcion\":\"arivedecrci\",\n\t\"tiempoDeDesplazamiento\":\"24.0\",\n\t\"duracion\":\"432.2\",\n\t\"id\":\"2\"\n\n\t\t\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:8080/s1_automotor-api/api/practicas",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"s1_automotor-api",
+						"api",
+						"practicas"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "crear Practica 1",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "b0eef5a1-37c9-4dbd-a940-9a69c222478f",
+						"exec": [
+							"var data = JSON.parse(responseBody);",
+							"postman.setGlobalVariable(\"Id_Practica1\",data.id);",
+							"tests[\"No genera error en el post\"] = responseCode.code == 200;"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"name": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n\t\t\"profesor\":{\n\t\t\"id\" : {{Id_Profesor1}}\n\t}\t,\n\t\"destino\":\"cali\",\n\t\"descripcion\":\"nosfui\",\n\t\"tiempoDeDesplazamiento\":\"25.0\",\n\t\"duracion\":\"45.2\"\n\n\t\t\n}",
 					"options": {
 						"raw": {
 							"language": "json"
@@ -456,6 +558,108 @@
 						"api",
 						"practicas",
 						"{{Id_Practica1}}"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "eliminar practica 2",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "680f0752-f7d1-40fa-bb99-6ff2ce0af738",
+						"exec": [
+							"tests[\"Se elimino correctamente\"] = responseCode.code === 204;"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "DELETE",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:8080/s1_automotor-api/api/practicas/{{Id_Practica1}}",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"s1_automotor-api",
+						"api",
+						"practicas",
+						"{{Id_Practica1}}"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "eliminarProfesor",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "4e95295f-78c8-423a-8dba-e217c5f3e634",
+						"exec": [
+							"tests[\"Se elimino correctamente\"] = responseCode.code === 204;"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "DELETE",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:8080/s1_automotor-api/api/profesores/{{Id_Profesor3}}",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"s1_automotor-api",
+						"api",
+						"profesores",
+						"{{Id_Profesor3}}"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "eliminarProfesor2",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "141157e0-92d1-4210-a8cd-17512e998acb",
+						"exec": [
+							"tests[\"Se elimino correctamente\"] = responseCode.code === 204;"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "DELETE",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:8080/s1_automotor-api/api/profesores/{{Id_Profesor1}}",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"s1_automotor-api",
+						"api",
+						"profesores",
+						"{{Id_Profesor1}}"
 					]
 				}
 			},

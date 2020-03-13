@@ -1,6 +1,6 @@
 {
 	"info": {
-		"_postman_id": "5452e151-d973-4c05-b37f-6cb74cb08a87",
+		"_postman_id": "667c886e-876e-4e17-bae7-db38829be13e",
 		"name": "PruebasProfesor",
 		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
 	},
@@ -371,6 +371,74 @@
 						"s1_automotor-api",
 						"api",
 						"profesores"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "eliminarProfesor2",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "141157e0-92d1-4210-a8cd-17512e998acb",
+						"exec": [
+							"tests[\"Se elimino correctamente\"] = responseCode.code === 204;"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "DELETE",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:8080/s1_automotor-api/api/profesores/{{Id_Profesor1}}",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"s1_automotor-api",
+						"api",
+						"profesores",
+						"{{Id_Profesor1}}"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "eliminar Profesor 3",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "0854c1ea-80c4-4ace-8cce-89664fea0d71",
+						"exec": [
+							"tests[\"Se elimino correctamente\"] = responseCode.code === 204;"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "DELETE",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:8080/s1_automotor-api/api/profesores/{{Id_Profesor2}}",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"s1_automotor-api",
+						"api",
+						"profesores",
+						"{{Id_Profesor2}}"
 					]
 				}
 			},
