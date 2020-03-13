@@ -65,7 +65,7 @@ public class FranjaHorariaSemanalResource {
     @GET
     @Path("{franjaId: \\d+}")
     public FranjaHorariaSemanalDTO getFranja(@PathParam("franjaId") Long franjaId) throws WebApplicationException {
-        LOGGER.log(Level.INFO, "FranjaHorariaSemanalResource getUniversidad: input: {0}", franjaId);
+        LOGGER.log(Level.INFO, "FranjaHorariaSemanalResource getFranja: input: {0}", franjaId);
         FranjaHorariaSemanalEntity franjaEntity = franjaLogic.find(franjaId);
         if (franjaEntity == null) {
             throw new WebApplicationException("El recurso /franja/" + franjaId + " no existe.", 404);

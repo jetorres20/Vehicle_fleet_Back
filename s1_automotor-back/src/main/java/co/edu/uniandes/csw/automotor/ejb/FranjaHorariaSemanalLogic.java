@@ -100,7 +100,8 @@ public class FranjaHorariaSemanalLogic {
         Iterator<FranjaHorariaSemanalEntity> it=franjas.iterator();
         while(it.hasNext()){
             FranjaHorariaSemanalEntity act=it.next();
-            if(act.equals(franja)){
+            if(act.getFinishHour().compareTo(franja.getFinishHour())==0 && act.getStartHour().compareTo(franja.getFinishHour())==0 ){
+                //&& act.getConductor().equals(franja.getConductor() )&& act.getWeekDay()==franja.getWeekDay()
                 throw new BusinessLogicException("No puede haber dos frnajas iguales"); 
             }
         }
