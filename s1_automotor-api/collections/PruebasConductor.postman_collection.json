@@ -6,7 +6,7 @@
 	},
 	"item": [
 		{
-			"name": "http://{{ip}}:{{puerto}}/s1_automotor-api/api/conductores",
+			"name": "crear conductor",
 			"event": [
 				{
 					"listen": "test",
@@ -57,7 +57,7 @@
 			"response": []
 		},
 		{
-			"name": "http://{{ip}}:{{puerto}}/s1_automotor-api/api/conductores",
+			"name": "obtener conductor",
 			"event": [
 				{
 					"listen": "test",
@@ -109,7 +109,7 @@
 			"response": []
 		},
 		{
-			"name": "http://{{ip}}:{{puerto}}/s1_automotor-api/api/conductores",
+			"name": "conductor mismo id",
 			"event": [
 				{
 					"listen": "test",
@@ -158,7 +158,7 @@
 			"response": []
 		},
 		{
-			"name": "http://{{ip}}:{{puerto}}/s1_automotor-api/api/conductores/{{new_id_cond}}",
+			"name": "obtener conductor creado",
 			"event": [
 				{
 					"listen": "test",
@@ -192,7 +192,7 @@
 			"response": []
 		},
 		{
-			"name": "http://{{ip}}:{{puerto}}/s1_automotor-api/api/conductores/1501",
+			"name": "obtener conductor inexistente",
 			"event": [
 				{
 					"listen": "test",
@@ -226,7 +226,7 @@
 			"response": []
 		},
 		{
-			"name": "http://{{ip}}:{{puerto}}/s1_automotor-api/api/conductores",
+			"name": "conductor nombre vacio",
 			"event": [
 				{
 					"listen": "test",
@@ -275,7 +275,57 @@
 			"response": []
 		},
 		{
-			"name": "http://{{ip}}:{{puerto}}/s1_automotor-api/api/conductores/{{new_id_cond}}",
+			"name": "update name",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "b54b72e1-5b61-45f8-aa7c-8ed769d2ff60",
+						"exec": [
+							"tests[\"no genera error en el post\"] = responseCode.code === 200;"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "PUT",
+				"header": [
+					{
+						"key": "Content-Type",
+						"name": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n\t\"id\":{{new_id_cond}},\n\t\"name\": \"newB\",\n\t\"idConductor\": 2\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://{{ip}}:{{puerto}}/s1_automotor-api/api/conductores/{{new_id_cond}}",
+					"protocol": "http",
+					"host": [
+						"{{ip}}"
+					],
+					"port": "{{puerto}}",
+					"path": [
+						"s1_automotor-api",
+						"api",
+						"conductores",
+						"{{new_id_cond}}"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "eliminar conductor",
 			"event": [
 				{
 					"listen": "test",

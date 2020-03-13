@@ -7,6 +7,7 @@ package co.edu.uniandes.csw.automotor.dtos;
 
 import co.edu.uniandes.csw.automotor.entities.AgendaEntity;
 import co.edu.uniandes.csw.automotor.entities.ConductorEntity;
+import co.edu.uniandes.csw.automotor.entities.FranjaHorariaSemanalEntity;
 import co.edu.uniandes.csw.automotor.entities.ReservaEntity;
 import java.io.Serializable;
 import java.util.ArrayList;
@@ -18,11 +19,12 @@ import java.util.List;
  */
 public class ConductorDetailDTO extends ConductorDTO implements Serializable
 {
-    //private List<Franja>
     
     private List<AgendaDTO> agendas;
 
     private List<ReservaDTO> reservas;
+    
+    private List<FranjaHorariaSemanalDTO> franjasH;
     
     public ConductorDetailDTO()
     {
@@ -39,7 +41,11 @@ public class ConductorDetailDTO extends ConductorDTO implements Serializable
             }
             reservas = new ArrayList();
             for (ReservaEntity entityReserva : conductor.getReservas()) {
-                //conductor.add(new ReservaDTO());
+                reservas.add(new ReservaDTO(entityReserva));
+            }
+            franjasH = new ArrayList<>();
+            for(FranjaHorariaSemanalEntity entityFranja : conductor.getFranjasHorariasSemanales()){
+                franjasH.add(new FranjaHorariaSemanalDTO(entityFranja));
             }
         }
     }

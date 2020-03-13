@@ -89,14 +89,21 @@ public class AgendaLogic {
     
     public AgendaEntity updateDate(AgendaEntity ag) throws BusinessLogicException
     {
+        AgendaEntity entity = agendaPersistence.find(ag.getId());
+        if(ag.getConductor() == null && entity.getConductor() !=null)
+        {  removeConductor(ag);
+            return ag;}
+        else
+        {
         checkDate(ag);
         if(!ag.getReserva().getFechaServicio().equals(ag.getFecha()))
             throw new BusinessLogicException();
         AgendaEntity result = agendaPersistence.update(ag);
         return result;
+        }
     }
     
-    public void deleteDate(long entId)throws BusinessLogicException
+    public void deleteDate(Long entId)throws BusinessLogicException
     {
         AgendaEntity entity = agendaPersistence.find(entId);
         if(entity.getConductor() != null)

@@ -28,7 +28,6 @@ import javax.ws.rs.WebApplicationException;
  *
  * @author Pablo Garzon
  */
-@Path("agendas")
 @Produces("application/json")
 @Consumes("application/json")
 @RequestScoped

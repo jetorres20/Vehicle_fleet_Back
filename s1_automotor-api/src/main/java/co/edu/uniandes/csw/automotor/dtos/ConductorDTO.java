@@ -29,7 +29,7 @@ public class ConductorDTO implements Serializable{
         this.name = entity.getName();
         this.idConductor = entity.getIdConductor();
         this.id = entity.getId();
-        }
+         }
     }
     
     public ConductorEntity toEntity()

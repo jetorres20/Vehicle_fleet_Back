@@ -23,6 +23,7 @@ import javax.ws.rs.Path;
 import javax.ws.rs.PathParam;
 import javax.ws.rs.Produces;
 import javax.ws.rs.WebApplicationException;
+import co.edu.uniandes.csw.automotor.resources.AgendaResource;
 
 /**
  *
@@ -56,14 +57,7 @@ public class ConductorResource {
     public ConductorDetailDTO getConductor(@PathParam("idConductor")Long id)throws BusinessLogicException
     {
         ConductorEntity ce = conductorLogic.getConductor(id);
-//        if(ce == null)
-//        {
-//            throw new WebApplicationException();
-//        }
-//        
-//        return dto;
-        //List<ConductorEntity> ce = conductorLogic.getConductorFromId(id);
-        if(ce==null)//.isEmpty())
+        if(ce==null)
         {
             throw new WebApplicationException();
         }
@@ -76,7 +70,7 @@ public class ConductorResource {
     @Path("{idConductor: \\d+}")
     public ConductorDetailDTO updateConductor(@PathParam("idConductor")Long id, ConductorDetailDTO cdto) throws WebApplicationException
     {
-        ConductorEntity ce = conductorLogic.getConductor(id);//FromId(id).get(0);
+        ConductorEntity ce = conductorLogic.getConductor(id);   
         cdto.setIdConductor(id);
         if(ce == null)
         {
@@ -109,4 +103,13 @@ public class ConductorResource {
         return list;
     }
     
+    @Path("{idConductor: \\d+}/agendas")
+    public Class<AgendaResource> getAgendaResource(@PathParam("idConductor") Long idCond) 
+    {
+        if(conductorLogic.getConductor(idCond) == null)
+        {
+            throw new WebApplicationException("el recurso de /conductor/"+idCond+"/agendas no existe, error 404");
+        }
+        return AgendaResource.class;
+    }
 }
