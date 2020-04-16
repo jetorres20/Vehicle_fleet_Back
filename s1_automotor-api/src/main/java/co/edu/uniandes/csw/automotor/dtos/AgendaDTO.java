@@ -85,7 +85,7 @@ public class AgendaDTO implements Serializable{
     /**
      * @param reservada the reservada to set
      */
-    public void setReservada(boolean reservada) {
+    public void setReservada(Boolean reservada) {
         this.reservada = reservada;
     }
 
@@ -127,7 +127,7 @@ public class AgendaDTO implements Serializable{
     /**
      * @param id the id to set
      */
-    public void setId(long id) {
+    public void setId(Long id) {
         this.id = id;
     }
 }

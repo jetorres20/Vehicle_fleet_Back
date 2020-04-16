@@ -44,9 +44,9 @@ public class AgendaResource {
     }
     
     @GET
-    public List<AgendaDTO> getAgendas()
+    public List<AgendaDTO> getAgendas(@PathParam("idConductor")Long id)
     {
-        List<AgendaDTO> listaNueva = listEntities2DTO(agendaLogic.getDates());
+        List<AgendaDTO> listaNueva = listEntities2DTO(agendaLogic.getDates(id));
         return listaNueva;
     }
     

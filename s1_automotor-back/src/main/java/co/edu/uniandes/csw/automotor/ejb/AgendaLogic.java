@@ -77,7 +77,12 @@ public class AgendaLogic {
         }
     }
     
-    public Collection<AgendaEntity> getDates()
+    public Collection<AgendaEntity> getDates(Long idCond)
+    {
+        return agendaPersistence.finAllCond(idCond);
+    }
+    
+    public Collection<AgendaEntity> getDatesAll()
     {
         return agendaPersistence.finAll();
     }

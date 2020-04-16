@@ -218,7 +218,7 @@ public class AgendaLogicTest {
     
     public void clear() throws BusinessLogicException
     {
-        Collection<AgendaEntity> col = agendaLogic.getDates();
+        Collection<AgendaEntity> col = agendaLogic.getDatesAll();
         Iterator<AgendaEntity> it = col.iterator();
         while(it.hasNext())
         {
