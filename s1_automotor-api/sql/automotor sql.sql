@@ -26,11 +26,14 @@ delete from AgendaEntity;
 INSERT INTO REGISTROENTITY (ID,PRSC,PRSE,RTM,SOAT,VIGENTE)
 VALUES(216,'2038-01-19 00:00:00','2038-01-19 00:00:00','2038-01-19 00:00:00','2038-01-19 00:00:00',1);
 
+INSERT INTO REGISTROENTITY (ID,PRSC,PRSE,RTM,SOAT,VIGENTE)
+VALUES(217,'2038-01-19 00:00:00','2038-01-19 00:00:00','2038-01-19 00:00:00','2038-01-19 00:00:00',1);
+
 INSERT INTO VEHICULOENTITY(id,capacidad,marca,modelo,placa,registro_id)
 values(216,4,'Renault','logan','KIS412',216);
 
 INSERT INTO VEHICULOENTITY(id,capacidad,marca,modelo,placa,registro_id)
-values(216,4,'Renault','logan','KIS412',216);
+values(217,4,'Renault','Kwid','KIS420',217);
 
 INSERT INTO PROFESORENTITY(ID,nombre,identificacion)
 values(18,'Nestor Plata',1005);
