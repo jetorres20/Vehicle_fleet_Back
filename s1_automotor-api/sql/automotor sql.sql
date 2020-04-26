@@ -20,8 +20,8 @@ delete from EstudianteEntity;
 delete from EncuestaEntity;
 delete from ESTUDIANTEENTITY_PROFESORENTITY;
 delete from RESERVAENTITY_ESTUDIANTEENTITY;
-delete from ConductorEntity;
 delete from AgendaEntity;
+delete from ConductorEntity;
 
 INSERT INTO REGISTROENTITY (ID,PRSC,PRSE,RTM,SOAT,VIGENTE)
 VALUES(216,'2038-01-19 00:00:00','2038-01-19 00:00:00','2038-01-19 00:00:00','2038-01-19 00:00:00',1);
@@ -57,8 +57,13 @@ INSERT INTO AGENDAENTITY(ID, fecha, reservada, conductor_id)
 VALUES(202,'2020-01-19 00:00:00', 1, 101);
 
 INSERT INTO AGENDAENTITY(ID, fecha, reservada, conductor_id)
-VALUES(203,'2021-01-19 00:00:00', 1, 102);
+VALUES(203,'2020-02-02 00:00:00', 1, 101);
 
+INSERT INTO AGENDAENTITY(ID, fecha, reservada, conductor_id)
+VALUES(204,'2021-01-19 00:00:00', 1, 102);
+
+INSERT INTO FRANJAHORARIASEMANALENTITY(ID,FINISHHOUR,STARTHOUR,WEEKDAY,CONDUCTOR_ID)
+VALUES(333,'2021-01-19 00:00:00','2021-01-18 00:00:00',5,101);
 -- INSERT INTO RESERVAENTITY(ID, fechaReserva, fechaServicio, estadoValidacion, reservaRecurrente, cancelada, motivoCancelacion, profesor, encuesta, estudiantes, practica, vehiculo, agenda, conductor)
 -- VALUES(222,'2020-01-19 00:00:00', '2021-01-19 00:00:00', TRUE, TRUE, FALSE,'',NULL,NULL,NULL,NULL,NULL,101);
 

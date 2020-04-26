@@ -30,7 +30,7 @@ import javax.ws.rs.WebApplicationException;
  *
  * @author Juan Villamarin
  */
-@Path("franja")
+//@Path("franja")
 @Produces("application/json")
 @Consumes("application/json")
 @RequestScoped
@@ -55,9 +55,9 @@ public class FranjaHorariaSemanalResource {
     
     
     @GET
-    public Collection<FranjaHorariaSemanalDTO> getFranjas() {
+    public Collection<FranjaHorariaSemanalDTO> getFranjas(@PathParam("idConductor")Long id) {
         LOGGER.info("FranjaHorariaSemanalResource getFranjas: input: void");
-        Collection<FranjaHorariaSemanalDTO> listaFranjaDTOs = listEntity2DetailDTO(franjaLogic.getFranjas());
+        Collection<FranjaHorariaSemanalDTO> listaFranjaDTOs = listEntity2DetailDTO(franjaLogic.getFranjasCond(id));
         LOGGER.log(Level.INFO, "FranjaHorariaSemanalResource getFranjas: output: {0}", listaFranjaDTOs);
         return listaFranjaDTOs;
     }

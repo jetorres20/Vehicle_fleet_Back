@@ -39,6 +39,12 @@ public class FranjaHorariaSemanalPersistence {
         return list;
     }
     
+    public Collection<FranjaHorariaSemanalEntity> findAllConductor(long id)
+    {
+        Collection<FranjaHorariaSemanalEntity> list=em.createQuery("SELECT e FROM FranjaHorariaSemanalEntity e WHERE e.conductor.id = " + id, FranjaHorariaSemanalEntity.class).getResultList();
+        return list;
+    }
+    
     public void delete(long id){
         FranjaHorariaSemanalEntity franja=em.find(FranjaHorariaSemanalEntity.class,id);
         if(franja!=null){

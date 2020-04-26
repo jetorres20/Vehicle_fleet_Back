@@ -61,8 +61,8 @@ public class FranjaHorariaSemanalLogic {
         return null;
     }
     
-    public List<FranjaHorariaSemanalEntity> getFranjas(){
-        List<FranjaHorariaSemanalEntity> res=(List<FranjaHorariaSemanalEntity>)persitence.findAll();
+    public List<FranjaHorariaSemanalEntity> getFranjasCond(long id){
+        List<FranjaHorariaSemanalEntity> res=(List<FranjaHorariaSemanalEntity>)persitence.findAllConductor(id);
         return res;
     }
     
