@@ -112,4 +112,14 @@ public class ConductorResource {
         }
         return AgendaResource.class;
     }
+    
+    @Path("{idConductor: \\d+}/franja")
+    public Class<FranjaHorariaSemanalResource> getFranjaResource(@PathParam("idConductor") Long idCond)
+    {
+        if(conductorLogic.getConductor(idCond) == null)
+        {
+            throw new WebApplicationException("el recurso de /conductor/"+idCond+"/franjas no existe, error 404");
+        }
+        return FranjaHorariaSemanalResource.class;
+    }
 }

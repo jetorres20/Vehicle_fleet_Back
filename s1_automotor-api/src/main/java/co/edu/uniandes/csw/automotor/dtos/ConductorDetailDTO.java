@@ -68,6 +68,13 @@ public class ConductorDetailDTO extends ConductorDTO implements Serializable
             }
             conductorEntity.setReservas(reservaEntity);
         }
+        if (franjasH != null)
+        {
+            List<FranjaHorariaSemanalEntity> franjaEntity = new ArrayList<>();
+            for(FranjaHorariaSemanalDTO dtoFranja : franjasH){
+                franjaEntity.add(dtoFranja.toEntity());
+            }
+        }
         return conductorEntity;
     }
     
@@ -97,6 +104,20 @@ public class ConductorDetailDTO extends ConductorDTO implements Serializable
      */
     public void setReservas(List<ReservaDTO> reservas) {
         this.reservas = reservas;
+    }
+
+    /**
+     * @return the franjasH
+     */
+    public List<FranjaHorariaSemanalDTO> getFranjasH() {
+        return franjasH;
+    }
+
+    /**
+     * @param franjasH the franjasH to set
+     */
+    public void setFranjasH(List<FranjaHorariaSemanalDTO> franjasH) {
+        this.franjasH = franjasH;
     }
     
 }
